@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header/>
 
     <Sidebar/>
 
@@ -14,9 +15,10 @@
 
 export default {
   name: "Panel",
-  components:{
-    Sidebar:()=>import('../layouts/Sidebar'),
-    Footer:()=>import('../layouts/Footer')
+  components: {
+    Sidebar: () => import('../layouts/Sidebar'),
+    Footer: () => import('../layouts/Footer'),
+    Header: () => import('../layouts/Header')
   }
 }
 </script>
