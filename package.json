@@ -12,6 +12,7 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^10.1.1",
     "vue": "^2.6.11",
+    "vue-material": "^1.0.0-beta-15",
     "vue-router": "^3.5.2",
     "vuex": "^3.6.2"
   },

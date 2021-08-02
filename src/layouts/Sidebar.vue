@@ -1,6 +1,6 @@
 <template>
 <div>
-  محمد امیری
+
 </div>
 </template>
 
