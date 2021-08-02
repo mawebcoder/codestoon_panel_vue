@@ -1,6 +1,6 @@
 <template>
 <div>
-  side bar
+  محمد امیری
 </div>
 </template>
 

@@ -1,12 +1,17 @@
 <template>
   <div>
-    <Header/>
+    <main>
 
-    <Sidebar/>
+      <Header/>
 
-    <router-view></router-view>
+      <Sidebar/>
 
-    <Footer/>
+      <router-view></router-view>
+
+      <Footer/>
+
+    </main>
+
 
   </div>
 </template>
