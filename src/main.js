@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
+// vuex
+import store from "./store/store";
 
 //add vue router
 import router from "./routes/router";
@@ -22,6 +24,9 @@ Vue.use(MdAutocomplete)
 Vue.config.productionTip = false
 
 new Vue({
+
+    store,
     router,
     render: h => h(App),
+
 }).$mount('#app')
