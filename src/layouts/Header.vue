@@ -95,7 +95,8 @@ header {
 
 .hamburger-icon {
   line-height: 62px;
-  text-align: center;
+  text-align: left;
+  border-left: 1px solid rgba(118,122,115,0.3);
 
   i {
     cursor: pointer;
@@ -119,6 +120,7 @@ input {
 
 .search-box {
   position: relative;
+  padding: 0 10px;
 }
 i{
   cursor: pointer;

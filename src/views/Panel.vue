@@ -2,12 +2,26 @@
   <div>
     <main>
 
+<!--      header-->
       <Header/>
 
-      <Sidebar/>
+      <article class="row">
 
-      <router-view></router-view>
+<!--        side bar-->
+        <div class="col-2">
+          <Sidebar/>
+        </div>
 
+<!--        section-->
+        <section class="col-10">
+          <router-view></router-view>
+        </section>
+
+      </article>
+
+
+
+<!--      footer-->
       <Footer/>
 
     </main>
@@ -29,5 +43,11 @@ export default {
 </script>
 
 <style scoped>
-
+article{
+  min-height: 100px;
+  margin-top: 7px;
+}
+section{
+  background-color: rgba(174,180,170,0.09);
+}
 </style>
