@@ -49,5 +49,6 @@ article{
 }
 section{
   background-color: rgba(174,180,170,0.09);
+  padding: 20px;
 }
 </style>

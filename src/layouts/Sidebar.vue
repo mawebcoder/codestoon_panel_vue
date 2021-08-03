@@ -15,8 +15,8 @@
 
         <ul class="links-ul hidden">
           <li>
-            <router-link to="/panel">
-              ایجاد مقاله
+            <router-link :to="{name:'create-article-tag'}">
+              ایجاد تگ مقاله
             </router-link>
           </li>
           <li>

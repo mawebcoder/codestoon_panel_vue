@@ -1,12 +1,12 @@
 <template>
   <div>
-  create 
+  create tag
   </div>
 </template>
 
 <script>
 export default {
-  name: "Create",
+  name: "Create"
 }
 </script>
 

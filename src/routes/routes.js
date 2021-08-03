@@ -1,12 +1,13 @@
-import ArticleRoutes from "./ArticleRoutes";
+import Article from "./Article/Article";
+
 const routes = [
     {
         path: '/panel',
         component: () => import('../views/Panel'),
-        children: []
+        children: [
+            ...Article
+        ]
     }
 ];
-let children=routes[0].children;
-children.push(ArticleRoutes)
 
 export default routes;
