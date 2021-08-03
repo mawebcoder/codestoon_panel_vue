@@ -13,14 +13,15 @@ import '../src/assets/app.scss'
 import '../src/assets/webfonts/css/fontiran.scss'
 
 
-import {MdIcon,MdField,MdAutocomplete,MdBadge} from 'vue-material/dist/components'
-// import {MdBadge} from 'vue-material'
+import {MdIcon,MdField,MdAutocomplete,MdBadge,MdProgress} from 'vue-material/dist/components'
+// import {MdProgress} from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 Vue.use(MdIcon)
 Vue.use(MdField)
 Vue.use(MdBadge)
 Vue.use(MdAutocomplete)
+Vue.use(MdProgress)
 Vue.config.productionTip = false
 
 new Vue({

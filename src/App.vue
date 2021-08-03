@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-
+    <div class="loader-box" v-if="$store.state.loader">
+      <div>
+        <md-progress-spinner :md-diameter="100" :md-stroke="10" md-mode="indeterminate"></md-progress-spinner>
+      </div>
+    </div>
 
     <router-view></router-view>
   </div>
@@ -20,6 +24,22 @@ export default {
 </script>
 
 <style lang="scss">
-
+.loader-box{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: rgba(244,242,231,0.5);
+  justify-content: center;
+  align-content: center;
+  >div{
+    width: 100%;
+    text-align: center;
+    line-height: 50;
+    height: 100%;
+  }
+}
 
 </style>
