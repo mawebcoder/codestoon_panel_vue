@@ -38,6 +38,7 @@
 
 <script>
 import Auth from "../../services/Auth/Auth";
+import HelperClass from "../../services/HelperClass";
 
 export default {
   name: "AuthenticationPage",
@@ -56,8 +57,18 @@ export default {
       return data;
     },
     login() {
+      this.$store.state.loader = true;
       let data = this.getData();
-      Auth.login(data);
+      Auth.login(data)
+          .then(res => {
+
+            localStorage.setItem('temp_password', res.data.data.temporary_password)
+            this.$router.push({name: 'verify-code'})
+
+          }).catch(error => {
+        this.$store.state.loader = false
+        HelperClass.showErrors(error, this.$noty)
+      });
 
     }
   }
