@@ -1,12 +1,12 @@
 <template>
   <div>
-    <router-view></router-view>
+    <span style="color: red">auth page</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Authentication"
+  name: "AuthenticationPage"
 }
 </script>
 
