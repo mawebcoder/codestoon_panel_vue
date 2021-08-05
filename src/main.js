@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+require('./Plugins/VueNoty')
 // vue cookies
 require('./Plugins/VueCookies')
 

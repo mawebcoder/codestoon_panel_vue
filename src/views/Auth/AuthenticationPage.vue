@@ -12,9 +12,15 @@
               <md-input placeholder="شماره تلفن خود را وارد کنید..." v-model="mobile"></md-input>
               <md-icon>phone</md-icon>
             </md-field>
+
+            <md-field>
+              <md-input placeholder="رمز عبور خود را وارد کنید..." v-model="password"></md-input>
+              <md-icon>lock</md-icon>
+            </md-field>
+
           </md-card-content>
           <md-card-actions>
-            <md-button class="md-raised md-primary">
+            <md-button @click="login" class="md-raised md-primary">
 
               ورود
 
@@ -31,11 +37,28 @@
 </template>
 
 <script>
+import Auth from "../../services/Auth/Auth";
+
 export default {
   name: "AuthenticationPage",
   data() {
     return {
-      mobile: ''
+      mobile: '',
+      password: ''
+    }
+  },
+  methods: {
+    getData() {
+      let data = new FormData();
+
+      data.append('username', this.mobile);
+      data.append('password', this.password);
+      return data;
+    },
+    login() {
+      let data = this.getData();
+      Auth.login(data);
+
     }
   }
 }
