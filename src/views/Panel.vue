@@ -14,6 +14,11 @@
 
 <!--        section-->
         <section class="col-10">
+          <div style="margin: 10px 0">
+            <md-toolbar style="display: flex;justify-content: center">
+            <h3> {{$store.state.page_title}}  </h3>
+            </md-toolbar>
+          </div>
           <router-view></router-view>
         </section>
 

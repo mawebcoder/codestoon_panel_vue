@@ -1,29 +1,31 @@
 import Vue from 'vue'
 import App from './App.vue'
+
+// vue cookies
+require('./Plugins/VueCookies')
+
+// vue good table
+require('./Plugins/VueGoodTable')
+
+// axios
+require('./Plugins/Axios')
+
+// vue material
+require('./Plugins/VueMaterial')
+
 // vuex
 import store from "./store/store";
 
-//add vue router
+//vue router
 import router from "./routes/router";
 
-//add global scss styles
+//global styles
 import '../src/assets/app.scss'
 
-//add font to project
+//fonts
 import '../src/assets/webfonts/css/fontiran.scss'
 
 
-import {MdIcon,MdButton,MdField,MdAutocomplete,MdBadge,MdProgress} from 'vue-material/dist/components'
-// import {MdButton} from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
-Vue.use(MdIcon)
-Vue.use(MdField)
-Vue.use(MdBadge)
-Vue.use(MdAutocomplete)
-Vue.use(MdProgress)
-Vue.use(MdButton)
-Vue.config.productionTip = false
 
 new Vue({
 

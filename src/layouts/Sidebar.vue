@@ -1,7 +1,7 @@
 <template>
   <aside>
     <ul class="origin-ul">
-<!--      articles-->
+      <!--      articles-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -20,8 +20,8 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/panel">
-              ویرایش مقالات
+            <router-link :to="{name:'list-article-tag'}">
+              لیست تگ مقالات
             </router-link>
           </li>
         </ul>
@@ -30,7 +30,7 @@
       </li>
 
 
-<!--      courses-->
+      <!--      courses-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -58,7 +58,7 @@
 
       </li>
 
-<!--      videos-->
+      <!--      videos-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -87,7 +87,7 @@
       </li>
 
 
-<!--      comments-->
+      <!--      comments-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -116,8 +116,7 @@
       </li>
 
 
-
-<!--      offers-->
+      <!--      offers-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -146,8 +145,7 @@
       </li>
 
 
-
-<!--      settings-->
+      <!--      settings-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -176,7 +174,7 @@
       </li>
 
 
-<!--  factors-->
+      <!--  factors-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -205,7 +203,7 @@
       </li>
 
 
-<!--  admins-->
+      <!--  admins-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -234,8 +232,7 @@
       </li>
 
 
-
-<!--      users-->
+      <!--      users-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -263,36 +260,31 @@
 
       </li>
 
-<!--  dashboard-->
+      <!--  dashboard-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
-              dashboard
+           bar_chart
             </md-icon>
-         داشبورد
+   گزارشگیری
           <md-icon>
             expand_more
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+                <ul class="links-ul hidden">
+                  <li>
+                    <router-link :to="{name:'dashboard'}">
+                     داشبورد
+                    </router-link>
+                  </li>
+                </ul>
 
 
       </li>
 
 
-<!--    discount code-->
+      <!--    discount code-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -320,7 +312,7 @@
 
       </li>
 
-<!--      vip-->
+      <!--      vip-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -378,7 +370,6 @@
       </li>
 
 
-
       <!--      send messages-->
       <li>
         <span @click="toggle($event)" class="drop-down-button">
@@ -406,8 +397,6 @@
 
 
       </li>
-
-
 
 
     </ul>
@@ -490,13 +479,13 @@ aside {
 
 .links-ul li a {
   text-decoration: none;
-  color: rgba(74,76,72,0.85);
+  color: rgba(74, 76, 72, 0.85);
   font-size: .9em;
 
   &:hover {
     display: block;
     width: 100%;
-    color: rgba(248,22,12,0.77);
+    color: rgba(248, 22, 12, 0.77);
     height: 100%;
     transform: translateX(-10px) !important;
     transition: .2s;
