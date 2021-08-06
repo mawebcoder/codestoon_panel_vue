@@ -13,9 +13,9 @@
               <md-icon>phone</md-icon>
             </md-field>
 
-            <md-field>
-              <md-input placeholder="رمز عبور خود را وارد کنید..." v-model="password"></md-input>
-              <md-icon>lock</md-icon>
+            <md-field style="direction: ltr">
+              <md-input type="password" placeholder="رمز عبور خود را وارد کنید..." v-model="password"></md-input>
+
             </md-field>
 
           </md-card-content>

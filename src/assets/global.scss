@@ -1,11 +1,16 @@
-*{
+* {
   direction: rtl;
   font-family: IRANSans;
 }
 
-main{
-  max-width:2048px;
+main {
+  max-width: 2048px;
   min-height: 100px;
   margin: 0 auto;
+}
+
+.md-field.md-has-password .md-toggle-password {
+
+  left: 0 !important;
 
 }

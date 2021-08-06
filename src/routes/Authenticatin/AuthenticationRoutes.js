@@ -1,3 +1,5 @@
+import Auth from "../../services/Auth/Auth";
+
 export default [
     {
         path: '/authentication',
@@ -11,7 +13,28 @@ export default [
             {
                 path: 'verify',
                 component: () => import('../../views/Auth/VerifyCode'),
-                name: 'verify-code'
+                name: 'verify-code',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.verifyTempPassword()
+                        .then(() => {
+
+                            Auth.getExpireCodeDate()
+                                .then((res) => {
+
+                                    localStorage.setItem('code_expire_date', res.data.data)
+                                     next()
+                                }).catch(() => {
+                                next({name: 'auth-login'})
+                            })
+
+
+                        }).catch(() => {
+
+                        next({name: 'auth-login'})
+
+                    })
+                }
             }
         ]
     }
