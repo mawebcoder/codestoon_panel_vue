@@ -22,6 +22,7 @@
 
 <script>
 import ArticleTagService from "../../../services/Article/ArticleTagService";
+import HelperClass from "../../../services/HelperClass";
 
 export default {
   name: "Create",
@@ -38,21 +39,37 @@ export default {
   methods: {
     getData() {
       let formData = new FormData();
-      formData.append('name', this.name);
+      formData.append('fa_name', this.fa_name);
       formData.append('status', this.status ? 1 : 0);
       this.en_name.trim().length ?
           formData.append('en_name', this.en_name) :
           '';
       return formData;
     },
+    makeEmptyValues() {
+      this.fa_name = '';
+      this.en_name = '';
+      this.status = false;
+    },
     submit() {
-
+      this.$store.state.loader = true;
       let data = this.getData();
 
       ArticleTagService.store(data)
+          .then(() => {
+            HelperClass.showSuccess(this.$noty)
+            this.makeEmptyValues();
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+
+    },
+    showScrollTop() {
 
 
     }
+  },
+  mounted() {
   }
 }
 </script>

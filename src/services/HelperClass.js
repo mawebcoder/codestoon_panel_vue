@@ -1,8 +1,10 @@
+import store from "../store/store";
+
 class HelperClass {
 
     // show errors in catch
     showErrors(error, noty) {
-
+        store.state.loader = false;
         let statusCode = error.response.status;
 
         if (statusCode === 422) {
@@ -31,7 +33,31 @@ class HelperClass {
             })
         }
 
+
     }
+
+    showSuccess(noty) {
+        store.state.loader = false;
+        noty.success('عملیات با موفقیت انجام شد')
+        this.scrollTop();
+    }
+    scrollTop(){
+        let scrollTop = scrollY;
+
+        let scrollTopSetInterval=setInterval(function () {
+
+            scrollTop-=20;
+
+            if (scrollTop<=0){
+                clearInterval(scrollTopSetInterval);
+                return;
+            }
+            document.body.scrollTop = scrollTop-20;
+            document.documentElement.scrollTop =  scrollTop-20;
+
+        },20)
+    }
+
 
 }
 
