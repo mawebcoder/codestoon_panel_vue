@@ -20,14 +20,9 @@ export default [
                 component: () => import('../../views/Articles/tags/list'),
                 name: 'list-article-tag',
                 beforeEnter: (to, from, next) => {
-                    Auth.checkLogin()
-                        .then(res => {
-                            console.log(res)
-                            next();
-                        }).catch(error => {
-                        console.log(error)
-                        next();
-                    })
+
+                    Auth.checkCanAccessThisRoute(next,'article.tags.index')
+
                 }
             }
         ]
