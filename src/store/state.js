@@ -3,4 +3,7 @@ export default {
     loader: false,
     page_title: '',
     show_resend_code_button: false,
+    permissions: [],
+    user_info: [],
+    user_role:[]
 }

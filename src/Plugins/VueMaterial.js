@@ -2,7 +2,6 @@ import Vue from 'vue'
 import {
     MdIcon,
     MdCheckbox,
-    MdTable,
     MdSwitch,
     MdButton,
     MdField,
@@ -25,5 +24,4 @@ Vue.use(MdCheckbox)
 Vue.use(MdButton)
 Vue.use(MdDialog)
 Vue.use(MdToolbar)
-Vue.use(MdTable)
 Vue.use(MdCard)
