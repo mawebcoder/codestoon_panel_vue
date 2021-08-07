@@ -19,23 +19,43 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
               <router-link :to="{name:'create-article-tag'}">
                 ایجاد تگ مقاله
               </router-link>
             </li>
             <li>
+              <small></small>
               <router-link :to="{name:'list-article-tag'}">
                 لیست تگ مقالات
               </router-link>
             </li>
             <li>
+              <small></small>
+
               <router-link :to="{name:'list-article-tag'}">
                 ایجاد دسته بندی مقاله
               </router-link>
             </li>
             <li>
+              <small></small>
+
               <router-link :to="{name:'list-article-tag'}">
                 لیست دسته بندی مقالات
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'list-article-tag'}">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'list-article-tag'}">
+                لیست مقالات
               </router-link>
             </li>
           </ul>
@@ -58,15 +78,63 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
-                ایجاد مقاله
+                ایجاد تگ دوره
               </router-link>
             </li>
             <li>
+              <small></small>
+
               <router-link to="/panel">
-                ویرایش مقالات
+                لیست تگ دوره ها
               </router-link>
             </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                ایجاد دسته بندی دوره ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                لیست دسته بندی دوره ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                ایجاد فصل
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                لیست فصل ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                ایجاد دوره جدید
+              </router-link>
+            </li>
+
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                لیست دوره ها
+              </router-link>
+            </li>
+
           </ul>
 
 
@@ -86,11 +154,13 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
               <router-link to="/panel">
                 ایجاد مقاله
               </router-link>
             </li>
             <li>
+              <small></small>
               <router-link to="/panel">
                 ویرایش مقالات
               </router-link>
@@ -115,11 +185,13 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
               <router-link to="/panel">
                 ایجاد مقاله
               </router-link>
             </li>
             <li>
+              <small></small>
               <router-link to="/panel">
                 ویرایش مقالات
               </router-link>
@@ -144,11 +216,15 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
               </router-link>
             </li>
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ویرایش مقالات
               </router-link>
@@ -173,13 +249,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -202,13 +275,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -231,13 +301,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -260,13 +327,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -280,7 +344,7 @@
             <md-icon>
            bar_chart
             </md-icon>
-   گزارشگیری
+    گزارشگیری
           <md-icon>
             expand_more
           </md-icon>
@@ -288,10 +352,13 @@
 
           <ul class="links-ul hidden">
             <li>
-              <router-link :to="{name:'dashboard'}">
-                داشبورد
+              <small></small>
+
+              <router-link to="/panel">
+                ایجاد مقاله
               </router-link>
             </li>
+
           </ul>
 
 
@@ -312,13 +379,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -340,13 +404,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -369,13 +430,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -398,13 +456,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -426,13 +481,10 @@
 
           <ul class="links-ul hidden">
             <li>
+              <small></small>
+
               <router-link to="/panel">
                 ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <router-link to="/panel">
-                ویرایش مقالات
               </router-link>
             </li>
           </ul>
@@ -493,6 +545,23 @@ export default {
 
     }
 
+    let li_links = document.querySelectorAll('.links-ul li');
+
+    li_links.forEach(item => {
+
+      item.addEventListener('click', function (e) {
+
+        li_links.forEach(item2 => {
+          console.log(item2)
+          item2.querySelector('small').style.backgroundColor = 'transparent';
+        })
+
+        e.target.closest('li').querySelector('small').style.backgroundColor = 'orange'
+      })
+
+
+    })
+
   }
 }
 </script>
@@ -546,10 +615,30 @@ aside {
 }
 
 .links-ul {
+  background-color: rgba(191, 190, 180, 0.2);
+
   li {
     padding-right: 47px;
+
     position: relative;
+    line-height: 34px;
     height: 35px;
+
+    small {
+      display: block;
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      border: 1px solid rgba(136, 135, 128, 0.38);
+      top: 13px;
+      position: absolute;
+      z-index: 2;
+      right: 22px;
+    }
+
+    &:hover small {
+      background-color: orange;
+    }
 
     i {
       position: absolute;

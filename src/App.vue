@@ -49,5 +49,8 @@ export default {
 .vgt-global-search, .vgt-clearfix {
   flex-direction: column-reverse;
 }
+.router-link-exact-active{
+  color: rgba(248, 22, 12, 0.77) !important;
+}
 
 </style>
