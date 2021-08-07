@@ -1,4 +1,4 @@
-import axios from "axios";
+import HttpVerbs from "../HttpVerbs";
 
 class Auth {
 
@@ -7,7 +7,7 @@ class Auth {
     }
 
     login(data) {
-        return axios.post(`${this.authBaseUrl}/login`, data)
+        return HttpVerbs.postRequest(`${this.authBaseUrl}/login`, data)
     }
 
     verifyTempPassword() {
@@ -16,7 +16,7 @@ class Auth {
             security_temporary_password: localStorage.getItem('temp_password')
         }
 
-        return axios.post(`${this.authBaseUrl}/login/validate-security-temporary-password`, data)
+        return HttpVerbs.postRequest(`${this.authBaseUrl}/login/validate-security-temporary-password`, data)
     }
 
     getExpireCodeDate() {
@@ -25,27 +25,26 @@ class Auth {
             security_temporary_password: localStorage.getItem('temp_password')
         }
 
-        return axios.post(`${this.authBaseUrl}/code/expire/date`, data)
+        return  HttpVerbs.postRequest(`${this.authBaseUrl}/code/expire/date`, data)
     }
 
     resendCode() {
         let data = {
             security_temporary_password: localStorage.getItem('temp_password')
         }
-        return axios.post(`${this.authBaseUrl}/code/resend`, data)
-
+        return  HttpVerbs.postRequest(`${this.authBaseUrl}/code/resend`, data)
 
     }
 
     verifyCode(data) {
 
-        return axios.post(`${this.authBaseUrl}/login/verify`, data)
+        return  HttpVerbs.postRequest(`${this.authBaseUrl}/login/verify`, data)
 
     }
 
     checkLogin() {
 
-        return axios.post(`${this.authBaseUrl}/user-info`)
+        return  HttpVerbs.postRequest(`${this.authBaseUrl}/user-info`)
 
     }
 }

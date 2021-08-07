@@ -1,5 +1,4 @@
-import axios from "axios";
-
+import HttpVerbs from "../HttpVerbs";
 class ArticleTagService {
 
     constructor(articleTagBaseUrl) {
@@ -9,7 +8,7 @@ class ArticleTagService {
 
     store(data) {
 
-        return axios.post(`${this.articleTagBaseUrl}`, data)
+        return  HttpVerbs.postRequest(`${this.articleTagBaseUrl}`,data)
 
     }
 }
