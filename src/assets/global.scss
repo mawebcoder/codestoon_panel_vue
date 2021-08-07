@@ -28,9 +28,11 @@ main {
     position: fixed;
     z-index: 900;
     width: 250px;
+    height: 100vh;
     top: 0;
     transition: .2s;
     transform: translateX(100%);
+    overflow: auto;
 
   }
   .logo-name{
@@ -41,6 +43,9 @@ main {
     border-left: none !important;
     text-align: center !important;
     line-height: 77px !important;
+    position: relative;
+    right: 6px;
+    top: 6px;
   }
 
 }

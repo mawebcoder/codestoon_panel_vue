@@ -28,6 +28,16 @@
                 لیست تگ مقالات
               </router-link>
             </li>
+            <li>
+              <router-link :to="{name:'list-article-tag'}">
+                ایجاد دسته بندی مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{name:'list-article-tag'}">
+                لیست دسته بندی مقالات
+              </router-link>
+            </li>
           </ul>
 
 
@@ -402,6 +412,34 @@
 
         </li>
 
+        <!--      send messages-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              recycling
+            </md-icon>
+     بازیافت اطلاعات
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
 
       </ul>
     </aside>
@@ -414,16 +452,20 @@ export default {
   name: "Sidebar",
   methods: {
     closeAside() {
+
       let aside = document.querySelector('aside');
       let asideCloser = document.querySelector('.aside-closer');
       aside.style.transform = 'translateX(100%)';
       asideCloser.classList.add('d-none')
+
     },
     toggle(event) {
+
       let element = event.target;
       let ul = element.parentElement.querySelector('ul');
       ul.classList.toggle('hidden');
       ul.classList.toggle('visible')
+
     }
   },
   mounted() {
@@ -462,9 +504,12 @@ aside {
   background-color: #fff;
   min-height: 100px;
   border-top: 1px solid rgba(118, 122, 115, 0.3);
+
+
 }
 
 .origin-ul {
+
   > li {
     min-height: 50px;
 
@@ -525,7 +570,6 @@ aside {
     width: 100%;
     color: rgba(248, 22, 12, 0.77);
     height: 100%;
-    transform: translateX(-10px) !important;
     transition: .2s;
   }
 
