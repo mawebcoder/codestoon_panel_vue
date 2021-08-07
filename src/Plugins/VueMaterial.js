@@ -8,7 +8,7 @@ import {
     MdAutocomplete,
     MdBadge,
     MdProgress,
-    MdDialog, MdToolbar, MdCard
+    MdDialog, MdToolbar, MdCard, MdMenu
 } from 'vue-material/dist/components';
 
 import 'vue-material/dist/vue-material.min.css'
@@ -25,3 +25,4 @@ Vue.use(MdButton)
 Vue.use(MdDialog)
 Vue.use(MdToolbar)
 Vue.use(MdCard)
+Vue.use(MdMenu)

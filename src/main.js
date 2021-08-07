@@ -27,7 +27,8 @@ import '../src/assets/app.scss'
 //fonts
 import '../src/assets/webfonts/css/fontiran.scss'
 
-
+import 'vue-multiselect/dist/vue-multiselect.min.css'
+import 'vue-multiselect/dist/vue-multiselect.min.js'
 
 new Vue({
 
