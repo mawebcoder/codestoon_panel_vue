@@ -2,7 +2,7 @@
 <div>
   <div class="row">
 
-    <div class="col-4">
+    <div class="col-4 col-768-6 col-480-12">
       <div style="padding: 10px">
         <md-card  md-with-hover>
           <md-card-header>
@@ -17,7 +17,7 @@
 
 
 <!--    register user chart-->
-    <div class="col-4">
+    <div class="col-4 col-768-6 col-480-12">
       <div style="padding: 10px">
         <md-card md-with-hover>
           <md-card-header>
@@ -29,7 +29,7 @@
     </div>
 
 <!--    order-chart-->
-    <div class="col-4">
+    <div class="col-4 col-768-6 col-480-12">
       <div style="padding: 10px">
         <md-card md-with-hover>
           <md-card-header>
@@ -45,7 +45,7 @@
   </div>
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 col-480-12">
       <div style="padding: 10px">
         <md-card md-with-hover>
 
@@ -55,7 +55,7 @@
       </div>
 
     </div>
-    <div class="col-6">
+    <div class="col-6 col-480-12">
       <div style="padding: 10px">
         <md-card md-with-hover>
 

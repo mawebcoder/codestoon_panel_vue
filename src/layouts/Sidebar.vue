@@ -1,8 +1,12 @@
 <template>
-  <aside>
-    <ul class="origin-ul">
-      <!--      articles-->
-      <li>
+  <div>
+    <div @click="closeAside" class="aside-closer d-none">
+
+    </div>
+    <aside>
+      <ul class="origin-ul">
+        <!--      articles-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               article
@@ -13,25 +17,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link :to="{name:'create-article-tag'}">
-              ایجاد تگ مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link :to="{name:'list-article-tag'}">
-              لیست تگ مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link :to="{name:'create-article-tag'}">
+                ایجاد تگ مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link :to="{name:'list-article-tag'}">
+                لیست تگ مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--      courses-->
-      <li>
+        <!--      courses-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               missed_video_call
@@ -42,24 +46,24 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
-      <!--      videos-->
-      <li>
+        <!--      videos-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               play_circle_filled
@@ -70,25 +74,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--      comments-->
-      <li>
+        <!--      comments-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               comment
@@ -99,25 +103,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--      offers-->
-      <li>
+        <!--      offers-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               local_offer
@@ -128,25 +132,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--      settings-->
-      <li>
+        <!--      settings-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               settings
@@ -157,25 +161,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--  factors-->
-      <li>
+        <!--  factors-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               shop_2
@@ -186,25 +190,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--  admins-->
-      <li>
+        <!--  admins-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               manage_accounts
@@ -215,25 +219,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--      users-->
-      <li>
+        <!--      users-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               people
@@ -244,24 +248,24 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
-      <!--  dashboard-->
-      <li>
+        <!--  dashboard-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
            bar_chart
@@ -272,20 +276,20 @@
           </md-icon>
         </span>
 
-                <ul class="links-ul hidden">
-                  <li>
-                    <router-link :to="{name:'dashboard'}">
-                     داشبورد
-                    </router-link>
-                  </li>
-                </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link :to="{name:'dashboard'}">
+                داشبورد
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--    discount code-->
-      <li>
+        <!--    discount code-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               emoji_symbols
@@ -296,24 +300,24 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
-      <!--      vip-->
-      <li>
+        <!--      vip-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               map
@@ -324,25 +328,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--      faq-->
-      <li>
+        <!--      faq-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               contact_support
@@ -353,25 +357,25 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-      <!--      send messages-->
-      <li>
+        <!--      send messages-->
+        <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
               email
@@ -382,37 +386,56 @@
           </md-icon>
         </span>
 
-        <ul class="links-ul hidden">
-          <li>
-            <router-link to="/panel">
-              ایجاد مقاله
-            </router-link>
-          </li>
-          <li>
-            <router-link to="/panel">
-              ویرایش مقالات
-            </router-link>
-          </li>
-        </ul>
+          <ul class="links-ul hidden">
+            <li>
+              <router-link to="/panel">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <router-link to="/panel">
+                ویرایش مقالات
+              </router-link>
+            </li>
+          </ul>
 
 
-      </li>
+        </li>
 
 
-    </ul>
-  </aside>
+      </ul>
+    </aside>
+  </div>
+
 </template>
 
 <script>
 export default {
   name: "Sidebar",
   methods: {
+    closeAside() {
+      let aside = document.querySelector('aside');
+      let asideCloser = document.querySelector('.aside-closer');
+      aside.style.transform = 'translateX(100%)';
+      asideCloser.classList.add('d-none')
+    },
     toggle(event) {
       let element = event.target;
       let ul = element.parentElement.querySelector('ul');
       ul.classList.toggle('hidden');
       ul.classList.toggle('visible')
     }
+  },
+  mounted() {
+    let aside = document.querySelector('aside');
+    let asideCloser = document.querySelector('.aside-closer');
+    let side_bar_links = document.querySelectorAll('aside a');
+    side_bar_links.forEach(item => {
+      item.addEventListener('click', () => {
+        aside.style.transform = 'translateX(100%)';
+        asideCloser.classList.add('d-none')
+      })
+    })
   }
 }
 </script>
@@ -500,5 +523,16 @@ aside {
 
 .visible {
   max-height: 1000px;
+}
+
+.aside-closer {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  background-color: rgba(97, 96, 90, 0.44);
+  z-index: 899;
+
 }
 </style>

@@ -1,19 +1,20 @@
 <template>
   <header class="row">
     <!--    logo name -->
-    <div class="col-1 logo-name">
+    <div class="col-2  logo-name">
       کدستوون
     </div>
 
-    <!--    hamburger icon-->
-    <div class="col-1 hamburger-icon">
-      <md-icon>menu</md-icon>
-      .
+
+    <div @click="openAside" class="col-1 hamburger-icon">
+      <md-icon>
+        menu
+      </md-icon>
     </div>
 
 
     <!--    search box-->
-    <div class="col-9 search-box" dir="rtl">
+    <div class="col-9 col-768-9 col-480-11 search-box" dir="rtl">
 
       <md-field>
         <md-input @blur="BlurSearchBox()" placeholder="جستجو در صفحات..." @keyup="searchInPanel()"
@@ -30,7 +31,7 @@
 
 
     <!--    profile icon-->
-    <div class="col-1 position-relative d-flex justify-content-center align-items-center">
+    <div id="notifications" class="col-1 col-768-2  position-relative d-flex justify-content-center align-items-center">
 
       <md-badge md-content="1">
         <md-button class="md-icon-button">
@@ -63,6 +64,12 @@ export default {
     }
   },
   methods: {
+    openAside() {
+      let aside = document.querySelector('aside');
+      let asideCloser = document.querySelector('.aside-closer');
+      asideCloser.classList.remove('d-none')
+      aside.style.transform = 'translateX(0)';
+    },
     searchInPanel() {
       if (this.search.length === 0) {
         this.is_searching = false;
@@ -74,7 +81,7 @@ export default {
       this.is_searching = false;
       this.search = '';
     }
-  }
+  },
 }
 </script>
 
@@ -92,11 +99,13 @@ header {
   color: $sideBarFontColor;
   line-height: 58px;
 }
-
+.logo-name{
+  border-left: 1px solid rgba(118, 122, 115, 0.3);
+}
 .hamburger-icon {
   line-height: 62px;
   text-align: left;
-  border-left: 1px solid rgba(118,122,115,0.3);
+  border-left: 1px solid rgba(118, 122, 115, 0.3);
 
   i {
     cursor: pointer;
@@ -122,7 +131,8 @@ input {
   position: relative;
   padding: 0 10px;
 }
-i{
+
+i {
   cursor: pointer;
 }
 
