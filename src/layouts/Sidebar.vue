@@ -156,13 +156,13 @@
             <li>
               <small></small>
               <router-link to="/panel">
-                ایجاد مقاله
+                آپلود ویدیو جدید
               </router-link>
             </li>
             <li>
               <small></small>
               <router-link to="/panel">
-                ویرایش مقالات
+               لیست ویدیو ها
               </router-link>
             </li>
           </ul>
@@ -187,13 +187,13 @@
             <li>
               <small></small>
               <router-link to="/panel">
-                ایجاد مقاله
+            لیست نظرات مقالات
               </router-link>
             </li>
             <li>
               <small></small>
               <router-link to="/panel">
-                ویرایش مقالات
+                لیست نظرات دوره ها
               </router-link>
             </li>
           </ul>
@@ -219,14 +219,7 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link to="/panel">
-                ویرایش مقالات
+                لیست انتقادات و پیشنهادات
               </router-link>
             </li>
           </ul>
@@ -252,7 +245,7 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+               تنظیمات سایت
               </router-link>
             </li>
           </ul>
@@ -278,7 +271,14 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+                فاکتورهای دوره ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                فاکتورهای پلن ها
               </router-link>
             </li>
           </ul>
@@ -286,6 +286,114 @@
 
         </li>
 
+
+        <!--  caches-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              cached
+            </md-icon>
+         مدیریت cache
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+               مدیریت کش ها
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+        <!--  caches-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              view_module
+            </md-icon>
+          ماژول ها
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                مدیریت ماژول
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+        <!--  admins-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              verified_user
+            </md-icon>
+         نقش ها
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+               ایجاد نقش جدید
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+               لیست نقش ها
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+
+        <!--  personal info-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              account_box
+            </md-icon>
+         اطلاعات شخصی
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+               ویرایش اطلاعات فردی
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
 
         <!--  admins-->
         <li>
@@ -304,13 +412,17 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+                لیست مدیران
               </router-link>
             </li>
           </ul>
 
 
         </li>
+
+
+
+
 
 
         <!--      users-->
@@ -330,7 +442,14 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+                ایجاد کاربر جدید
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+               لیست کاربران
               </router-link>
             </li>
           </ul>
@@ -355,7 +474,14 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+              چارت ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                آمار و اعلانات
               </router-link>
             </li>
 
@@ -382,7 +508,14 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+                ایجاد کد تخفیف
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                لیست کدهای تخفیف
               </router-link>
             </li>
           </ul>
@@ -407,7 +540,14 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+                ایجاد پلن
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                لیست پلن ها
               </router-link>
             </li>
           </ul>
@@ -433,7 +573,14 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+                ایجاد سوال جدید
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                لیست سوالات
               </router-link>
             </li>
           </ul>
@@ -459,9 +606,18 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+                 ارسال ایمیل
               </router-link>
             </li>
+
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                ارسال sms
+              </router-link>
+            </li>
+
           </ul>
 
 
@@ -484,7 +640,43 @@
               <small></small>
 
               <router-link to="/panel">
-                ایجاد مقاله
+               دسته بندی دوره ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                دوره ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                ویدیوها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                کاربران
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                فاکتورها
+              </router-link>
+            </li>
+
+            <li>
+              <small></small>
+
+              <router-link to="/panel">
+                فصل ها
               </router-link>
             </li>
           </ul>
