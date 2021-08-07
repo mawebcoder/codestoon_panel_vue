@@ -427,15 +427,30 @@ export default {
     }
   },
   mounted() {
-    let aside = document.querySelector('aside');
-    let asideCloser = document.querySelector('.aside-closer');
-    let side_bar_links = document.querySelectorAll('aside a');
-    side_bar_links.forEach(item => {
-      item.addEventListener('click', () => {
-        aside.style.transform = 'translateX(100%)';
-        asideCloser.classList.add('d-none')
+    // get size of the device
+    let size = window.innerWidth;
+
+    if (size <= 768) {
+
+      let aside = document.querySelector('aside');
+
+      let asideCloser = document.querySelector('.aside-closer');
+
+      let side_bar_links = document.querySelectorAll('aside a');
+
+      side_bar_links.forEach(item => {
+
+        item.addEventListener('click', () => {
+
+          aside.style.transform = 'translateX(100%)';
+          asideCloser.classList.add('d-none')
+
+        })
+
       })
-    })
+
+    }
+
   }
 }
 </script>

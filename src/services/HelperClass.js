@@ -1,5 +1,6 @@
 import store from "../store/store";
 
+
 class HelperClass {
 
     // show errors in catch
@@ -41,21 +42,22 @@ class HelperClass {
         noty.success('عملیات با موفقیت انجام شد')
         this.scrollTop();
     }
-    scrollTop(){
+
+    scrollTop() {
         let scrollTop = scrollY;
 
-        let scrollTopSetInterval=setInterval(function () {
+        let scrollTopSetInterval = setInterval(function () {
 
-            scrollTop-=20;
+            scrollTop -= 20;
 
-            if (scrollTop<=0){
+            if (scrollTop <= 0) {
                 clearInterval(scrollTopSetInterval);
                 return;
             }
-            document.body.scrollTop = scrollTop-20;
-            document.documentElement.scrollTop =  scrollTop-20;
+            document.body.scrollTop = scrollTop - 20;
+            document.documentElement.scrollTop = scrollTop - 20;
 
-        },20)
+        }, 20)
     }
 
 

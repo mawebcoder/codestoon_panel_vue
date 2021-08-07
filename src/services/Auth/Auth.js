@@ -42,6 +42,12 @@ class Auth {
         return axios.post(`${this.authBaseUrl}/login/verify`, data)
 
     }
+
+    checkLogin() {
+
+        return axios.post(`${this.authBaseUrl}/user-info`)
+
+    }
 }
 
 export default new Auth('auth')
