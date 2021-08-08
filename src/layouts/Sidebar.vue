@@ -467,14 +467,14 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'chart'}">
                 چارت ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'statistic'}">
                 آمار و اعلانات
               </router-link>
             </li>

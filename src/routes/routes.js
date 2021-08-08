@@ -13,6 +13,7 @@ import RoleRoutes from './Role'
 import PersonalInformation from './PersonalInformation'
 import ManagerRoutes from './Manager'
 import UserRoutes from './User'
+import ReportRoutes from './Report'
 
 const routes = [
     {
@@ -37,7 +38,8 @@ const routes = [
             ...RoleRoutes,
             ...PersonalInformation,
             ...ManagerRoutes,
-            ...UserRoutes
+            ...UserRoutes,
+            ...ReportRoutes
         ]
     }
 ];
