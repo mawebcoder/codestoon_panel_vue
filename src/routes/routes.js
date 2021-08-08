@@ -18,6 +18,7 @@ import DiscountRoutes from './Discount'
 import VipRoutes from './Vip'
 import FaqRoutes from './Faq'
 import MessageRoutes from './Message'
+import RecycleBin from './Recyclebin'
 
 const routes = [
     {
@@ -48,6 +49,7 @@ const routes = [
             ...VipRoutes,
             ...FaqRoutes,
             ...MessageRoutes,
+            ...RecycleBin,
         ]
     }
 ];

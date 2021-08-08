@@ -634,35 +634,49 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-category-garbage'}">
                 دسته بندی دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'article-category-garbage'}">
+                دسته بندی مقالات
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'article-garbage'}">
+                 مقالات
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'course-garbage'}">
                 دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-videos-garbage'}">
                 ویدیوها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'users-garbage'}">
                 کاربران
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'factors-garbage'}">
                 فاکتورها
               </router-link>
             </li>
@@ -670,7 +684,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-section-garbage'}">
                 فصل ها
               </router-link>
             </li>
