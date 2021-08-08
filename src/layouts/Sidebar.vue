@@ -160,7 +160,7 @@
             <li>
               <small></small>
               <router-link :to="{name:'video-list'}">
-               لیست ویدیو ها
+                لیست ویدیو ها
               </router-link>
             </li>
           </ul>
@@ -185,7 +185,7 @@
             <li>
               <small></small>
               <router-link :to="{name:'comment-article-list'}">
-            لیست نظرات مقالات
+                لیست نظرات مقالات
               </router-link>
             </li>
             <li>
@@ -243,7 +243,7 @@
               <small></small>
 
               <router-link :to="{name:'setting'}">
-               تنظیمات سایت
+                تنظیمات سایت
               </router-link>
             </li>
           </ul>
@@ -302,7 +302,7 @@
               <small></small>
 
               <router-link :to="{name:'cache'}">
-               مدیریت کش ها
+                مدیریت کش ها
               </router-link>
             </li>
           </ul>
@@ -335,7 +335,7 @@
 
         </li>
 
-        <!--  admins-->
+        <!--  roles-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -351,15 +351,15 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
-               ایجاد نقش جدید
+              <router-link :to="{name:'role-create'}">
+                ایجاد نقش جدید
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
-               لیست نقش ها
+              <router-link :to="{name:'role-list'}">
+                لیست نقش ها
               </router-link>
             </li>
           </ul>
@@ -385,7 +385,7 @@
               <small></small>
 
               <router-link to="/panel">
-               ویرایش اطلاعات فردی
+                ویرایش اطلاعات فردی
               </router-link>
             </li>
           </ul>
@@ -419,10 +419,6 @@
         </li>
 
 
-
-
-
-
         <!--      users-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
@@ -447,7 +443,7 @@
               <small></small>
 
               <router-link to="/panel">
-               لیست کاربران
+                لیست کاربران
               </router-link>
             </li>
           </ul>
@@ -472,7 +468,7 @@
               <small></small>
 
               <router-link to="/panel">
-              چارت ها
+                چارت ها
               </router-link>
             </li>
             <li>
@@ -604,7 +600,7 @@
               <small></small>
 
               <router-link to="/panel">
-                 ارسال ایمیل
+                ارسال ایمیل
               </router-link>
             </li>
 
@@ -638,7 +634,7 @@
               <small></small>
 
               <router-link to="/panel">
-               دسته بندی دوره ها
+                دسته بندی دوره ها
               </router-link>
             </li>
             <li>
