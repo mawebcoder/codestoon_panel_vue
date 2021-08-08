@@ -184,13 +184,13 @@
           <ul class="links-ul hidden">
             <li>
               <small></small>
-              <router-link to="/panel">
+              <router-link :to="{name:'comment-article-list'}">
             لیست نظرات مقالات
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link to="/panel">
+              <router-link :to="{name:'comment-course-list'}">
                 لیست نظرات دوره ها
               </router-link>
             </li>

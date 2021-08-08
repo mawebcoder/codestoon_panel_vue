@@ -3,6 +3,7 @@ import dashboard from "./dashboard/dashboard";
 import AuthenticationRoutes from "./Authenticatin/AuthenticationRoutes";
 import CourseRoutes from './Course'
 import VideoRoutes from './Video'
+import CommentRoutes from './Comment'
 
 const routes = [
     {
@@ -17,7 +18,8 @@ const routes = [
             ...Article,
             ...dashboard,
             ...CourseRoutes,
-            ...VideoRoutes
+            ...VideoRoutes,
+            ...CommentRoutes
 
 
         ]
