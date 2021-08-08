@@ -1,6 +1,6 @@
 export default [
     {
-        path: 'cache',
+        path: 'caches',
         component: () => import('../../views/Cache/index'),
         name: 'cache'
     }

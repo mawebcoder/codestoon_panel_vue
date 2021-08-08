@@ -8,6 +8,7 @@ import OfferRoutes from './Offer'
 import SettingRoutes from './Setting'
 import FactorRoutes from './Factor'
 import CacheRoutes from './Cache'
+import ModuleRoutes from './Module'
 
 const routes = [
     {
@@ -27,7 +28,8 @@ const routes = [
             ...OfferRoutes,
             ...SettingRoutes,
             ...FactorRoutes,
-            ...CacheRoutes
+            ...CacheRoutes,
+            ...ModuleRoutes
         ]
     }
 ];

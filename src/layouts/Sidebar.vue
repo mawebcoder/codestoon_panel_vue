@@ -310,7 +310,7 @@
 
         </li>
 
-        <!--  caches-->
+        <!--  modules-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -326,7 +326,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'module'}">
                 مدیریت ماژول
               </router-link>
             </li>
