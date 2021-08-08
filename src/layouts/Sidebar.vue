@@ -5,13 +5,14 @@
     </div>
     <aside>
       <ul class="origin-ul">
-        <!--      articles-->
+
+        <!--  dashboard-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
-              article
+           bar_chart
             </md-icon>
-          مقالات
+    گزارشگیری
           <md-icon>
             expand_more
           </md-icon>
@@ -20,41 +21,49 @@
           <ul class="links-ul hidden">
             <li>
               <small></small>
-              <router-link :to="{name:'create-article-tag'}">
-                ایجاد تگ مقاله
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-              <router-link :to="{name:'list-article-tag'}">
-                لیست تگ مقالات
+
+              <router-link :to="{name:'chart'}">
+                چارت ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'category-article-create'}">
-                ایجاد دسته بندی مقاله
+              <router-link :to="{name:'statistic'}">
+                آمار و اعلانات
+              </router-link>
+            </li>
+
+          </ul>
+
+
+        </li>
+
+        <!--  roles-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              verified_user
+            </md-icon>
+         نقش ها
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'role-create'}">
+                ایجاد نقش جدید
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'category-article-list'}">
-                لیست دسته بندی مقالات
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'article-create'}">
-                ایجاد مقاله
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-              <router-link :to="{name:'article-list'}">
-                لیست مقالات
+              <router-link :to="{name:'role-list'}">
+                لیست نقش ها
               </router-link>
             </li>
           </ul>
@@ -62,6 +71,271 @@
 
         </li>
 
+
+        <!--  managers-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              manage_accounts
+            </md-icon>
+         مدیران
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'manager'}">
+                لیست مدیران
+              </router-link>
+            </li>
+          </ul>
+        </li>
+
+        <!--      users-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              people
+            </md-icon>
+         کاربران
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'user-create'}">
+                ایجاد کاربر جدید
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'user-list'}">
+                لیست کاربران
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+
+        <!--  factors-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              shop_2
+            </md-icon>
+         فاکتورها
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'factor-course-list'}">
+                فاکتورهای دوره ها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'factor-vip-list'}">
+                فاکتورهای پلن ها
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+        <!--    discount code-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              emoji_symbols
+            </md-icon>
+         کدهای تخفیف
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'discount-create'}">
+                ایجاد کد تخفیف
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'discount-list'}">
+                لیست کدهای تخفیف
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+        <!--      comments-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              comment
+            </md-icon>
+         نظرات کاربران
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+              <router-link :to="{name:'comment-article-list'}">
+                لیست نظرات مقالات
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+              <router-link :to="{name:'comment-course-list'}">
+                لیست نظرات دوره ها
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+        <!--      offers-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              local_offer
+            </md-icon>
+         انتقادات و پیشنهادات
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'offer-list'}">
+                لیست انتقادات و پیشنهادات
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+        <!--      settings-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              settings
+            </md-icon>
+         تنظیمات
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'setting'}">
+                تنظیمات سایت
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
+
+        <!--      send messages-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              email
+            </md-icon>
+     ارسال پیام
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'email'}">
+                ارسال ایمیل
+              </router-link>
+            </li>
+
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'sms'}">
+                ارسال sms
+              </router-link>
+            </li>
+
+          </ul>
+
+
+        </li>
+
+        <!--      vip-->
+        <li>
+        <span @click="toggle($event)" class="drop-down-button">
+            <md-icon>
+              map
+            </md-icon>
+       پلن های VIP
+          <md-icon>
+            expand_more
+          </md-icon>
+        </span>
+
+          <ul class="links-ul hidden">
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'vip-create'}">
+                ایجاد پلن
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'vip-list'}">
+                لیست پلن ها
+              </router-link>
+            </li>
+          </ul>
+
+
+        </li>
 
         <!--      courses-->
         <li>
@@ -168,14 +442,13 @@
 
         </li>
 
-
-        <!--      comments-->
+        <!--      articles-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
-              comment
+              article
             </md-icon>
-         نظرات کاربران
+          مقالات
           <md-icon>
             expand_more
           </md-icon>
@@ -184,106 +457,47 @@
           <ul class="links-ul hidden">
             <li>
               <small></small>
-              <router-link :to="{name:'comment-article-list'}">
-                لیست نظرات مقالات
+              <router-link :to="{name:'create-article-tag'}">
+                ایجاد تگ مقاله
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link :to="{name:'comment-course-list'}">
-                لیست نظرات دوره ها
+              <router-link :to="{name:'list-article-tag'}">
+                لیست تگ مقالات
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'category-article-create'}">
+                ایجاد دسته بندی مقاله
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'category-article-list'}">
+                لیست دسته بندی مقالات
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'article-create'}">
+                ایجاد مقاله
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+              <router-link :to="{name:'article-list'}">
+                لیست مقالات
               </router-link>
             </li>
           </ul>
 
 
         </li>
-
-
-        <!--      offers-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              local_offer
-            </md-icon>
-         انتقادات و پیشنهادات
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'offer-list'}">
-                لیست انتقادات و پیشنهادات
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
-
-        <!--      settings-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              settings
-            </md-icon>
-         تنظیمات
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'setting'}">
-                تنظیمات سایت
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
-
-        <!--  factors-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              shop_2
-            </md-icon>
-         فاکتورها
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'factor-course-list'}">
-                فاکتورهای دوره ها
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'factor-vip-list'}">
-                فاکتورهای پلن ها
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
 
         <!--  caches-->
         <li>
@@ -335,39 +549,6 @@
 
         </li>
 
-        <!--  roles-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              verified_user
-            </md-icon>
-         نقش ها
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'role-create'}">
-                ایجاد نقش جدید
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'role-list'}">
-                لیست نقش ها
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
-
         <!--  personal info-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
@@ -392,163 +573,6 @@
 
 
         </li>
-
-        <!--  managers-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              manage_accounts
-            </md-icon>
-         مدیران
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'manager'}">
-                لیست مدیران
-              </router-link>
-            </li>
-          </ul>
-        </li>
-
-
-        <!--      users-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              people
-            </md-icon>
-         کاربران
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'user-create'}">
-                ایجاد کاربر جدید
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'user-list'}">
-                لیست کاربران
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
-
-
-        <!--  dashboard-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-           bar_chart
-            </md-icon>
-    گزارشگیری
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'chart'}">
-                چارت ها
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'statistic'}">
-                آمار و اعلانات
-              </router-link>
-            </li>
-
-          </ul>
-
-
-        </li>
-
-
-        <!--    discount code-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              emoji_symbols
-            </md-icon>
-         کدهای تخفیف
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'discount-create'}">
-                ایجاد کد تخفیف
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'discount-list'}">
-                لیست کدهای تخفیف
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
-        <!--      vip-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              map
-            </md-icon>
-       پلن های VIP
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'vip-create'}">
-                ایجاد پلن
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'vip-list'}">
-                لیست پلن ها
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
 
         <!--      faq-->
         <li>
@@ -583,42 +607,7 @@
 
         </li>
 
-
-        <!--      send messages-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              email
-            </md-icon>
-     ارسال پیام
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'email'}">
-                ارسال ایمیل
-              </router-link>
-            </li>
-
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'sms'}">
-                ارسال sms
-              </router-link>
-            </li>
-
-          </ul>
-
-
-        </li>
-
-        <!--      send messages-->
+        <!--      recycle bin-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -634,22 +623,15 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-category-garbage'}">
-                دسته بندی دوره ها
+              <router-link :to="{name:'users-garbage'}">
+                کاربران
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'article-category-garbage'}">
-                دسته بندی مقالات
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'article-garbage'}">
-                 مقالات
+              <router-link :to="{name:'factors-garbage'}">
+                فاکتورها
               </router-link>
             </li>
             <li>
@@ -662,25 +644,10 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-videos-garbage'}">
-                ویدیوها
+              <router-link :to="{name:'course-category-garbage'}">
+                دسته بندی دوره ها
               </router-link>
             </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'users-garbage'}">
-                کاربران
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'factors-garbage'}">
-                فاکتورها
-              </router-link>
-            </li>
-
             <li>
               <small></small>
 
@@ -688,6 +655,34 @@
                 فصل ها
               </router-link>
             </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'course-videos-garbage'}">
+                ویدیوها
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'article-garbage'}">
+                مقالات
+              </router-link>
+            </li>
+            <li>
+              <small></small>
+
+              <router-link :to="{name:'article-category-garbage'}">
+                دسته بندی مقالات
+              </router-link>
+            </li>
+
+
+
+
+
+
+
           </ul>
 
 
