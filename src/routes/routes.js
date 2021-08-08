@@ -17,6 +17,7 @@ import ReportRoutes from './Report'
 import DiscountRoutes from './Discount'
 import VipRoutes from './Vip'
 import FaqRoutes from './Faq'
+import MessageRoutes from './Message'
 
 const routes = [
     {
@@ -46,6 +47,7 @@ const routes = [
             ...DiscountRoutes,
             ...VipRoutes,
             ...FaqRoutes,
+            ...MessageRoutes,
         ]
     }
 ];

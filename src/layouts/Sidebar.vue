@@ -564,6 +564,7 @@
 
           <ul class="links-ul hidden">
             <li>
+
               <small></small>
 
               <router-link :to="{name:'faq-create'}">
@@ -599,7 +600,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'email'}">
                 ارسال ایمیل
               </router-link>
             </li>
@@ -607,7 +608,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'sms'}">
                 ارسال sms
               </router-link>
             </li>
