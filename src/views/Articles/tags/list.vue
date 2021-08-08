@@ -13,7 +13,6 @@
                      track-by="name">
         </multiselect>
       </div>
-
       <div class="col-1 filter-name">
         وضعیت :
       </div>
