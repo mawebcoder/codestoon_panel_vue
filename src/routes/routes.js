@@ -5,6 +5,7 @@ import CourseRoutes from './Course'
 import VideoRoutes from './Video'
 import CommentRoutes from './Comment'
 import OfferRoutes from './Offer'
+import SettingRoutes from './Setting'
 
 const routes = [
     {
@@ -21,7 +22,8 @@ const routes = [
             ...CourseRoutes,
             ...VideoRoutes,
             ...CommentRoutes,
-            ...OfferRoutes
+            ...OfferRoutes,
+            ...SettingRoutes,
 
 
         ]

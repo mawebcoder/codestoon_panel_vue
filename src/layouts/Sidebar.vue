@@ -242,7 +242,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'setting'}">
                تنظیمات سایت
               </router-link>
             </li>
