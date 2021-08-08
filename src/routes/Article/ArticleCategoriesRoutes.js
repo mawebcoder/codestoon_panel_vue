@@ -11,7 +11,7 @@ export default [
             {
                 path: 'list',
                 component: () => import('../../views/Articles/category/list'),
-                name: 'category-article-create'
+                name: 'category-article-list'
             }
         ]
     }

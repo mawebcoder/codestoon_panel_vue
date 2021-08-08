@@ -1,5 +1,6 @@
 import ArticleTagsRoutes from "./ArticleTagsRoutes";
 import ArticleCategoriesRoutes from "./ArticleCategoriesRoutes";
+import ArticleRoutes from "./ArticleRoutes";
 
 export default [
     {
@@ -8,7 +9,8 @@ export default [
         component: () => import('../../views/Articles'),
         children: [
             ...ArticleTagsRoutes,
-            ...ArticleCategoriesRoutes
+            ...ArticleCategoriesRoutes,
+            ...ArticleRoutes
         ]
 
     }

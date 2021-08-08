@@ -33,28 +33,28 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'list-article-tag'}">
+              <router-link :to="{name:'category-article-create'}">
                 ایجاد دسته بندی مقاله
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'list-article-tag'}">
+              <router-link :to="{name:'category-article-list'}">
                 لیست دسته بندی مقالات
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'list-article-tag'}">
+              <router-link :to="{name:'article-create'}">
                 ایجاد مقاله
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'list-article-tag'}">
+              <router-link :to="{name:'article-list'}">
                 لیست مقالات
               </router-link>
             </li>
