@@ -501,14 +501,14 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'discount-create'}">
                 ایجاد کد تخفیف
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'discount-list'}">
                 لیست کدهای تخفیف
               </router-link>
             </li>

@@ -14,6 +14,7 @@ import PersonalInformation from './PersonalInformation'
 import ManagerRoutes from './Manager'
 import UserRoutes from './User'
 import ReportRoutes from './Report'
+import DiscountRoutes from './Discount'
 
 const routes = [
     {
@@ -39,7 +40,8 @@ const routes = [
             ...PersonalInformation,
             ...ManagerRoutes,
             ...UserRoutes,
-            ...ReportRoutes
+            ...ReportRoutes,
+            ...DiscountRoutes
         ]
     }
 ];
