@@ -301,7 +301,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'cache'}">
                مدیریت کش ها
               </router-link>
             </li>

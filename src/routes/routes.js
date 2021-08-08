@@ -7,6 +7,8 @@ import CommentRoutes from './Comment'
 import OfferRoutes from './Offer'
 import SettingRoutes from './Setting'
 import FactorRoutes from './Factor'
+import CacheRoutes from './Cache'
+
 const routes = [
     {
         path: '/test',
@@ -25,8 +27,7 @@ const routes = [
             ...OfferRoutes,
             ...SettingRoutes,
             ...FactorRoutes,
-
-
+            ...CacheRoutes
         ]
     }
 ];
