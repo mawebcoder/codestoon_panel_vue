@@ -1,5 +1,5 @@
 import store from "../store/store";
-
+import Chart from 'chart.js'
 
 class HelperClass {
 
@@ -58,6 +58,15 @@ class HelperClass {
             document.documentElement.scrollTop = scrollTop - 20;
 
         }, 20)
+    }
+
+
+    loadChart(canvas_id, options) {
+
+        const ctx = document.getElementById(canvas_id);
+
+        new Chart(ctx,options);
+
     }
 
 

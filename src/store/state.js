@@ -5,5 +5,6 @@ export default {
     show_resend_code_button: false,
     permissions: [],
     user_info: [],
-    user_role:[]
+    user_role:[],
+
 }

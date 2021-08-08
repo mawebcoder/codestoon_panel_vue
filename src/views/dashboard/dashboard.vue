@@ -1,5 +1,6 @@
 <template>
 <div>
+
   <div class="row">
 
     <div class="col-4 col-768-6 col-480-12">
@@ -78,6 +79,7 @@ import RegisterUserChart from "../../components/RegisterUserChart";
 import OrderChart from "../../components/OrderChart";
 export default {
   name: "dashboard",
+
   components:{
     ChartComponent,
     LineChart,

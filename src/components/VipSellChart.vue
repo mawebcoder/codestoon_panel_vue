@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <canvas id="visit-chart" width="300" height="300"></canvas>
+  <div id="sell-section-chart">
+    <canvas id="vip-sell-chart" width="300" height="300"></canvas>
+
   </div>
 </template>
 
@@ -12,12 +13,13 @@ export default {
   data() {
     return {
       type: "bar",
+
       data: {
         labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
 
         datasets: [{
           label: 'تعداد بازدید از سایت',
-          data: [0, 59, 80, 81, 56, 55, 200],
+          data: [0, 20, 11, 45, 32, 55, 98],
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
@@ -39,12 +41,14 @@ export default {
       }
     }
   },
-
   created() {
+
     this.getInitData();
+
   },
   methods: {
-    getInitData() {
+
+    getInitData(){
 
     },
 
@@ -54,7 +58,7 @@ export default {
         data: this.data,
         options: this.options,
       }
-      HelperClass.loadChart('visit-chart', options)
+      HelperClass.loadChart('vip-sell-chart', options)
     },
 
     async updateData() {
@@ -70,7 +74,9 @@ export default {
     }
   },
   mounted() {
+
     this.loadChart();
+
   }
 }
 </script>

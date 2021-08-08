@@ -5,10 +5,11 @@
 </template>
 
 <script>
-import Chart from 'chart.js'
+import HelperClass from "../services/HelperClass";
+
 export default {
   name: "ChartComponent",
-  data(){
+  data() {
     return {
       type: "bar",
 
@@ -39,13 +40,37 @@ export default {
       }
     }
   },
+  created() {
+    this.getInitData();
+  },
+  methods: {
+    getInitData() {
+
+    },
+
+    loadChart() {
+      let options = {
+        type: 'line',
+        data: this.data,
+        options: this.options,
+      }
+      HelperClass.loadChart('register-user-chart', options)
+    },
+
+    async updateData() {
+      //serve api here for update this.data and options
+    },
+
+    async updateChart() {
+
+      await this.updateData()
+      this.loadChart();
+
+
+    }
+  },
   mounted() {
-    const ctx = document.getElementById('register-user-chart');
-    new Chart(ctx, {
-      type: 'line',
-      data: this.data,
-      options: this.options,
-    });
+    this.loadChart();
   }
 }
 </script>

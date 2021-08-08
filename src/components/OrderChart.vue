@@ -5,10 +5,11 @@
 </template>
 
 <script>
-import Chart from 'chart.js'
+import HelperClass from "../services/HelperClass";
+
 export default {
   name: "ChartComponent",
-  data(){
+  data() {
     return {
       type: "bar",
       data: {
@@ -38,13 +39,35 @@ export default {
       }
     }
   },
+  created() {
+    this.getInitData();
+  },
+  methods: {
+    getInitData() {
+
+    },
+
+    loadChart() {
+      let options = {
+        type: 'line',
+        data: this.data,
+        options: this.options,
+      }
+      HelperClass.loadChart('order-chart', options)
+    },
+
+    async updateData() {
+      //serve api here for update this.data and options
+    },
+
+    async updateChart() {
+
+      await this.updateData()
+      this.loadChart();
+    }
+  },
   mounted() {
-    const ctx = document.getElementById('order-chart');
-    new Chart(ctx, {
-      type: 'line',
-      data: this.data,
-      options: this.options,
-    });
+    this.loadChart();
   }
 }
 </script>
