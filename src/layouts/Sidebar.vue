@@ -533,14 +533,14 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'vip-create'}">
                 ایجاد پلن
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'vip-list'}">
                 لیست پلن ها
               </router-link>
             </li>

@@ -15,6 +15,7 @@ import ManagerRoutes from './Manager'
 import UserRoutes from './User'
 import ReportRoutes from './Report'
 import DiscountRoutes from './Discount'
+import VipRoutes from './Vip'
 
 const routes = [
     {
@@ -41,7 +42,8 @@ const routes = [
             ...ManagerRoutes,
             ...UserRoutes,
             ...ReportRoutes,
-            ...DiscountRoutes
+            ...DiscountRoutes,
+            ...VipRoutes
         ]
     }
 ];
