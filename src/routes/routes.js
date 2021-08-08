@@ -6,7 +6,7 @@ import VideoRoutes from './Video'
 import CommentRoutes from './Comment'
 import OfferRoutes from './Offer'
 import SettingRoutes from './Setting'
-
+import FactorRoutes from './Factor'
 const routes = [
     {
         path: '/test',
@@ -24,6 +24,7 @@ const routes = [
             ...CommentRoutes,
             ...OfferRoutes,
             ...SettingRoutes,
+            ...FactorRoutes,
 
 
         ]

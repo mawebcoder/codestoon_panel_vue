@@ -268,14 +268,14 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'factor-course-list'}">
                 فاکتورهای دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'factor-vip-list'}">
                 فاکتورهای پلن ها
               </router-link>
             </li>
