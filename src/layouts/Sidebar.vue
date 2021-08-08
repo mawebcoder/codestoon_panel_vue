@@ -414,8 +414,6 @@
               </router-link>
             </li>
           </ul>
-
-
         </li>
 
 
@@ -435,14 +433,14 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'user-create'}">
                 ایجاد کاربر جدید
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'user-list'}">
                 لیست کاربران
               </router-link>
             </li>
@@ -450,6 +448,8 @@
 
 
         </li>
+
+
 
         <!--  dashboard-->
         <li>
