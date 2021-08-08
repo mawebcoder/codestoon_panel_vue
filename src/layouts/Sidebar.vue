@@ -53,7 +53,6 @@
             </li>
             <li>
               <small></small>
-
               <router-link :to="{name:'article-list'}">
                 لیست مقالات
               </router-link>
@@ -80,49 +79,48 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-tag-create'}">
                 ایجاد تگ دوره
               </router-link>
             </li>
             <li>
               <small></small>
-
-              <router-link to="/panel">
+              <router-link :to="{name:'course-tag-list'}">
                 لیست تگ دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-category-create'}">
                 ایجاد دسته بندی دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-category-list'}">
                 لیست دسته بندی دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-section-create'}">
                 ایجاد فصل
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-section-list'}">
                 لیست فصل ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-create'}">
                 ایجاد دوره جدید
               </router-link>
             </li>
@@ -130,7 +128,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'course-list'}">
                 لیست دوره ها
               </router-link>
             </li>

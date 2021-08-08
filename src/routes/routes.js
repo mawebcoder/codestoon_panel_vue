@@ -1,6 +1,7 @@
 import Article from "./Article/Article";
 import dashboard from "./dashboard/dashboard";
 import AuthenticationRoutes from "./Authenticatin/AuthenticationRoutes";
+import CourseRoutes from './Course/index'
 
 const routes = [
     {
@@ -14,6 +15,8 @@ const routes = [
         children: [
             ...Article,
             ...dashboard,
+            ...CourseRoutes
+
 
         ]
     }
