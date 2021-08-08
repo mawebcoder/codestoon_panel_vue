@@ -216,7 +216,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'offer-list'}">
                 لیست انتقادات و پیشنهادات
               </router-link>
             </li>

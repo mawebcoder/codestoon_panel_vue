@@ -4,6 +4,7 @@ import AuthenticationRoutes from "./Authenticatin/AuthenticationRoutes";
 import CourseRoutes from './Course'
 import VideoRoutes from './Video'
 import CommentRoutes from './Comment'
+import OfferRoutes from './Offer'
 
 const routes = [
     {
@@ -19,7 +20,8 @@ const routes = [
             ...dashboard,
             ...CourseRoutes,
             ...VideoRoutes,
-            ...CommentRoutes
+            ...CommentRoutes,
+            ...OfferRoutes
 
 
         ]
