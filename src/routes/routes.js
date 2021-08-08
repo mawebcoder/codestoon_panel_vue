@@ -16,6 +16,7 @@ import UserRoutes from './User'
 import ReportRoutes from './Report'
 import DiscountRoutes from './Discount'
 import VipRoutes from './Vip'
+import FaqRoutes from './Faq'
 
 const routes = [
     {
@@ -43,7 +44,8 @@ const routes = [
             ...UserRoutes,
             ...ReportRoutes,
             ...DiscountRoutes,
-            ...VipRoutes
+            ...VipRoutes,
+            ...FaqRoutes,
         ]
     }
 ];

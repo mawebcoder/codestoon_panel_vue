@@ -566,14 +566,14 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'faq-create'}">
                 ایجاد سوال جدید
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'faq-list'}">
                 لیست سوالات
               </router-link>
             </li>
