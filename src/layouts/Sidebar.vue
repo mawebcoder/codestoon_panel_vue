@@ -153,13 +153,13 @@
           <ul class="links-ul hidden">
             <li>
               <small></small>
-              <router-link to="/panel">
+              <router-link :to="{name:'video-create'}">
                 آپلود ویدیو جدید
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link to="/panel">
+              <router-link :to="{name:'video-list'}">
                لیست ویدیو ها
               </router-link>
             </li>

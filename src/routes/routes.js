@@ -1,7 +1,8 @@
 import Article from "./Article/Article";
 import dashboard from "./dashboard/dashboard";
 import AuthenticationRoutes from "./Authenticatin/AuthenticationRoutes";
-import CourseRoutes from './Course/index'
+import CourseRoutes from './Course'
+import VideoRoutes from './Video'
 
 const routes = [
     {
@@ -15,7 +16,8 @@ const routes = [
         children: [
             ...Article,
             ...dashboard,
-            ...CourseRoutes
+            ...CourseRoutes,
+            ...VideoRoutes
 
 
         ]
