@@ -384,7 +384,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'personal-info'}">
                 ویرایش اطلاعات فردی
               </router-link>
             </li>
@@ -393,7 +393,7 @@
 
         </li>
 
-        <!--  admins-->
+        <!--  managers-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
@@ -409,7 +409,7 @@
             <li>
               <small></small>
 
-              <router-link to="/panel">
+              <router-link :to="{name:'manager'}">
                 لیست مدیران
               </router-link>
             </li>

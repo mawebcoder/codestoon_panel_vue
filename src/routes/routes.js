@@ -10,6 +10,8 @@ import FactorRoutes from './Factor'
 import CacheRoutes from './Cache'
 import ModuleRoutes from './Module'
 import RoleRoutes from './Role'
+import PersonalInformation from './PersonalInformation'
+import ManagerRoutes from './Manager'
 
 const routes = [
     {
@@ -31,7 +33,9 @@ const routes = [
             ...FactorRoutes,
             ...CacheRoutes,
             ...ModuleRoutes,
-            ...RoleRoutes
+            ...RoleRoutes,
+            ...PersonalInformation,
+            ...ManagerRoutes
         ]
     }
 ];
