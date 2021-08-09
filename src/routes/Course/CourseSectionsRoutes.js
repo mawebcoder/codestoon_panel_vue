@@ -1,3 +1,4 @@
+import Auth from "../../services/Auth/Auth";
 export default [
     {
         path: 'sections',
@@ -6,12 +7,22 @@ export default [
             {
                 path: 'create',
                 component: () => import('../../views/Course/Section/create'),
-                name: 'course-section-create'
+                name: 'course-section-create',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next, 'course.section.store', 'ایجاد فصل جدید')
+
+                }
             },
             {
                 path: 'list',
                 component: () => import('../../views/Course/Section/list'),
-                name: 'course-section-list'
+                name: 'course-section-list',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next, 'course.section.index', 'لیست فصل ها')
+
+                }
             }
         ]
     }

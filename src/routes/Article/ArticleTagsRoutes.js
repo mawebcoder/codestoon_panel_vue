@@ -11,7 +11,7 @@ export default [
                 name: 'create-article-tag',
                 beforeEnter: (to, from, next) => {
 
-                    Auth.checkCanAccessThisRoute(next,'article.tags.store')
+                    Auth.checkCanAccessThisRoute(next,'article.tags.store','ایجاد تگ مقاله')
 
                 }
             },
@@ -21,7 +21,7 @@ export default [
                 name: 'list-article-tag',
                 beforeEnter: (to, from, next) => {
 
-                    Auth.checkCanAccessThisRoute(next,'article.tags.index')
+                    Auth.checkCanAccessThisRoute(next,'article.tags.index','لیست تگ مقالات')
 
                 }
             }

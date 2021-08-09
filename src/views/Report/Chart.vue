@@ -115,9 +115,6 @@ const  VipSellChart=()=>import('../../components/VipSellChart')
 import Multiselect from 'vue-multiselect'
 export default {
   name: "dashboard",
-  created() {
-    this.$store.state.page_title='چارت ها'
-  },
   data(){
     return {
       sort: 0,

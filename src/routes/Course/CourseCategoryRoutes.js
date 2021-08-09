@@ -1,3 +1,5 @@
+import Auth from "../../services/Auth/Auth";
+
 export default [
     {
         path: 'categories',
@@ -6,12 +8,22 @@ export default [
             {
                 path: 'create',
                 component: () => import('../../views/Course/Category/create'),
-                name: 'course-category-create'
+                name: 'course-category-create',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next, 'course.category.store', 'ایجاد دسته بندی دوره')
+
+                }
             },
             {
                 path: 'list',
                 component: () => import('../../views/Course/Category/list'),
-                name: 'course-category-list'
+                name: 'course-category-list',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next, 'course.category.index', 'لیست دسته بندی دوره ها')
+
+                }
             }
         ]
     }

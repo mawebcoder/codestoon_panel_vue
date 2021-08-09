@@ -30,9 +30,6 @@ import Multiselect from 'vue-multiselect'
 
 export default {
   name: "Create",
-  created() {
-    this.$store.state.page_title = 'ایجاد نقش جدید';
-  },
   data() {
     return {
       fa_name: '',

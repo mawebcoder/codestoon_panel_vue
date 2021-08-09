@@ -1,3 +1,5 @@
+import Auth from "../../services/Auth/Auth";
+
 export default [
     {
         path: 'courses',
@@ -6,7 +8,12 @@ export default [
             {
                 path: 'list',
                 component: () => import('../../views/Comment/Course/list'),
-                name: 'comment-course-list'
+                name: 'comment-course-list',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'comment.index','لیست نظرات دوره ها')
+
+                }
             }
         ]
     }

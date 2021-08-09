@@ -1,3 +1,5 @@
+import Auth from "../../services/Auth/Auth";
+
 export default [
     {
         path: 'articles',
@@ -6,7 +8,12 @@ export default [
             {
                 path: 'list',
                 component: () => import('../../views/Comment/Article/list'),
-                name: 'comment-article-list'
+                name: 'comment-article-list',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'comment.index','لیست نظرات مقالات')
+
+                }
             }
         ]
     }

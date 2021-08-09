@@ -317,9 +317,6 @@
 <script>
 export default {
   name: "statistic",
-  created() {
-    this.$store.state.page_title='آمار و اعلانات'
-  }
 }
 </script>
 

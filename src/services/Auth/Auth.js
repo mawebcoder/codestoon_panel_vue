@@ -59,7 +59,11 @@ class Auth {
         return en_name_permissions.includes(requiredPermission);
     }
 
-    checkCanAccessThisRoute(next, required_permissions) {
+    checkCanAccessThisRoute(next, required_permissions, page_title = null) {
+
+        page_title ?
+            store.commit('changePageTitle', page_title) :
+            '';
 
         HttpVerbs.getRequest(`${this.authBaseUrl}/user-info`)
 
