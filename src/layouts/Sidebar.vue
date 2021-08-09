@@ -13,20 +13,34 @@
            bar_chart
             </md-icon>
     گزارشگیری
+
           <md-icon>
             expand_more
           </md-icon>
+
+<!--          notification button-->
+           <span class="notification-badge">
+           </span>
+
+
         </span>
 
           <ul class="links-ul hidden">
             <li>
+
               <small></small>
 
               <router-link :to="{name:'chart'}">
                 چارت ها
+
               </router-link>
             </li>
             <li>
+              <md-badge md-content="50">
+                <md-button class="md-icon-button">
+                  <md-icon>notifications</md-icon>
+                </md-button>
+              </md-badge>
               <small></small>
 
               <router-link :to="{name:'statistic'}">

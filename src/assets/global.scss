@@ -2,9 +2,11 @@
   direction: rtl;
   font-family: IRANSans;
 }
-.charts-box-section .md-card{
+
+.charts-box-section .md-card {
   min-height: 300px !important;
 }
+
 main {
   max-width: 2048px;
   min-height: 100px;
@@ -46,23 +48,57 @@ main {
   line-height: 44px;
   font-size: .9em;
 }
-.filter-item{
+
+.filter-item {
   padding: 0 17px;
 }
 
-.number{
+aside .md-badge-content {
+  position: absolute !important;
+  left: -25px !important;
+  top: 8px !important;
+}
+
+.notification-badge {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  right: 33px;
+  top: 19px;
+  border-radius: 100%;
+  background-color: #ff5252;
+  position: absolute;
+}
+
+.number {
   width: 100px;
   margin: auto;
   font-weight: bold;
   height: 100px;
-  color: rgba(112,112,112,0.8);
+  color: rgba(112, 112, 112, 0.8);
   border-radius: 50%;
   text-align: center;
   line-height: 100px;
   font-size: 1.5em;
-  background-color: rgba(248,22,12,0.38);
+  background-color: rgba(248, 22, 12, 0.38);
   color: #fff;
 }
+.notifs{
+  >div{
+    margin-bottom: 20px;
+  }
+}
+.notifs .md-card-content{
+
+  position: relative !important;
+  top: 8px !important;
+  button{
+    position: absolute;
+    left: 10px;
+    bottom: 1px;
+  }
+}
+
 
 
 //responsive
