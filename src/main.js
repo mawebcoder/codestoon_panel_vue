@@ -6,6 +6,9 @@ require('./Plugins/VueNoty')
 // vue cookies
 require('./Plugins/VueCookies')
 
+// date picker
+require('./Plugins/datePicker')
+
 // vue good table
 require('./Plugins/VueGoodTable')
 

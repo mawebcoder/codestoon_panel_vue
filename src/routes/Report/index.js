@@ -1,3 +1,4 @@
+import Auth from '../../services/Auth/Auth'
 export default [
     {
         path: 'reports',
@@ -6,12 +7,22 @@ export default [
             {
                 path: 'charts',
                 component: () => import('../../views/Report/Chart'),
-                name: 'chart'
+                name: 'chart',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'dashboard.index','چارت مدیریت')
+
+                }
             },
             {
                 path: 'statistics',
                 component: () => import('../../views/Report/statistic'),
-                name: 'statistic'
+                name: 'statistic',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'dashboard.index','آمار و اعلانات')
+
+                }
             }
         ]
     }

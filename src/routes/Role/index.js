@@ -1,3 +1,5 @@
+import Auth from "../../services/Auth/Auth";
+
 export default [
     {
         path: 'roles',
@@ -7,13 +9,19 @@ export default [
             {
                 path: 'create',
                 component: () => import('../../views/Role/create'),
-                name: 'role-create'
+                name: 'role-create',
+                beforeEnter:(to,from,next)=>{
+                    Auth.checkCanAccessThisRoute(next,'role.store','ایجاد نقش جدید')
+                }
             },
 
             {
                 path: 'list',
                 component: () => import('../../views/Role/list'),
-                name: 'role-list'
+                name: 'role-list',
+                beforeEnter:(to,from,next)=>{
+                    Auth.checkCanAccessThisRoute(next,'role.index','لیست نقش ها')
+                }
             }
         ]
     }

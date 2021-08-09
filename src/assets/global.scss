@@ -104,7 +104,11 @@ label{
 }
 
 
-
+.icons{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
 //responsive
 @include mq(2000) {
   .hamburger-icon {

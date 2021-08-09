@@ -1,26 +1,32 @@
 <template>
   <div>
+    <md-card>
 
-    <md-field>
+      <md-card-content>
+        <md-field>
 
-      <md-input placeholder="نام نقش به فارسی..." v-model="fa_name"></md-input>
-    </md-field>
+          <md-input placeholder="نام نقش به فارسی..." v-model="fa_name"></md-input>
+        </md-field>
 
-    <md-field>
+        <md-field>
 
-      <md-input placeholder="نام نقش به انگلیسی..." v-model="en_name"></md-input>
-    </md-field>
-    <label >
-      مجوز ها :
-    </label>
-    <multiselect multiple  selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                 :options="statusOptions" :close-on-select="true"
-                 :clear-on-select="false"
-                 :preserve-search="true" placeholder="مجوزهای مورد نظر را انتخاب کنید..." label="name"
-                 track-by="name">
-    </multiselect>
+          <md-input placeholder="نام نقش به انگلیسی..." v-model="en_name"></md-input>
+        </md-field>
+        <label>
+          مجوز ها :
+        </label>
+        <multiselect multiple selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
+                     :options="statusOptions" :close-on-select="true"
+                     :clear-on-select="false"
+                     :preserve-search="true" placeholder="مجوزهای مورد نظر را انتخاب کنید..." label="name"
+                     track-by="name">
+        </multiselect>
 
-    <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
+        <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
+      </md-card-content>
+
+    </md-card>
+
 
   </div>
 </template>

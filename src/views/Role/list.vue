@@ -1,31 +1,30 @@
 <template>
   <div>
 
-    <div class="filter-section row">
+    <md-card style="margin-bottom: 10px">
+      <md-card-header>
+        <div class="md-title">فیلترسازی داده ها</div>
+      </md-card-header>
 
-      <div class="col-1 filter-name">
-        مرتب سازی :
-      </div>
-      <div class="col-5 filter-item">
-        <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="sort" :options="sortOptions"
-                     :close-on-select="true" :clear-on-select="false"
-                     :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                     track-by="name">
-        </multiselect>
-      </div>
-      <div class="col-1 filter-name">
-        وضعیت :
-      </div>
-      <div class="col-5 filter-item">
-        <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                     :options="statusOptions" :close-on-select="true"
-                     :clear-on-select="false"
-                     :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                     track-by="name">
-        </multiselect>
-      </div>
+      <md-card-content>
+        <div class="filter-section row">
+          <div class="col-1 filter-name">
+            وضعیت :
+          </div>
+          <div class="col-5 filter-item">
+            <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
+                         :options="statusOptions" :close-on-select="true"
+                         :clear-on-select="false"
+                         :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
+                         track-by="name">
+            </multiselect>
+          </div>
 
-    </div>
+        </div>
+      </md-card-content>
+
+    </md-card>
+
 
     <!--    dialog-->
     <md-dialog :md-active.sync="showDialog">
@@ -41,29 +40,51 @@
 
     </md-dialog>
 
+
     <!--    table-->
-    <vue-good-table
-        :fixed-header="true"
-        max-height="400px"
-        :columns="columns"
-        :rtl="true"
-        @on-cell-click="onCellClick"
-        :rows="rows">
-      <div slot="table-actions" style="width: 100%;display: flex;justify-content: center;align-content: center"
-           dir="rtl">
-        <md-field style="width: 80%">
-          <md-input style="padding: 0 10px" placeholder="جستجو در جدول..." v-model="type"></md-input>
-        </md-field>
-        <div class="icons">
-          <md-button @click="showDialog=true" class="md-icon-button md-accent">
-            <md-icon>delete</md-icon>
-          </md-button>
-          <md-button class="md-icon-button md-accent">
-            <md-icon>task_alt</md-icon>
-          </md-button>
-        </div>
-      </div>
-    </vue-good-table>
+    <md-card>
+
+
+      <md-card-content>
+        <!--    table-->
+        <vue-good-table
+            :fixed-header="true"
+            max-height="400px"
+            :columns="columns"
+            :rtl="true"
+            @on-cell-click="onCellClick"
+            :rows="rows">
+
+          <div slot="table-actions" style="width: 100%;display: flex;justify-content: center;align-content: center"
+               dir="rtl">
+            <div class="col-12">
+              <md-card >
+
+
+                <md-card-content>
+                  <md-field style="width: 100%;direction: ltr">
+                    <md-icon style="position: relative;bottom: 2px">search</md-icon>
+                    <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="type"></md-input>
+                  </md-field>
+
+                  <div class="icons">
+                    <md-button @click="showDialog=true" class="md-raised md-accent">
+                      <md-icon>delete</md-icon>
+                    </md-button>
+                    <md-button class="md-raised md-primary"><md-icon>task_alt</md-icon></md-button>
+                  </div>
+                </md-card-content>
+
+
+              </md-card>
+            </div>
+
+
+          </div>
+        </vue-good-table>
+      </md-card-content>
+
+    </md-card>
   </div>
 </template>
 

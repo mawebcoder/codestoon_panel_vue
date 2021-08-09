@@ -165,152 +165,159 @@
 
 <!--    notifs-->
 
-    <div class="row notifs">
+    <md-card>
+      <md-card-content>
+        <div class="row notifs">
 
-<!--      course orders success-->
-      <div class="col-12 row">
-        <div class="col-12">
-          <md-card class="md-accent"  md-with-hover>
+          <!--      course orders success-->
+          <div class="col-12 row">
+            <div class="col-12">
+              <md-card class="md-accent"  md-with-hover>
 
-            <md-card-content>
+                <md-card-content>
 
-              محمد و ۵ نفر دیگر سفارش جدید موفقی را (دوره) ثبت کرده اند
+                  محمد و ۵ نفر دیگر سفارش جدید موفقی را (دوره) ثبت کرده اند
 
-              <md-button class="md-raised">مشاهده</md-button>
-            </md-card-content>
+                  <md-button class="md-raised">مشاهده</md-button>
+                </md-card-content>
 
-            <md-card-actions>
-            </md-card-actions>
+                <md-card-actions>
+                </md-card-actions>
 
-          </md-card>
+              </md-card>
+            </div>
+          </div>
+
+
+          <!--    vip orders success-->
+          <div class="col-12 row">
+            <div class="col-12">
+              <md-card class="md-primary"  md-with-hover>
+
+                <md-card-content>
+
+                  محمد و ۵ نفر دیگر سفارش جدید موفقی را (vip) ثبت کرده اند
+
+                  <md-button class="md-raised">مشاهده</md-button>
+                </md-card-content>
+
+                <md-card-actions>
+                </md-card-actions>
+
+              </md-card>
+            </div>
+          </div>
+
+
+          <!--    cancel course order -->
+          <div class="col-12 row">
+            <div class="col-12">
+              <md-card style="background-color:rgba(190,190,190,0.38);"  md-with-hover>
+
+                <md-card-content>
+
+                  محمد و ۵ نفر دیگر سفارش جدید لغو شده ای را (دوره) ثبت کرده اند
+
+                  <md-button class="md-raised">مشاهده</md-button>
+                </md-card-content>
+
+                <md-card-actions>
+                </md-card-actions>
+
+              </md-card>
+            </div>
+          </div>
+
+          <!--    cancel vip order -->
+          <div class="col-12 row">
+            <div class="col-12">
+              <md-card  md-with-hover>
+
+                <md-card-content>
+
+                  محمد و ۵ نفر دیگر سفارش جدید  لغو شده ای را (vip) ثبت کرده اند
+
+                  <md-button class="md-raised">مشاهده</md-button>
+                </md-card-content>
+
+                <md-card-actions>
+                </md-card-actions>
+
+              </md-card>
+            </div>
+          </div>
+
+
+
+          <!--    course comments -->
+          <div class="col-12 row">
+            <div class="col-12">
+              <md-card style="background-color:orange;"  md-with-hover>
+
+                <md-card-content>
+
+                  محمد و ۵ نفر دیگر کامنت جدیدی را (دوره) ثبت کرده اند
+
+                  <md-button class="md-raised">مشاهده</md-button>
+                </md-card-content>
+
+                <md-card-actions>
+                </md-card-actions>
+
+              </md-card>
+            </div>
+          </div>
+
+
+          <!--    article comments -->
+          <div class="col-12 row">
+            <div class="col-12">
+              <md-card style="background-color:yellow;"  md-with-hover>
+
+                <md-card-content>
+
+                  محمد و ۵ نفر دیگر کامنت جدیدی را (vip) ثبت کرده اند
+
+                  <md-button class="md-raised">مشاهده</md-button>
+                </md-card-content>
+
+                <md-card-actions>
+                </md-card-actions>
+
+              </md-card>
+            </div>
+          </div>
+
+
+
+
+          <!--   offer -->
+          <div class="col-12 row">
+            <div class="col-12">
+              <md-card  md-with-hover>
+
+                <md-card-content>
+
+                  محمد و ۵ نفر دیگر پیشنهاد جدیدی را ثبت کرده اند
+
+                  <md-button class="md-raised">مشاهده</md-button>
+                </md-card-content>
+
+                <md-card-actions>
+                </md-card-actions>
+
+              </md-card>
+            </div>
+          </div>
+
+
+
         </div>
-      </div>
+      </md-card-content>
 
 
-<!--    vip orders success-->
-      <div class="col-12 row">
-        <div class="col-12">
-          <md-card class="md-primary"  md-with-hover>
+    </md-card>
 
-            <md-card-content>
-
-              محمد و ۵ نفر دیگر سفارش جدید موفقی را (vip) ثبت کرده اند
-
-              <md-button class="md-raised">مشاهده</md-button>
-            </md-card-content>
-
-            <md-card-actions>
-            </md-card-actions>
-
-          </md-card>
-        </div>
-      </div>
-
-
-      <!--    cancel course order -->
-      <div class="col-12 row">
-        <div class="col-12">
-          <md-card style="background-color:rgba(190,190,190,0.38);"  md-with-hover>
-
-            <md-card-content>
-
-              محمد و ۵ نفر دیگر سفارش جدید لغو شده ای را (دوره) ثبت کرده اند
-
-              <md-button class="md-raised">مشاهده</md-button>
-            </md-card-content>
-
-            <md-card-actions>
-            </md-card-actions>
-
-          </md-card>
-        </div>
-      </div>
-
-      <!--    cancel vip order -->
-      <div class="col-12 row">
-        <div class="col-12">
-          <md-card  md-with-hover>
-
-            <md-card-content>
-
-              محمد و ۵ نفر دیگر سفارش جدید  لغو شده ای را (vip) ثبت کرده اند
-
-              <md-button class="md-raised">مشاهده</md-button>
-            </md-card-content>
-
-            <md-card-actions>
-            </md-card-actions>
-
-          </md-card>
-        </div>
-      </div>
-
-
-
-      <!--    course comments -->
-      <div class="col-12 row">
-        <div class="col-12">
-          <md-card style="background-color:orange;"  md-with-hover>
-
-            <md-card-content>
-
-              محمد و ۵ نفر دیگر کامنت جدیدی را (دوره) ثبت کرده اند
-
-              <md-button class="md-raised">مشاهده</md-button>
-            </md-card-content>
-
-            <md-card-actions>
-            </md-card-actions>
-
-          </md-card>
-        </div>
-      </div>
-
-
-      <!--    article comments -->
-      <div class="col-12 row">
-        <div class="col-12">
-          <md-card style="background-color:yellow;"  md-with-hover>
-
-            <md-card-content>
-
-              محمد و ۵ نفر دیگر کامنت جدیدی را (vip) ثبت کرده اند
-
-              <md-button class="md-raised">مشاهده</md-button>
-            </md-card-content>
-
-            <md-card-actions>
-            </md-card-actions>
-
-          </md-card>
-        </div>
-      </div>
-
-
-
-
-      <!--   offer -->
-      <div class="col-12 row">
-        <div class="col-12">
-          <md-card  md-with-hover>
-
-            <md-card-content>
-
-              محمد و ۵ نفر دیگر پیشنهاد جدیدی را ثبت کرده اند
-
-              <md-button class="md-raised">مشاهده</md-button>
-            </md-card-content>
-
-            <md-card-actions>
-            </md-card-actions>
-
-          </md-card>
-        </div>
-      </div>
-
-
-
-    </div>
   </div>
 </template>
 

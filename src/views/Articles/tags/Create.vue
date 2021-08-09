@@ -26,9 +26,6 @@ import HelperClass from "../../../services/HelperClass";
 
 export default {
   name: "Create",
-  created() {
-    this.$store.state.page_title = 'ایجاد تگ مقالات';
-  },
   data() {
     return {
       status: false,
