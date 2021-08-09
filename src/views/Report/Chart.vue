@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div style="margin-bottom: 20px" class="row  justify-content-center align-items-center">
+      <md-button class="md-icon-button md-raised">
+        <md-icon>refresh</md-icon>
+      </md-button>
+    </div>
     <div class="row">
 
       <div class="col-4 col-768-6 col-480-12">
@@ -110,6 +115,9 @@ const  VipSellChart=()=>import('../../components/VipSellChart')
 import Multiselect from 'vue-multiselect'
 export default {
   name: "dashboard",
+  created() {
+    this.$store.state.page_title='چارت ها'
+  },
   data(){
     return {
       sort: 0,

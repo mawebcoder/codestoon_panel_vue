@@ -33,19 +33,12 @@
     <!--    profile icon-->
     <div id="notifications" class="col-1 col-768-2  position-relative d-flex justify-content-center align-items-center">
 
-      <md-badge md-content="1">
-        <md-button class="md-icon-button">
-          <md-icon>notifications</md-icon>
-        </md-button>
-      </md-badge>
-
-      <md-badge md-content="1">
         <md-button class="md-icon-button">
           <md-icon>
             account_circle
           </md-icon>
         </md-button>
-      </md-badge>
+
 
 
     </div>
