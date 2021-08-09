@@ -17,7 +17,7 @@ export default {
         labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
 
         datasets: [{
-          label: 'چارت ثبت نام کاربران',
+          label: 'ثبت نام کاربران',
           data: [0, 32, 11, 101, 43, 21, 40],
           fill: false,
           borderColor: 'rgb(75, 192, 192)',

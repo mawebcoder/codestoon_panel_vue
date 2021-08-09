@@ -16,7 +16,7 @@ export default {
         labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
 
         datasets: [{
-          label: 'تعداد بازدید از سایت',
+          label: 'سفارشات',
           data: [0, 20, 11, 45, 32, 55, 98],
           fill: false,
           borderColor: 'rgb(75, 192, 192)',
