@@ -6,5 +6,6 @@ export default {
     permissions: [],
     user_info: [],
     user_role:[],
+    image_file:{}
 
 }
