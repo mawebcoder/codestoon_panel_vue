@@ -85,8 +85,14 @@ export default {
       this.en_name.trim().length ?
           formData.append('en_name', this.en_name) : '';
       formData.append('status', this.status ? 1 : 0);
-      this.parentObject.value ?
-          formData.append('parent', this.parentObject.value) : '';
+
+
+      if (this.parentObject) {
+
+        if (parseInt(this.parentObject.value) !== 0) {
+          formData.append('parent', this.parentObject.value)
+        }
+      }
       typeof (this.$store.state.image_file.file) !== 'undefined' ?
           formData.append('file', this.$store.state.image_file.file) : '';
       return formData;

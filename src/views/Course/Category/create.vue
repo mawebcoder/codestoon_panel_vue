@@ -18,7 +18,8 @@
     </multiselect>
 
 
-    <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور دسته بندی" file_name="mohammad"/>
+    <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور دسته بندی"
+                 file_name="file"/>
 
 
     <div dir="ltr">
@@ -81,12 +82,46 @@ export default {
 
     getData() {
 
-    },
-    makeEmptyValues() {
+      let data = new FormData();
+      data.append('name', this.fa_name);
+      this.en_name.trim().length ?
+          data.append('en_name', this.en_name) :
+          '';
 
+
+      if (this.parentObject) {
+
+        if (parseInt(this.parentObject.value) !== 0) {
+          data.append('parent', this.parentObject.value)
+        }
+      }
+
+      data.append('status', this.status ? 1 : 0);
+
+      typeof (this.$store.state.image_file.file) !== 'undefined' ?
+          data.append('file', this.$store.state.image_file.file) : '';
+
+
+      return data;
     },
     submit() {
+      let data=this.getData();
 
+      CourseCategoryService.storeCourseCategory(data)
+      .then(()=>{
+
+          HelperClass.showSuccess(this.$noty);
+
+          delete this.$store.state.image_file.file;
+
+          this.$router.push({name:'course-category-list'})
+
+
+
+
+      }).catch(error=>{
+        HelperClass.showErrors(error,this.$noty);
+      })
 
     },
 
