@@ -65,9 +65,14 @@ class HelperClass {
 
         const ctx = document.getElementById(canvas_id);
 
-        new Chart(ctx,options);
+        new Chart(ctx, options);
 
     }
+
+
+   removeAllImagePreviews(){
+
+   }
 
 
 }

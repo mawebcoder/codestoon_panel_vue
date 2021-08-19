@@ -6,6 +6,14 @@ export default {
     permissions: [],
     user_info: [],
     user_role:[],
-    image_file:{}
+    image_file:{},
+    pages:[
+
+        {persian:'چارت ها',english:'charts'},
+        {persian:'آمار و اعلانات',english:'reports'},
+        {persian:'ایجاد نقش جدید',english:'create new role'},
+        //...
+
+    ]
 
 }

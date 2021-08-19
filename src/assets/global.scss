@@ -102,7 +102,31 @@ label{
     bottom: 1px;
   }
 }
+table.mceLayout, textarea.tinyMCE {
+  width: 100% !important;
+}
 
+
+//tiny_mc
+.tox{
+  width: 100% !important;
+  height: 300px !important;
+}
+
+/* on large screens, I use a different layout, so 600px are sufficient */
+@media only screen and (min-width: 600px) {
+  table.mceLayout, textarea.richEditor {
+    width: 600px !important;
+  }
+}
+.form-group{
+  margin: 10px 0;
+}
+.md-field{
+  background-color: #fff !important;
+  padding-right:10px !important;
+  padding-bottom:10px !important;
+}
 .md-field label{
   right: 27px !important;
 }
