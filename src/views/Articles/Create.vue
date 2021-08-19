@@ -3,12 +3,7 @@
 
     <md-field>
 
-      <md-input placeholder="نام دوره به فارسی..." v-model="fa_name"></md-input>
-    </md-field>
-
-    <md-field>
-
-      <md-input placeholder="نام دوره به انگلیسی..." v-model="en_name"></md-input>
+      <md-input placeholder="نام مقاله به فارسی..." v-model="title"></md-input>
     </md-field>
 
     <md-field>
@@ -18,8 +13,15 @@
 
     <div class="form-group">
       <md-field>
-        <label>اطلاعات متا...</label>
+        <label>توضیحات متا...</label>
         <md-textarea v-model="meta"></md-textarea>
+      </md-field>
+    </div>
+
+    <div class="form-group">
+      <md-field>
+        <label>نام نویسنده ...</label>
+        <md-textarea v-model="writer"></md-textarea>
       </md-field>
     </div>
 
@@ -30,7 +32,7 @@
       </md-field>
     </div>
 
-    <label >
+    <label>
       توضیحات کامل :
     </label>
     <editor
@@ -56,29 +58,23 @@
 
     <md-field>
 
-      <md-input type="number" placeholder="قیمت..." v-model="price"></md-input>
+      <md-input @keydown="numericInputValidation($event)" type="number" placeholder="قیمت..."
+                v-model="price"></md-input>
     </md-field>
 
 
     <md-field>
 
-      <md-input type="number" placeholder="درصد تخفیف..." v-model="percent"></md-input>
+      <md-input @keyup="discountRangeValidation($event)" @keydown="numericInputValidation($event)" type="number"
+                placeholder="درصد تخفیف..." v-model="percent"></md-input>
     </md-field>
 
 
-    <div class="form-group">
-      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="parentObject"
-                   :options="parentArray" :close-on-select="true"
-                   :clear-on-select="false"
-                   :preserve-search="true" placeholder="سطح دوره را انتخاب کنید..." label="name"
-                   track-by="name">
-      </multiselect>
-    </div>
 
 
     <div class="form-group">
-      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="parentObject"
-                   :options="parentArray" :close-on-select="true"
+      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="category"
+                   :options="categoryArray" :close-on-select="true"
                    :clear-on-select="false"
                    :preserve-search="true" placeholder="دسته بندی مورد نظر را انتخاب کنید..." label="name"
                    track-by="name">
@@ -88,8 +84,8 @@
 
     <div class="form-group">
 
-      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="parentObject"
-                   :options="parentArray" :close-on-select="true"
+      <multiselect :multiple="true" selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="tags"
+                   :options="tagsArray" :close-on-select="true"
                    :clear-on-select="false"
                    :preserve-search="true" placeholder="تگ های مورد نظر را انتخاب کنید..." label="name"
                    track-by="name">
@@ -97,8 +93,8 @@
     </div>
 
 
-    <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور دسته بندی"
-                 file_name="mohammad"/>
+    <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور مقاله"
+                 file_name="file"/>
 
 
     <div dir="ltr">
@@ -113,37 +109,49 @@
 <script>
 import Editor from '@tinymce/tinymce-vue'
 import HelperClass from "../../services/HelperClass";
-import CourseCategoryService from "../../services/Course/CourseCategoryService";
 import Multiselect from 'vue-multiselect'
 import UploadImage from "../../components/UploadImage";
+import ArticleTagService from "../../services/Article/ArticleTagService";
+import ArticleCategoryService from "../../services/Article/ArticleCategoryService";
+import ArticleService from "../../services/Article/ArticleService";
 
 export default {
   name: "Create",
   created() {
-    this.getSelectBox();
+    this.getSelectBoxCategories();
+    this.getSelectBoxTags();
   },
   data() {
     return {
+
       parentObject: '',
       status: false,
-      percent:'',
-      description:'',
-      price:"",
+      percent: '',
+      description: '',
+      price: "",
+      writer: '',
       slug: '',
-      short_description:'',
+      short_description: '',
       meta: '',
-      fa_name: '',
-      en_name: '',
-      parentArray: [
-        {name: 'بدون دسته والد', value: 0},
+      title:'',
+      category: '',
+      categoryArray: [
+        {name: 'فاقد دسته ', value: 0},
       ],
+      tags: [],
+      tagsArray: [],
     }
   },
   methods: {
-    getSelectBox() {
-      CourseCategoryService.getSelectBox()
+    numericInputValidation(event) {
+      HelperClass.numericInputValidation(event);
+    },
+    discountRangeValidation(event) {
+      HelperClass.discountValidationValue(event);
+    },
+    getSelectBoxCategories() {
+      ArticleCategoryService.getParents()
           .then(res => {
-
             if (res.status === 204) {
               return;
             }
@@ -151,8 +159,33 @@ export default {
 
             data.forEach(item => {
 
-              this.parentArray.push({
-                name: item.name,
+              this.categoryArray.push({
+                name: item.fa_name,
+                value: item.id
+              })
+
+            })
+
+
+          }).catch(error => {
+
+        HelperClass.showErrors(error, this.$noty)
+
+      });
+    },
+
+    getSelectBoxTags() {
+      ArticleTagService.getTagsForSelectBox()
+          .then(res => {
+            if (res.status === 204) {
+              return;
+            }
+            let data = res.data.data;
+
+            data.forEach(item => {
+
+              this.tagsArray.push({
+                name: item.fa_name,
                 value: item.id
               })
 
@@ -167,27 +200,75 @@ export default {
     },
 
     getData() {
+      let data = new FormData();
+
+      data.append('title', this.title);
+
+      data.append('content', this.description);
+
+      data.append('status', this.status ? 1 : 0);
+
+      this.writer.trim().length ?
+          data.append('writer', this.writer) : '';
+
+      this.slug.trim().length ?
+          data.append('slug', this.slug) : '';
+
+      this.category.value ?
+          data.append('article_category', this.category.value) : '';
+
+      let tag_ids = this.getTagIds();
+      tag_ids ?
+          data.append('tags', JSON.stringify(tag_ids)) : '';
+
+
+      data.append('meta', this.meta);
+
+      data.append('short_description', this.short_description);
+
+      typeof this.$store.state.image_file.file !== 'undefined' ?
+
+          data.append('file', this.$store.state.image_file.file) :
+
+          '';
+
+      return data;
+
 
     },
-    makeEmptyValues() {
-
+    getTagIds() {
+      if (this.tags.length) {
+        let ids = [];
+        this.tags.forEach(item => {
+          ids.push(item.value)
+        })
+        return ids;
+      }
+      return false;
     },
     submit() {
+      this.$store.state.loader=true;
+      let data = this.getData();
 
+      ArticleService.store(data)
+          .then(() => {
 
+            HelperClass.showSuccess(this.$noty);
+
+            delete this.$store.state.image_file.file
+
+            this.$router.push({name:'article-list'})
+
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
     },
-
-    showScrollTop() {
-
-    }
   },
   components: {
     Multiselect,
     UploadImage,
     Editor
   },
-  mounted() {
-  }
 }
 </script>
 

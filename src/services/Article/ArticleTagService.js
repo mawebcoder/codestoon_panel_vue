@@ -5,11 +5,14 @@ class ArticleTagService {
         this.articleTagBaseUrl = articleTagBaseUrl;
     }
 
-
     store(data) {
 
         return  HttpVerbs.postRequest(`${this.articleTagBaseUrl}`,data)
 
+    }
+
+    getTagsForSelectBox(){
+        return HttpVerbs.getRequest(`${this.articleTagBaseUrl}/select-box`)
     }
 }
 

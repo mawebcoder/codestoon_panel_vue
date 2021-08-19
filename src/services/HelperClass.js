@@ -69,10 +69,32 @@ class HelperClass {
 
     }
 
+    numericInputValidation(e) {
+        let input=e.target;
 
-   removeAllImagePreviews(){
+        if (e.keyCode!==46 && e.keyCode!==8){
 
-   }
+            if(input.value.length===1){
+                if (parseInt(input.value)===0){
+                    e.preventDefault();
+                    return;
+                }
+            }
+        }
+
+
+        let invalid_keys = [187, 69, 189];
+
+        invalid_keys.includes(e.keyCode) ?
+            e.preventDefault() : '';
+    }
+
+    discountValidationValue(e){
+        let input=e.target;
+        if (parseInt(input.value)>100){
+            input.value=99
+        }
+    }
 
 
 }
