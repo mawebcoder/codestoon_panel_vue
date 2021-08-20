@@ -56,18 +56,8 @@
                  }"
     />
 
-    <md-field>
-
-      <md-input @keydown="numericInputValidation($event)" type="number" placeholder="قیمت..."
-                v-model="price"></md-input>
-    </md-field>
 
 
-    <md-field>
-
-      <md-input @keyup="discountRangeValidation($event)" @keydown="numericInputValidation($event)" type="number"
-                placeholder="درصد تخفیف..." v-model="percent"></md-input>
-    </md-field>
 
 
 
@@ -126,9 +116,9 @@ export default {
 
       parentObject: '',
       status: false,
-      percent: '',
+
       description: '',
-      price: "",
+
       writer: '',
       slug: '',
       short_description: '',

@@ -105,6 +105,7 @@ export default {
       return data;
     },
     submit() {
+      this.$store.state.loader=true;
       let data=this.getData();
 
       CourseCategoryService.storeCourseCategory(data)
