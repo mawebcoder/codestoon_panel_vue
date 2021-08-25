@@ -1,3 +1,5 @@
+import Auth from "../../services/Auth/Auth";
+
 export default [
     {
         path:'vip',
@@ -6,7 +8,12 @@ export default [
             {
                 path:'create',
                 component:()=>import('../../views/Vip/create'),
-                name:'vip-create'
+                name:'vip-create',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'vip.store','ایجاد پلن جدید')
+
+                }
             },
             {
                 path:'list',
