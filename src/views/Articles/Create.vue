@@ -155,8 +155,6 @@ export default {
               })
 
             })
-
-
           }).catch(error => {
 
         HelperClass.showErrors(error, this.$noty)

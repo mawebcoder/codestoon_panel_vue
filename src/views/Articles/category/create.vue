@@ -21,9 +21,17 @@
     <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور دسته بندی"
                  file_name="file"/>
 
-
+    <label>
+      : وضعیت
+    </label>
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
+    </div>
+    <label>
+      نمایش در فیلترها :
+    </label>
+    <div dir="ltr">
+      <md-switch v-model="show_in_filter"></md-switch>
     </div>
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
@@ -48,6 +56,7 @@ export default {
       status: false,
       fa_name: '',
       en_name: '',
+      show_in_filter:false,
       parentArray: [
         {name: 'بدون دسته والد', value: 0},
       ],
@@ -85,6 +94,8 @@ export default {
       this.en_name.trim().length ?
           formData.append('en_name', this.en_name) : '';
       formData.append('status', this.status ? 1 : 0);
+      formData.append('show_in_filter', this.show_in_filter ? 1 : 0);
+
 
 
       if (this.parentObject) {
