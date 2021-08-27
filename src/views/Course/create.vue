@@ -207,7 +207,6 @@ export default {
     getTags() {
       CourseTagService.getTags()
           .then(res => {
-            console.log(res)
             let status = res.status;
             if (status === 204) {
               return;
