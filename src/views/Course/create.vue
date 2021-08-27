@@ -95,6 +95,16 @@
       </multiselect>
     </div>
 
+    <div class="form-group">
+
+      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="recording_status"
+                   :options="recordingStatusArray" :close-on-select="true"
+                   :clear-on-select="false"
+                   :preserve-search="true" placeholder="وضعیت ضبط دوره..." label="name"
+                   track-by="name">
+      </multiselect>
+    </div>
+
 
     <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور دسته بندی"
                  file_name="file"/>
@@ -106,7 +116,7 @@
       <md-switch v-model="status"></md-switch>
     </div>
 
-    <label >
+    <label>
       آیا vip است؟
     </label>
     <div dir="ltr">
@@ -126,6 +136,7 @@ import Multiselect from 'vue-multiselect'
 import UploadImage from "../../components/UploadImage";
 import CourseTagService from "../../services/Course/CourseTagService";
 import CourseService from "../../services/Course/CourseService";
+
 export default {
   name: "Create",
   created() {
@@ -137,7 +148,7 @@ export default {
 
       status: false,
       percent: '',
-      is_vip:0,
+      is_vip: 0,
       description: '',
       price: "",
       slug: '',
@@ -145,11 +156,17 @@ export default {
       meta: '',
       title: '',
       en_title: '',
-      category: '',
-      categoryArray: [
+      category: null,
+      recording_status: null,
+      recordingStatusArray: [
+
+        {name: 'به زودی', value: 'soon'},
+        {name: 'در حال ضبط', value: 'recording'},
+        {name: 'تکمیل ضبط', value: 'finished'},
 
       ],
-      level: {name: 'مبتدی', value: 'beginner'},
+      categoryArray: [],
+      level: null,
       levelArray: [
         {name: 'مبتدی', value: 'beginner'},
         {name: 'متوسط', value: 'medium'},
@@ -178,7 +195,6 @@ export default {
               })
 
             })
-            this.category=this.categoryArray[0];
 
 
           }).catch(error => {
@@ -219,6 +235,10 @@ export default {
       this.slug.trim().length ?
           data.append('slug', this.slug) : '';
 
+      this.recording_status ?
+          data.append('recording_status', this.recording_status.value)
+          : '';
+
       if (typeof this.$store.state.image_file.file !== "undefined") {
         data.append('file', this.$store.state.image_file.file)
       }
@@ -227,7 +247,8 @@ export default {
 
       data.append('is_vip', this.is_vip ? 1 : 0);
 
-      data.append('level', this.level.value);
+      this.level ?
+          data.append('level', this.level.value) : '';
 
       if (this.tags.length) {
         let ids = [];
@@ -236,9 +257,10 @@ export default {
         })
         data.append('tags_id', JSON.stringify(ids))
       }
-      if (this.category.value){
-        data.append('courseCategory_id', this.category.value);
-      }
+
+      this.category ?
+          data.append('courseCategory_id', this.category.value) : '';
+
       data.append('short_description', this.short_description);
       data.append('description', this.description);
       data.append('price', this.price);
@@ -250,16 +272,16 @@ export default {
     },
 
     submit() {
-      this.$store.state.loader=true;
+      this.$store.state.loader = true;
       let data = this.getData();
-    CourseService.store(data)
-      .then(()=>{
-        HelperClass.showSuccess(this.$noty);
-        delete this.$store.state.image_file.file;
-        this.$router.push({name:'course-list'})
-      }).catch(error=>{
-        HelperClass.showErrors(error,this.$noty)
-    })
+      CourseService.store(data)
+          .then(() => {
+            HelperClass.showSuccess(this.$noty);
+            delete this.$store.state.image_file.file;
+            this.$router.push({name: 'course-list'})
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
 
     },
   },
