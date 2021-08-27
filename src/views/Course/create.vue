@@ -99,9 +99,18 @@
     <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور دسته بندی"
                  file_name="file"/>
 
-
+    <label>
+      وضعیت :
+    </label>
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
+    </div>
+
+    <label >
+      آیا vip است؟
+    </label>
+    <div dir="ltr">
+      <md-switch v-model="is_vip"></md-switch>
     </div>
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
@@ -128,6 +137,7 @@ export default {
 
       status: false,
       percent: '',
+      is_vip:0,
       description: '',
       price: "",
       slug: '',
@@ -212,7 +222,10 @@ export default {
       if (typeof this.$store.state.image_file.file !== "undefined") {
         data.append('file', this.$store.state.image_file.file)
       }
+
       data.append('status', this.status ? 1 : 0);
+
+      data.append('is_vip', this.is_vip ? 1 : 0);
 
       data.append('level', this.level.value);
 
