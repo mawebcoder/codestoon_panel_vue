@@ -11,6 +11,22 @@
       <md-input placeholder="نام تگ به انگلیسی..." v-model="en_name"></md-input>
     </md-field>
 
+    <md-field>
+
+      <md-input placeholder="اسلاگ..." v-model="slug"></md-input>
+    </md-field>
+
+    <md-field>
+
+      <md-input placeholder="توضیحات متا..." v-model="meta"></md-input>
+    </md-field>
+
+    <md-field>
+
+      <md-textarea placeholder="توضیحات کوتاه..." v-model="short_description"></md-textarea>
+    </md-field>
+
+
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
     </div>
@@ -30,7 +46,10 @@ export default {
     return {
       status: false,
       fa_name: '',
-      en_name: ''
+      en_name: '',
+      slug: "",
+      meta: "",
+      short_description: '',
     }
   },
   methods: {
@@ -38,6 +57,11 @@ export default {
       let formData = new FormData();
       formData.append('fa_name', this.fa_name);
       formData.append('status', this.status ? 1 : 0);
+      formData.append('slug', this.slug );
+      formData.append('meta', this.meta);
+
+      this.short_description.trim().length?
+          formData.append('short_description',this.short_description):'';
       this.en_name.trim().length ?
           formData.append('en_name', this.en_name) :
           '';
@@ -47,6 +71,9 @@ export default {
       this.fa_name = '';
       this.en_name = '';
       this.status = false;
+      this.meta='';
+      this.short_description='';
+      this.slug='';
     },
     submit() {
       this.$store.state.loader = true;
