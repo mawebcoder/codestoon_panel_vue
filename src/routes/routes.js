@@ -18,10 +18,11 @@ import VipRoutes from './Vip'
 import FaqRoutes from './Faq'
 import MessageRoutes from './Message'
 import RecycleBin from './Recyclebin'
+import Dashboard from '../routes/Dashboard';
 
 const routes = [
     {
-        path: '/test',
+        path: '/name',
         component: () => import('../views/test')
     },
     ...AuthenticationRoutes,
@@ -30,6 +31,7 @@ const routes = [
         component: () => import('../views/Panel'),
         children: [
             ...Article,
+            ...Dashboard,
             ...CourseRoutes,
             ...VideoRoutes,
             ...CommentRoutes,

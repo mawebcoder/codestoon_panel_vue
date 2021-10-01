@@ -1,18 +1,31 @@
 import axios from "axios";
+import Vue from "vue";
 
 class HttpVerbs {
 
     getRequest(uri) {
 
-        return axios.get(uri)
+        return axios.get(uri, {
+            headers: {
+                Authorization: `Bearer ${Vue.$cookies.get('token')}`
+            }
+        })
 
     }
 
     postRequest(uri, data = null) {
 
         return data ?
-            axios.post(uri, data) :
-            axios.post(uri)
+            axios.post(uri, data,{
+                headers: {
+                    Authorization: `Bearer ${Vue.$cookies.get('token')}`
+                }
+            }) :
+            axios.post(uri,{},{
+                headers: {
+                    Authorization: `Bearer ${Vue.$cookies.get('token')}`
+                }
+            })
     }
 
     putRequest(uri, data = null) {
@@ -22,7 +35,11 @@ class HttpVerbs {
             Object.assign(data, {_method: 'PUT'})
 
 
-        return axios.post(uri, data)
+        return axios.post(uri, data,{
+            headers: {
+                Authorization: `Bearer ${Vue.$cookies.get('token')}`
+            }
+        })
     }
 
     patchRequest(uri, data = null) {
@@ -31,7 +48,11 @@ class HttpVerbs {
             Object.assign(data, {_method: 'PATCH'})
 
 
-        return axios.post(uri, data)
+        return axios.post(uri, data,{
+            headers: {
+                Authorization: `Bearer ${Vue.$cookies.get('token')}`
+            }
+        })
     }
 
     deleteRequest(uri, data = null) {
@@ -40,7 +61,11 @@ class HttpVerbs {
             data = {_method: 'DELETE'} :
             Object.assign(data, {_method: 'DELETE'})
 
-        return axios.post(uri, data)
+        return axios.post(uri, data,{
+            headers: {
+                Authorization: `Bearer ${Vue.$cookies.get('token')}`
+            }
+        })
     }
 }
 

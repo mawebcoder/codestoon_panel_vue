@@ -33,10 +33,10 @@
       <div style="padding: 10px">
         آیا اطمینان دارید؟
       </div>
-      <md-dialog-actions>
-        <md-button style="margin: 0 10px" @click="showDialog = false" class="md-raised md-accent">بله</md-button>
-        <md-button @click="showDialog = false" class="md-raised md-primary">خیر</md-button>
-      </md-dialog-actions>
+      <!--      <md-dialog-actions>-->
+      <!--        <md-button style="margin: 0 10px" @click="deleteItems" class="md-raised md-accent">بله</md-button>-->
+      <!--        <md-button @click="$store.state.show_confirmation_dialog = false" class="md-raised md-primary">خیر</md-button>-->
+      <!--      </md-dialog-actions>-->
 
     </md-dialog>
 
@@ -46,42 +46,10 @@
 
 
       <md-card-content>
-        <!--    table-->
-        <vue-good-table
-            :fixed-header="true"
-            max-height="400px"
-            :columns="columns"
-            :rtl="true"
-            @on-cell-click="onCellClick"
-            :rows="rows">
 
-          <div slot="table-actions" style="width: 100%;display: flex;justify-content: center;align-content: center"
-               dir="rtl">
-            <div class="col-12">
-              <md-card >
-
-
-                <md-card-content>
-                  <md-field style="width: 100%;direction: ltr">
-                    <md-icon style="position: relative;bottom: 2px">search</md-icon>
-                    <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="type"></md-input>
-                  </md-field>
-
-                  <div class="icons">
-                    <md-button @click="showDialog=true" class="md-raised md-accent">
-                      <md-icon>delete</md-icon>
-                    </md-button>
-                    <md-button class="md-raised md-primary"><md-icon>task_alt</md-icon></md-button>
-                  </div>
-                </md-card-content>
-
-
-              </md-card>
-            </div>
-
-
-          </div>
-        </vue-good-table>
+        <DataTable editUrl="string" :editCallBack="getRoles" deleteUrl="roles" :deleteCallBack="getRoles"
+                   :columns="columns" :rows="rows">
+        </DataTable>
       </md-card-content>
 
     </md-card>
@@ -90,33 +58,52 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import HttpVerbs from "../../services/HttpVerbs";
+import HelperClass from "../../services/HelperClass";
+import DataTable from "../../components/DataTable";
 
 export default {
   name: "list",
+  created() {
+    this.getRoles();
+  },
   data() {
     return {
       showDialog: false,
+      last_page: 0,
+      params: null,
 
       type: '',
       columns: [
         {
-          label: 'Name',
-          field: 'name',
+          label: 'شناسه',
+          field: 'id',
         },
         {
-          label: 'Age',
-          field: 'age',
-          type: 'number',
+          label: 'عنوان فارسی',
+          field: 'fa_title',
         },
+        {
+          label: 'عنوان انگلیسی',
+          field: 'en_title',
+        },
+        {
+          label: 'حذف',
+          field: 'delete',
+          html: true
+        },
+        {
+          label: 'ویرایش',
+          field: 'edit',
+          html: true
+        },
+        {
+          label: 'انتخاب',
+          field: 'select',
+          html: true
+        }
       ],
-      rows: [
-        {id: 1, name: "John", age: 20},
-        {id: 2, name: "Jane", age: 24},
-        {id: 3, name: "Susan", age: 16},
-        {id: 4, name: "Chris", age: 55},
-        {id: 5, name: "Dan", age: 40},
-        {id: 6, name: "John", age: 20},
-      ],
+      rows: [],
 
       sort: {name: 'جدیدترین', value: 1},
       status: {name: 'فعال', value: 1},
@@ -133,12 +120,48 @@ export default {
   },
 
   methods: {
-    onCellClick(params) {
-      console.log(params)
+    deleteItems() {
+      this.$store.state.loader = true;
+      let id = this.params.row.id;
+      HttpVerbs.deleteRequest('roles', {ids: [id]})
+          .then(() => {
+            this.getRoles();
+            this.showDialog = false;
+            HelperClass.showSuccess(this.$noty)
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
     },
+    editItem() {
+      alert('edit')
+    },
+    getRoles() {
+      HttpVerbs.getRequest('roles')
+          .then(res => {
+            this.rows = [];
+            if (res.status === 204) {
+              return;
+            }
+            this.last_page = res.data.data.last_page;
+            let data = res.data.data.data;
+            data.forEach(item => {
+              this.rows.push({
+                id: item.id,
+                fa_title: item.fa_name,
+                en_title: item.name,
+                delete: `<span class="delete-table-button">حذف</span>`,
+                edit: '<span class="edit-table-button">ویرایش</span>',
+                select: '<input class="checkbox-table" type="checkbox" value="' + item.id + '">'
+              })
+            })
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    }
   },
   components: {
-    Multiselect
+    Multiselect,
+    DataTable
   },
 
 }

@@ -3,6 +3,10 @@ import App from './App.vue'
 
 require('./Plugins/VueNoty')
 
+//dropZon
+
+require('./Plugins/dropzone')
+
 // vue cookies
 require('./Plugins/VueCookies')
 

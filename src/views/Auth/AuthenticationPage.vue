@@ -62,7 +62,8 @@ export default {
       Auth.login(data)
           .then(res => {
 
-            localStorage.setItem('temp_password', res.data.data.temporary_password)
+            localStorage.setItem('temp_password', res.data.data.security_temporary_password)
+
             this.$router.push({name: 'verify-code'})
 
           }).catch(error => {

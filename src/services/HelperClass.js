@@ -6,6 +6,7 @@ class HelperClass {
     // show errors in catch
     showErrors(error, noty) {
         store.state.loader = false;
+        store.state.show_confirmation_dialog = false;
         let statusCode = error.response.status;
 
         if (statusCode === 422) {
@@ -39,6 +40,7 @@ class HelperClass {
 
     showSuccess(noty) {
         store.state.loader = false;
+        store.state.show_confirmation_dialog = false;
         noty.success('عملیات با موفقیت انجام شد')
         this.scrollTop();
     }
@@ -70,12 +72,12 @@ class HelperClass {
     }
 
     numericInputValidation(e) {
-        let input=e.target;
+        let input = e.target;
 
-        if (e.keyCode!==46 && e.keyCode!==8){
+        if (e.keyCode !== 46 && e.keyCode !== 8) {
 
-            if(input.value.length===1){
-                if (parseInt(input.value)===0){
+            if (input.value.length === 1) {
+                if (parseInt(input.value) === 0) {
                     e.preventDefault();
                     return;
                 }
@@ -89,10 +91,10 @@ class HelperClass {
             e.preventDefault() : '';
     }
 
-    discountValidationValue(e){
-        let input=e.target;
-        if (parseInt(input.value)>100){
-            input.value=99
+    discountValidationValue(e) {
+        let input = e.target;
+        if (parseInt(input.value) > 100) {
+            input.value = 99
         }
     }
 

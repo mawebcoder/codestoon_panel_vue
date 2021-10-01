@@ -503,57 +503,6 @@
 
 
         </li>
-
-        <!--  caches-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              cached
-            </md-icon>
-         مدیریت cache
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'cache'}">
-                مدیریت کش ها
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
-        <!--  modules-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              view_module
-            </md-icon>
-          ماژول ها
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'module'}">
-                مدیریت ماژول
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
-
         <!--  personal info-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">

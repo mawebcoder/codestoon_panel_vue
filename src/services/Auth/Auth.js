@@ -50,7 +50,11 @@ class Auth {
         store.state.user_role = data.user_role
     }
 
-    permissionVerification(user_permissions, requiredPermission) {
+    permissionVerification(user_permissions, requiredPermission = null) {
+
+        if (!requiredPermission) {
+            return true;
+        }
 
         let en_name_permissions = user_permissions.map(item => {
             return item.name;
@@ -59,7 +63,7 @@ class Auth {
         return en_name_permissions.includes(requiredPermission);
     }
 
-    checkCanAccessThisRoute(next, required_permissions, page_title = null) {
+    checkCanAccessThisRoute(next, required_permissions = null, page_title = null) {
 
         page_title ?
             store.commit('changePageTitle', page_title) :

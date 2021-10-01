@@ -58,12 +58,17 @@ export default {
       return data;
     },
     verify() {
-
+      this.$store.state.loader = true;
       Auth.verifyCode(this.getData())
           .then(res => {
+
             this.$cookies.set('token', res.data.data.token, '30d')
 
-            this.$router.push({name: "dashboard"})
+            localStorage.removeItem('code_expire_date');
+            localStorage.removeItem('temp_password');
+
+            this.$router.push({name: "personal-info"})
+
 
           }).catch(error => {
 

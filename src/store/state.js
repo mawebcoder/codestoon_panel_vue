@@ -5,13 +5,14 @@ export default {
     show_resend_code_button: false,
     permissions: [],
     user_info: [],
-    user_role:[],
-    image_file:{},
-    pages:[
+    show_confirmation_dialog: false,
+    user_role: [],
+    image_file: {},
+    pages: [
 
-        {persian:'چارت ها',english:'charts'},
-        {persian:'آمار و اعلانات',english:'reports'},
-        {persian:'ایجاد نقش جدید',english:'create new role'},
+        {persian: 'چارت ها', english: 'charts'},
+        {persian: 'آمار و اعلانات', english: 'reports'},
+        {persian: 'ایجاد نقش جدید', english: 'create new role'},
         //...
 
     ]

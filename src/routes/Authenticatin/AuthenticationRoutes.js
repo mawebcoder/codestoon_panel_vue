@@ -1,4 +1,5 @@
 import Auth from "../../services/Auth/Auth";
+import store from "../../store/store";
 
 export default [
     {
@@ -8,7 +9,7 @@ export default [
             {
                 path: 'login',
                 component: () => import('../../views/Auth/AuthenticationPage'),
-                name: 'auth-login'
+                name: 'auth-login',
             },
             {
                 path: 'verify',
@@ -23,7 +24,8 @@ export default [
                                 .then((res) => {
 
                                     localStorage.setItem('code_expire_date', res.data.data)
-                                     next()
+                                    store.state.loader = false
+                                    next()
                                 }).catch(() => {
                                 next({name: 'auth-login'})
                             })

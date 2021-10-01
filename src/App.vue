@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 .loader-box {
   position: fixed;
   width: 100vw;
