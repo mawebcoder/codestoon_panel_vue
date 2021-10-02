@@ -10,8 +10,8 @@ export default [
                 path: 'create',
                 component: () => import('../../views/Role/create'),
                 name: 'role-create',
-                beforeEnter:(to,from,next)=>{
-                    Auth.checkCanAccessThisRoute(next,'role.store','ایجاد نقش جدید')
+                beforeEnter: (to, from, next) => {
+                    Auth.checkCanAccessThisRoute(next, 'role.store', 'ایجاد نقش جدید')
                 }
             },
 
@@ -19,8 +19,16 @@ export default [
                 path: 'list',
                 component: () => import('../../views/Role/list'),
                 name: 'role-list',
-                beforeEnter:(to,from,next)=>{
-                    Auth.checkCanAccessThisRoute(next,'role.index','لیست نقش ها')
+                beforeEnter: (to, from, next) => {
+                    Auth.checkCanAccessThisRoute(next, 'role.index', 'لیست نقش ها')
+                }
+            },
+            {
+                path: 'edit/:id',
+                component: () => import('../../views/Role/Edit'),
+                name: 'role-edit',
+                beforeEnter: (to, from, next) => {
+                    Auth.checkCanAccessThisRoute(next, 'role.update', 'ویرایش نقش')
                 }
             }
         ]

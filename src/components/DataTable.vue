@@ -20,7 +20,6 @@
                 <md-icon style="position: relative;bottom: 2px">search</md-icon>
                 <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="search"></md-input>
               </md-field>
-
               <div class="icons">
                 <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
                   <md-icon>delete</md-icon>
@@ -60,21 +59,31 @@ import HelperClass from "../services/HelperClass";
 
 export default {
   name: "DataTable",
+  created() {
+    this.tableRender();
+  },
   data() {
     return {
       selectedIds: [],
       search: '',
+      rows: [],
       is_single_delete: true,
     }
   },
   props: {
     columns: Array,
-    rows: Array,
-    ids: Array,
     deleteUrl: String,
-    deleteCallBack: Function,
-    editCallBack: Function,
-    editUrl: String,
+    editUrlName: String,
+    items: Array
+  },
+  watch: {
+    search(to) {
+      if (to.length > 3) {
+        this.tableRender(this.search)
+      } else if (to.length < 3) {
+        this.tableRender(this.search)
+      }
+    }
   },
   methods: {
     clickToDeleteSelected() {
@@ -93,7 +102,7 @@ export default {
           break;
         case 'edit':
           if (params.event.target.tagName === 'SPAN') {
-            this.edit();
+            this.edit(params);
           }
 
           break;
@@ -114,7 +123,7 @@ export default {
       }
       HttpVerbs.deleteRequest(this.deleteUrl, {ids: ids})
           .then(() => {
-            this.deleteCallBack();
+            this.tableRender();
             HelperClass.showSuccess(this.$noty)
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
@@ -129,6 +138,21 @@ export default {
       let index = this.selectedIds.indexOf(parseInt(checkBoxElement.value))
       this.selectedIds.splice(index, 1);
     },
+
+    edit(params) {
+      let id = params.row.id;
+      let url = this.$router.resolve({name: this.editUrlName, params: {id: id}}).href;
+      open(url)
+    },
+    tableRender(search = null) {
+      HelperClass.renderTable(
+          this,
+          this.items,
+          'roles',
+          search
+      )
+    }
+
 
   }
 }

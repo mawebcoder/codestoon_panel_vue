@@ -28,76 +28,15 @@
 
     </md-card>
 
+    <DataTable editUrlName="edit-managers" :editCallBack="getAdmins" deleteUrl="roles" :deleteCallBack="getAdmins"
+               :columns="columns" :rows="rows">
+    </DataTable>
 
-    <!--    dialog-->
-    <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title>حذف آیتم ها</md-dialog-title>
-
-      <div style="padding: 10px">
-        آیا اطمینان دارید؟
-      </div>
-      <md-dialog-actions>
-        <md-button style="margin: 0 10px" @click="showDialog = false" class="md-raised md-accent">بله</md-button>
-        <md-button @click="showDialog = false" class="md-raised md-primary">خیر</md-button>
-      </md-dialog-actions>
-
-    </md-dialog>
-
-    <!--    table-->
-    <md-card>
-
-
-      <md-card-content>
-        <!--    table-->
-        <vue-good-table
-            :fixed-header="true"
-            max-height="400px"
-            :columns="columns"
-            :rtl="true"
-            @on-cell-click="onCellClick"
-            :rows="rows">
-
-          <div slot="table-actions" style="width: 100%;display: flex;justify-content: center;align-content: center"
-               dir="rtl">
-            <div class="col-12">
-              <md-card>
-
-
-                <md-card-content>
-                  <md-field style="width: 100%;direction: ltr">
-                    <md-icon style="position: relative;bottom: 2px">search</md-icon>
-                    <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="type"></md-input>
-                  </md-field>
-
-                  <div class="icons">
-                    <md-button @click="showDialog=true" class="md-raised md-accent">
-                      <md-icon>delete</md-icon>
-                    </md-button>
-                    <md-button class="md-raised md-primary">
-                      <md-icon>task_alt</md-icon>
-                    </md-button>
-                  </div>
-                </md-card-content>
-
-
-              </md-card>
-            </div>
-
-
-          </div>
-        </vue-good-table>
-      </md-card-content>
-
-    </md-card>
-
-    <div class="pagination">
-      <pagination v-model="page" :per-page="10" :records="500" @paginate="myCallback"/>
-    </div>
   </div>
 </template>
 
 <script>
-import Pagination from 'vue-pagination-2';
+const DataTable = () => import('../../components/DataTable')
 import Multiselect from 'vue-multiselect'
 
 export default {
@@ -142,7 +81,10 @@ export default {
   },
 
   methods: {
-    myCallback(value){
+    getAdmins() {
+
+    },
+    myCallback(value) {
       console.log(value)
     },
     onCellClick(params) {
@@ -151,7 +93,7 @@ export default {
   },
   components: {
     Multiselect,
-    Pagination
+    DataTable
   },
 
 }

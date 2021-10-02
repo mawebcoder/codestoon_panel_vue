@@ -1,5 +1,6 @@
 import store from "../store/store";
 import Chart from 'chart.js'
+import HttpVerbs from "./HttpVerbs";
 
 class HelperClass {
 
@@ -96,6 +97,49 @@ class HelperClass {
         if (parseInt(input.value) > 100) {
             input.value = 99
         }
+    }
+
+    renderTable(object, itemsArray, uri, search = null) {
+
+        if (!itemsArray || !Array.isArray(itemsArray)) {
+            alert('items are not array')
+        }
+        let url;
+        let finalArray = [];
+        if (search && search.length > 3) {
+            url = uri + '?search=' + search
+        } else if (search && search.length < 3) {
+            return;
+        } else {
+            url = uri
+        }
+
+
+        HttpVerbs.getRequest(url)
+            .then(res => {
+                object.rows = [];
+                if (res.status === 204) {
+                    return;
+                }
+                this.last_page = res.data.data.last_page;
+                let data = res.data.data.data;
+                data.forEach((value, index) => {
+
+                    if (typeof (finalArray[index]) === 'undefined') {
+                        finalArray[index] = {};
+                    }
+
+                    itemsArray.forEach((value2) => {
+                        finalArray[index][value2] = value[value2]
+                        finalArray[index]['delete'] = `<span class="delete-table-button">حذف</span>`
+                        finalArray[index]['edit'] = '<span class="edit-table-button">ویرایش</span>'
+                        finalArray[index]['select'] = '<input class="checkbox-table" type="checkbox" value="' + value.id + '">'
+                    })
+                })
+                object.rows = finalArray;
+            }).catch(error => {
+            this.showErrors(error, object.$noty)
+        })
     }
 
 
