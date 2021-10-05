@@ -4,7 +4,7 @@
     <vue-good-table
         :fixed-header="true"
         max-height="400px"
-        :columns="columns"
+        :columns="FinalColumns"
         :rtl="true"
         @on-cell-click="onCellClick"
         :rows="rows">
@@ -69,6 +69,7 @@ export default {
       selectedIds: [],
       search: '',
       rows: [],
+      FinalColumns:[],
       fixed_columns: [
         {
           label: 'حذف',
@@ -164,8 +165,13 @@ export default {
       let url = this.$router.resolve({name: this.editUrlName, params: {id: id}}).href;
       open(url)
     },
+
+    resetColumns() {
+      this.FinalColumns = this.columns.concat(this.fixed_columns)
+    },
     tableRender(search = null) {
-      this.columns = this.columns.concat(this.fixed_columns)
+
+      this.resetColumns();
 
       HelperClass.renderTable(
           this,

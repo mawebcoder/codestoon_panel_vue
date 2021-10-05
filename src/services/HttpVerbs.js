@@ -29,12 +29,11 @@ class HttpVerbs {
             })
     }
 
-    putRequest(uri, data = null) {
-        store.state.loader = true;
-        !data ?
-            data = {_method: 'PUT'} :
-            Object.assign(data, {_method: 'PUT'})
+    putRequest(uri, data = new FormData()) {
 
+        store.state.loader = true;
+
+        data.append('_method', 'PUT')
 
         return axios.post(uri, data, {
             headers: {
@@ -43,11 +42,9 @@ class HttpVerbs {
         })
     }
 
-    patchRequest(uri, data = null) {
-        !data ?
-            data = {_method: 'PATCH'} :
-            Object.assign(data, {_method: 'PATCH'})
+    patchRequest(uri, data = new FormData()) {
 
+        data.append('_method', 'PATCH')
 
         return axios.post(uri, data, {
             headers: {
@@ -56,11 +53,11 @@ class HttpVerbs {
         })
     }
 
-    deleteRequest(uri, data = null) {
+    deleteRequest(uri, data = new FormData()) {
+
         store.state.loader = true;
-        !data ?
-            data = {_method: 'DELETE'} :
-            Object.assign(data, {_method: 'DELETE'})
+
+        data.append('_method', 'DELETE')
 
         return axios.post(uri, data, {
             headers: {
