@@ -17,13 +17,13 @@
 
             <md-card-content>
 
-<!--              search-->
+              <!--              search-->
               <md-field style="width: 100%;direction: ltr">
                 <md-icon style="position: relative;bottom: 2px">search</md-icon>
                 <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="search"></md-input>
               </md-field>
 
-<!--              delete -->
+              <!--              delete -->
               <div class="icons">
                 <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
                   <md-icon>delete</md-icon>
@@ -76,7 +76,8 @@ export default {
     columns: Array,
     deleteUrl: String,
     editUrlName: String,
-    items: Array
+    items: Array,
+    uri: String
   },
   watch: {
     search(to) {
@@ -150,7 +151,7 @@ export default {
       HelperClass.renderTable(
           this,
           this.items,
-          'roles',
+          this.uri,
           search
       )
     }

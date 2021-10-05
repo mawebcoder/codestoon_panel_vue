@@ -198,27 +198,53 @@ table.mceLayout, textarea.tinyMCE {
   font-weight: bold;
   cursor: pointer;
   transition: .2s;
-  &:hover{
+
+  &:hover {
     transform: scale(1.06);
   }
+}
+.dz-error-message{
+  display: none !important;
+}
+.dropzone.dz-clickable{
+  height: 360px !important;
+  width: 300px !important;
+  margin: auto !important;
+}
+.vue-dropzone > .dz-preview .dz-remove {
+  display: block !important;
+  width: 100px !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  margin: auto !important;
+  font-family: IRANSans;
 }
 
 .delete-table-button {
   @extend .delete;
   margin: auto;
 }
-.edit{
+
+.edit {
   @extend .delete;
   background-color: #448aff;
 }
-.vgt-wrap.rtl .vgt-table thead th, .vgt-wrap.rtl .vgt-table.condensed thead th{
+
+.md-field {
+  direction: ltr !important;
+}
+
+.vgt-wrap.rtl .vgt-table thead th, .vgt-wrap.rtl .vgt-table.condensed thead th {
   text-align: center !important;
 }
-.edit-table-button{
+
+.edit-table-button {
   @extend .edit;
   margin: auto;
 }
-.checkbox-table{
+
+.checkbox-table {
   cursor: pointer;
   width: 25px;
   height: 25px;

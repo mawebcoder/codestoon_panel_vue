@@ -85,7 +85,7 @@ export default {
       type:Array
     },
     valid_size: {
-      default: 2, //MB,
+      default: 300, //KB,
       type:Number
     },
   },
@@ -123,7 +123,7 @@ export default {
 
       let file = event.target.files[0];
       let type = file['type'];
-      let size = file['size'] / (1024 * 1024) //mb;
+      let size = file['size'] / (1024) //KB;
 
       if (!this.valid_formats.includes(type)) {
         let imageBox = document.querySelector(`.image-box${this.file_name}`);
@@ -136,7 +136,7 @@ export default {
         return;
       }
       if (size > this.valid_size) {
-        this.$noty.warning(`حجم فایل نمیتواند بیشتر از ${this.valid_size} باشد`)
+        this.$noty.warning(`حجم فایل نمیتواند بیشتر از ${this.valid_size}کیلوبایت باشد`)
         let imageBox = document.querySelector(`.image-box${this.file_name}`);
         let old_image = imageBox.querySelector('img');
         if (old_image) {

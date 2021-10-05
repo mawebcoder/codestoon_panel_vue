@@ -1,64 +1,71 @@
 <template>
   <div>
 
-    <md-field>
-
-      <md-input placeholder="نام کاربر..." v-model="fa_name"></md-input>
-    </md-field>
     <label>
       نقش کاربر :
     </label>
-    <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="sort"
+    <multiselect style="margin-bottom: 20px" selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="sort"
                  :options="sortOptions" :close-on-select="true"
                  :clear-on-select="false"
                  :preserve-search="true" placeholder="نقش کاربر را انتخاب کنید..." label="name"
                  track-by="name">
     </multiselect>
     <md-field>
-
-
-      <md-input placeholder="ایمیل..." v-model="en_name"></md-input>
+      <md-input placeholder="نام و نام خانوادگی..." v-model="name"></md-input>
     </md-field>
 
     <md-field>
 
-      <md-input placeholder="شماره تلفن..." v-model="en_name"></md-input>
+      <md-input placeholder="شماره تلفن..." v-model="cell"></md-input>
     </md-field>
 
     <md-field>
 
-      <md-input placeholder="رمز عبور..." v-model="en_name"></md-input>
+      <md-input type="email" placeholder="ایمیل..." v-model="email"></md-input>
     </md-field>
 
     <md-field>
 
-      <md-input placeholder="تکرار رمز عبور..." v-model="en_name"></md-input>
-    </md-field>
 
+      <md-input type="password" placeholder="تکرار رمز عبور..." v-model="confirm_password"></md-input>
+    </md-field>
     <md-field>
-
-      <md-file accept="video/mp4" placeholder="برای آپلود عکس پروفایل کلیک کنید..." @change="uploadit($event)" v-model="single" />
+      <md-input type="password" placeholder="رمز عبور..." v-model="password"></md-input>
 
     </md-field>
+
 
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
     </div>
+    <label>
+      عکس پروفایل :
+    </label>
+    <DropZone :image-type="imageType" :driver="driver"/>
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
-
   </div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
+// import HttpVerbs from "../../services/HttpVerbs";
+// import HelperClass from "../../services/HelperClass";
+
+const Multiselect = () => import('vue-multiselect');
+const DropZone = () => import('../../components/DropZon')
 export default {
   name: "Create",
   data() {
     return {
       status: false,
-      fa_name: '',
-      en_name: '',
+      name: '',
+      cell: '',
+      driver: 'profile',
+      imageType: 'cart',
+      email: '',
+      password: '',
+      confirm_password: '',
+      role_id: '',
       sortOptions: [
         {name: 'جدیدترین', value: 1},
         {name: 'قدیمی ترین', value: 0},
@@ -66,27 +73,25 @@ export default {
       sort: {name: 'جدیدترین', value: 1},
     }
   },
-  components: {
-    Multiselect
-  },
   methods: {
     getData() {
-    },
-    makeEmptyValues() {
-      this.fa_name = '';
-      this.en_name = '';
-      this.status = false;
+      let formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('cell', this.cell);
+      formData.append('status', this.status ? 1 : 0);
+      formData.append('email', this.email);
+      formData.append('password', this.password);
+      formData.append('confirm_password', this.confirm_password);
+      formData.append('role_id', this.role_id);
     },
     submit() {
-
-    },
-    showScrollTop() {
-
-
+      console.log(this.$store.state.image_file);
     }
   },
-  mounted() {
-  }
+  components: {
+    Multiselect,
+    DropZone
+  },
 }
 </script>
 

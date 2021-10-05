@@ -1,12 +1,9 @@
 <template>
   <div>
-
-
     <md-card>
       <md-card-content>
 
-        <!--    table-->
-        <DataTable :items="rows" :editUrlName="edit_url_name" deleteUrl="roles" :columns="columns">
+        <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :deleteUri="delete_uri" :columns="columns">
         </DataTable>
 
       </md-card-content>
@@ -23,8 +20,9 @@ export default {
   data() {
     return {
       edit_url_name: 'role-edit',
-      editUrl: '',
+      delete_uri: 'roles',
       rows: ['id', 'name', 'fa_name'],
+      uri: 'roles',
       columns: [
         {
           label: 'شناسه',
