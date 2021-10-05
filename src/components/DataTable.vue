@@ -16,18 +16,20 @@
 
 
             <md-card-content>
+
+<!--              search-->
               <md-field style="width: 100%;direction: ltr">
                 <md-icon style="position: relative;bottom: 2px">search</md-icon>
                 <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="search"></md-input>
               </md-field>
+
+<!--              delete -->
               <div class="icons">
                 <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
                   <md-icon>delete</md-icon>
                 </md-button>
-                <md-button class="md-raised md-primary">
-                  <md-icon>task_alt</md-icon>
-                </md-button>
               </div>
+
             </md-card-content>
 
 
