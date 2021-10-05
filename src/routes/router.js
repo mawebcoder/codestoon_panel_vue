@@ -17,12 +17,13 @@ const router = new VueRouter({
         }
     }
 })
-router.beforeEach((to,from ,next) => {
+router.beforeEach((to, from, next) => {
     store.state.loader = true;
+    store.state.uuid = null;
     next();
 })
 
-router.afterEach(()=>{
+router.afterEach(() => {
     store.state.loader = false;
 })
 

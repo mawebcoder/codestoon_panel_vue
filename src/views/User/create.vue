@@ -4,8 +4,8 @@
     <label>
       نقش کاربر :
     </label>
-    <multiselect style="margin-bottom: 20px" selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="sort"
-                 :options="sortOptions" :close-on-select="true"
+    <multiselect style="margin-bottom: 20px" selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="role"
+                 :options="roles" :close-on-select="true"
                  :clear-on-select="false"
                  :preserve-search="true" placeholder="نقش کاربر را انتخاب کنید..." label="name"
                  track-by="name">
@@ -48,13 +48,17 @@
 </template>
 
 <script>
-// import HttpVerbs from "../../services/HttpVerbs";
-// import HelperClass from "../../services/HelperClass";
+
+import HelperClass from "../../services/HelperClass";
+import HttpVerbs from "../../services/HttpVerbs";
 
 const Multiselect = () => import('vue-multiselect');
 const DropZone = () => import('../../components/DropZon')
 export default {
   name: "Create",
+  created() {
+    this.getRoles();
+  },
   data() {
     return {
       status: false,
@@ -65,15 +69,30 @@ export default {
       email: '',
       password: '',
       confirm_password: '',
-      role_id: '',
-      sortOptions: [
-        {name: 'جدیدترین', value: 1},
-        {name: 'قدیمی ترین', value: 0},
-      ],
-      sort: {name: 'جدیدترین', value: 1},
+      role: '',
+      roles: [],
     }
   },
   methods: {
+    getRoles() {
+      HttpVerbs.getRequest('roles/select/box')
+          .then(res => {
+            this.roles = [];
+            let status = res.status;
+            if (status === 404) {
+              return;
+            }
+            let data = res.data.data;
+            data.forEach(item => {
+              this.roles.push({
+                value: item.id,
+                name: item.fa_name
+              })
+            })
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
     getData() {
       let formData = new FormData();
       formData.append('name', this.name);
@@ -82,10 +101,20 @@ export default {
       formData.append('email', this.email);
       formData.append('password', this.password);
       formData.append('confirm_password', this.confirm_password);
-      formData.append('role_id', this.role_id);
+      formData.append('role_id', this.role.value);
+      if (this.$store.state.uuid) {
+        formData.append('uuid', this.$store.state.uuid);
+      }
+      return formData;
     },
     submit() {
-      console.log(this.$store.state.image_file);
+      let data = this.getData();
+      HttpVerbs.postRequest('users', data)
+          .then(() => {
+            HelperClass.showSuccess(this.$noty)
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
     }
   },
   components: {

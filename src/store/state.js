@@ -6,6 +6,7 @@ export default {
     uploadBaseUrl: 'http://localhost:8000/api/upload/image',
     permissions: [],
     user_info: [],
+    uuid: null,
     show_confirmation_dialog: false,
     user_role: [],
     image_file: {},

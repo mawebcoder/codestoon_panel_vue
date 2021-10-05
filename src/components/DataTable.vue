@@ -69,6 +69,23 @@ export default {
       selectedIds: [],
       search: '',
       rows: [],
+      fixed_columns: [
+        {
+          label: 'حذف',
+          field: 'delete',
+          html: true
+        },
+        {
+          label: 'ویرایش',
+          field: 'edit',
+          html: true
+        },
+        {
+          label: 'انتخاب',
+          field: 'select',
+          html: true
+        }
+      ],
       is_single_delete: true,
     }
   },
@@ -148,6 +165,8 @@ export default {
       open(url)
     },
     tableRender(search = null) {
+      this.columns = this.columns.concat(this.fixed_columns)
+
       HelperClass.renderTable(
           this,
           this.items,

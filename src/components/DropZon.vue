@@ -3,6 +3,7 @@
     <drop-zone @vdropzone-error="error" @vdropzone-success="uploaded" ref="myVueDropzone" id="dropzone"
                :options="dropzoneOptions"/>
   </div>
+
 </template>
 
 <script>
@@ -36,7 +37,7 @@ export default {
         addRemoveLinks: true,
         chunking: true,
         retryChunks: true,
-        retryChunksLimit: 5,
+        retryChunksLimit: 3,
         forceChunking: true,
         chunkSize: 524288,
         dictDefaultMessage: 'عکس را بکشید و رها کنید',
@@ -57,8 +58,9 @@ export default {
     }
   },
   methods: {
-    uploaded() {
+    uploaded(file) {
       this.$noty.success('آپلود با موفقیت انجام شد')
+      this.$store.state.uuid = file.upload.uuid;
     },
     error(file, response) {
 

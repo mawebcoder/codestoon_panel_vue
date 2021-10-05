@@ -41,6 +41,7 @@ class HelperClass {
 
     showSuccess(noty) {
         store.state.loader = false;
+        store.state.uuid = null;
         store.state.show_confirmation_dialog = false;
         noty.success('عملیات با موفقیت انجام شد')
         this.scrollTop();
@@ -121,6 +122,7 @@ class HelperClass {
                 if (res.status === 204) {
                     return;
                 }
+
                 this.last_page = res.data.data.last_page;
                 let data = res.data.data.data;
                 data.forEach((value, index) => {
@@ -141,6 +143,7 @@ class HelperClass {
             this.showErrors(error, object.$noty)
         })
     }
+
     makeRandomString(length) {
         var result = [];
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

@@ -3,7 +3,7 @@
     <md-card>
       <md-card-content>
 
-        <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :deleteUri="delete_uri" :columns="columns">
+        <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
         </DataTable>
 
       </md-card-content>
@@ -35,21 +35,6 @@ export default {
         {
           label: 'عنوان انگلیسی',
           field: 'name',
-        },
-        {
-          label: 'حذف',
-          field: 'delete',
-          html: true
-        },
-        {
-          label: 'ویرایش',
-          field: 'edit',
-          html: true
-        },
-        {
-          label: 'انتخاب',
-          field: 'select',
-          html: true
         }
       ],
     }

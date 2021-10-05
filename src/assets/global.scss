@@ -206,6 +206,9 @@ table.mceLayout, textarea.tinyMCE {
 .dz-error-message{
   display: none !important;
 }
+.md-overlay.md-fixed, body>.md-overlay{
+  z-index: 10 !important;
+}
 .dropzone.dz-clickable{
   height: 360px !important;
   width: 300px !important;
