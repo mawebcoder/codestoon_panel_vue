@@ -135,6 +135,7 @@ export default {
       HttpVerbs.putRequest(`users/admin/${this.$route.params.id}`, data)
           .then(() => {
             HelperClass.showSuccess(this.$noty)
+            close();
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })

@@ -4,7 +4,7 @@ Vue.use(VuePersianDatetimePicker, {
     name: 'custom-date-picker',
     props: {
         inputFormat: 'YYYY-MM-DD HH:mm',
-        format: 'jYYYY-jMM-jDD HH:mm',
+        format: 'YYYY-MM-DD HH:mm',
         editable: false,
         inputClass: 'form-control my-custom-class-name',
         placeholder: 'Please select a date',

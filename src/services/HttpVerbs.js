@@ -53,11 +53,11 @@ class HttpVerbs {
         })
     }
 
-    deleteRequest(uri, data = new FormData()) {
+    deleteRequest(uri, data = {}) {
 
         store.state.loader = true;
 
-        data.append('_method', 'DELETE')
+        Object.assign(data, {_method: 'DELETE'})
 
         return axios.post(uri, data, {
             headers: {
