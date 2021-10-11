@@ -35,12 +35,14 @@
     </md-field>
 
 
+
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
     </div>
     <label>
       عکس پروفایل :
     </label>
+
     <DropZone :image-type="imageType" :driver="driver"/>
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>

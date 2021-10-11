@@ -103,6 +103,7 @@ class HelperClass {
 
     renderTable(object, itemsArray, uri, search = null) {
 
+
         if (!itemsArray || !Array.isArray(itemsArray)) {
             alert('items are not array')
         }
@@ -125,6 +126,7 @@ class HelperClass {
                 }
 
                 this.last_page = res.data.data.last_page;
+
                 let data = res.data.data.data;
                 data.forEach((value, index) => {
 

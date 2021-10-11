@@ -20,12 +20,20 @@ export default {
     imageType: {
       type: String,
       required: true
+    },
+    message: {
+      type: String,
+      default: 'عکس را بکشید و رها کنید'
+    },
+    settingFileType: {
+      type: String,
+      default: null
     }
   },
   data() {
     return {
       dropzoneOptions: {
-        url: `${this.$store.state.uploadBaseUrl}?driver=${this.driver}&type=${this.imageType}`,
+        url: `${this.$store.state.uploadBaseUrl}?driver=${this.driver}&type=${this.imageType}&setting_file_type=${this.settingFileType}`,
         thumbnailWidth: 300,
         thumbnailHeight: 300,
         maxFilesize: 307200,
@@ -40,7 +48,7 @@ export default {
         retryChunksLimit: 3,
         forceChunking: true,
         chunkSize: 524288,
-        dictDefaultMessage: 'عکس را بکشید و رها کنید',
+        dictDefaultMessage: this.message,
         dictFileTooBig: 'سایز فایل نمیتواند بیشتر از 300 کیلوبایت باشد',
         dictFallbackMessage: 'مرورگر شما از این نسخه از dropzone  پشتیبانی نمیکند',
         headers: {"My-Awesome-Header": "header value"},

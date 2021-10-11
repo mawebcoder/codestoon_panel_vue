@@ -1,49 +1,19 @@
 <template>
   <div>
 
-    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
-    </DataTable>
+  <router-view></router-view>
 
   </div>
 </template>
 
 <script>
-const DataTable = () => import('../../components/DataTable')
 
 export default {
-  name: "list",
+  name: "index",
   data() {
     return {
-      rows: ['id', 'name', 'cell', 'email'],
-      edit_url_name: 'edit-managers',
-      delete_uri: 'users/admins',
-      uri: 'users',
-      columns: [
-        {
-          field: 'id',
-          label: 'شناسه',
-        },
-        {
-          field: 'name',
-          label: 'نام و نام خانوادگی '
-        },
-        {
-          field: 'cell',
-          label: 'شماره تماس'
-        },
-        {
-          field: 'email',
-          label: 'ایمیل'
-        }
-      ],
     }
   },
-  components: {
-    DataTable
-  },
-  mounted() {
-  }
-
 }
 </script>
 

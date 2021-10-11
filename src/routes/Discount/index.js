@@ -19,6 +19,14 @@ export default [
                  beforeEnter:(to,from,next)=>{
                     Auth.checkCanAccessThisRoute(next,'discount.index','لیست کدهای تخفیف')
                 }
+            },
+            {
+                path:'edit/:id',
+                component:()=>import('../../views/Discount/Edit'),
+                name:'discount-edit',
+                beforeEnter:(to,from,next)=>{
+                    Auth.checkCanAccessThisRoute(next,'discount.update','ویرایش کد تخفیف')
+                }
             }
         ]
     }

@@ -1,146 +1,99 @@
 <template>
   <div>
-    <md-card style="margin-bottom: 10px">
-      <md-card-header>
-        <div class="md-title">فیلتر سازی داده ها</div>
-      </md-card-header>
 
-      <md-card-content>
-        <div class="filter-section row">
-
-          <!--      item-->
-          <div class="col-2 filter-name">
-            مرتب سازی :
-          </div>
-          <div class="col-4 filter-item">
-            <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="sort" :options="sortOptions"
-                         :close-on-select="true" :clear-on-select="false"
-                         :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                         track-by="name">
-            </multiselect>
-          </div>
-
-          <!--      item-->
-          <div class="col-2 filter-name">
-            وضعیت رسیدگی :
-          </div>
-          <div class="col-4 filter-item">
-            <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                         :options="statusOptions" :close-on-select="true"
-                         :clear-on-select="false"
-                         :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                         track-by="name">
-            </multiselect>
-          </div>
-
-
-          <!--      item-->
-          <div class="col-2 filter-name">
-            وضعیت پرداخت :
-          </div>
-          <div class="col-4 filter-item">
-            <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                         :options="statusOptions" :close-on-select="true"
-                         :clear-on-select="false"
-                         :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                         track-by="name">
-            </multiselect>
-          </div>
-
-          <!--      item-->
-          <div class="col-2 filter-name">
-            دوره :
-          </div>
-          <div class="col-4 filter-item">
-            <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                         :options="statusOptions" :close-on-select="true"
-                         :clear-on-select="false"
-                         :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                         track-by="name">
-            </multiselect>
-          </div>
-
-
-        </div>
-      </md-card-content>
-    </md-card>
-
-    <!--    table-->
-    <md-card>
-      <md-card-content>
-        <DataTable :items="rows" :editUrlName="edit_url_name" deleteUrl="roles" :columns="columns">
-        </DataTable>
-      </md-card-content>
-    </md-card>
+    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+    </DataTable>
 
   </div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import DataTable from "../../../components/DataTable";
+const DataTable = () => import('../../../components/DataTable')
 
 export default {
   name: "list",
   data() {
     return {
-      showDialog: false,
-      edit_url_name: 'role-edit',
-      editUrl: '',
-      rows: ['id', 'name', 'fa_name'],
+      rows: ['ref_id',
+        'id',
+        'user',
+        'paid_price',
+        'is_checked',
+        'discount_code',
+        'transaction_id',
+        'discount_percent',
+        'price',
+        'discount',
+        'payment_status',
+        'bank_status_code',
+        'created_at'
+      ],
+      edit_url_name: 'edit-managers',
+      delete_uri: 'users/admins',
+      uri: 'factors/courses',
+
       columns: [
         {
-          label: 'شناسه',
           field: 'id',
+          label: 'شناسه',
         },
         {
-          label: 'عنوان فارسی',
-          field: 'fa_name',
+          field: 'user',
+          label: 'نام و نام خانوادگی کاربر '
         },
         {
-          label: 'عنوان انگلیسی',
-          field: 'name',
+          field: 'paid_price',
+          label: 'مبلغ پرداخت شده '
         },
         {
-          label: 'حذف',
-          field: 'delete',
-          html: true
+          field: 'is_checked',
+          label: 'وضعیت بررسی'
+        }, {
+          field: 'discount_code',
+          label: 'کد تخفیف'
+        }, {
+          field: 'transaction_id',
+          label: 'شماره سفارش'
+        }, {
+          field: 'discount_percent',
+          label: 'درصد تخفیف'
+        }, {
+          field: 'price',
+          label: 'قیمت بدون تخفیف(تومان)'
+        }, {
+          field: 'discount',
+          label: 'مقدار تخفیف(تومان)'
+        }, {
+          field: 'payment_status',
+          label: 'وضعیت سفارش'
+        }, {
+          field: 'bank_status_code',
+          label: 'کد بانک'
+        }, {
+          field: 'created_at',
+          label: 'تاریخ ایجاد سفارش'
         },
-        {
-          label: 'ویرایش',
-          field: 'edit',
-          html: true
-        },
-        {
-          label: 'انتخاب',
-          field: 'select',
-          html: true
-        }
       ],
-      type: '',
-      sort: 0,
-      status: 0,
 
-      sortOptions: [
-        {name: 'جدیدترین', value: 1},
-        {name: 'قدیمی ترین', value: 0},
-      ],
-      statusOptions: [
-        {name: 'فعال', value: 1},
-        {name: 'غیر فعال', value: 0},
-      ],
+      // 'id',
+      // 'user',
+      // 'paid_price',
+      // 'is_checked',
+      // 'discount_code',
+      // 'transaction_id',
+      // 'discount_percent',
+      // 'price',
+      // 'discount',
+      // 'payment_status',
+      // 'bank_status_code',
+      // 'created_at'
     }
   },
-
-  methods: {
-    onCellClick(params) {
-      console.log(params)
-    },
-  },
   components: {
-    Multiselect,
     DataTable
   },
+  mounted() {
+  }
 
 }
 </script>

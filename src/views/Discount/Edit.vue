@@ -41,6 +41,9 @@ import HelperClass from "../../services/HelperClass";
 
 export default {
   name: "Create",
+  created() {
+    this.getInfo()
+  },
   data() {
     return {
       status: false,
@@ -68,28 +71,33 @@ export default {
       HelperClass.discountValidationValue(e)
     },
     getData() {
-      return {
-        code: this.code,
-        valid_time_use: this.valid_time_to_use,
-        expire_date: this.expire_date,
-        status: this.status ? 1 : 0,
-        percent: this.percent
-      }
+      let formData = new FormData();
+      formData.append('code', this.code);
+      formData.append('valid_time_use', this.valid_time_to_use);
+      formData.append('expire_date', this.expire_date);
+      formData.append('status', this.status ? 1 : 0);
+      formData.append('percent', this.percent)
+      return formData;
     },
-    makeEmptyValues() {
-      this.code = '';
-      this.valid_time_to_use = '';
-      this.percent = '';
-      this.expire_date = '';
-      this.status = false;
+    getInfo() {
+      HttpVerbs.getRequest('discounts/' + this.$route.params.id + '/edit')
+          .then(res => {
+            let data = res.data.data;
+            this.expire_date = data.expire_date;
+            this.code = data.code;
+            this.percent = data.percent;
+            this.status = parseInt(data.status) === 1;
+            this.valid_time_to_use = data.valid_time_use;
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
     },
     submit() {
       let data = this.getData();
-      HttpVerbs.postRequest('discounts', data)
+      HttpVerbs.putRequest('discounts/' + this.$route.params.id, data)
           .then(() => {
-            this.makeEmptyValues();
             HelperClass.showSuccess(this.$noty);
-
+            close()
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })

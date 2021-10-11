@@ -34,6 +34,9 @@
 
     </md-field>
 
+    <md-card>
+      <img :src="profileImage" alt="profileImage">
+    </md-card>
 
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
@@ -71,6 +74,7 @@ export default {
       password: '',
       confirm_password: '',
       role: '',
+      profileImage: '',
       roles: [],
     }
   },
@@ -85,6 +89,7 @@ export default {
             this.name = user.name;
             this.email = user.email;
             this.cell = user.cell;
+            this.profileImage = data.profile ? data.profile.path : null
             this.role = {
               value: userRole.id,
               name: userRole.fa_name
