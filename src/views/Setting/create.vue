@@ -1,6 +1,19 @@
 <template>
   <div>
 
+    <md-dialog :md-active.sync="show_dialog">
+      <md-dialog-title>حذف آیتم ها</md-dialog-title>
+
+      <div style="padding: 10px">
+        آیا اطمینان دارید؟
+      </div>
+      <md-dialog-actions>
+        <md-button style="margin: 0 10px" @click="removeImage" class="md-raised md-accent">بله</md-button>
+        <md-button @click="show_dialog = false" class="md-raised md-primary">خیر</md-button>
+      </md-dialog-actions>
+
+    </md-dialog>
+
     <md-field>
       <md-input placeholder="لینک تلگرام..." v-model="telegram_link"></md-input>
     </md-field>
@@ -38,8 +51,9 @@
     </md-field>
 
     <md-field>
-      <md-input placeholder="طول جغرافیایی..." v-model="Longitude"></md-input>
+      <md-input placeholder="طول جغرافیایی..." v-model="longitude"></md-input>
     </md-field>
+
 
     <md-field>
       <md-input placeholder="عرض جغرافیایی..." v-model="latitude"></md-input>
@@ -70,15 +84,23 @@
                  }"
     />
     <md-card style="margin: 20px 0">
+      <div :class="[`image-${value.id}`,'image']" v-for="value in images" :key="value.id">
+        <div class="image_title">{{ setImageTitle(value.setting_file_type) }} :</div>
+        <div>
+          <md-button @click="showDialog(value.id)" class="md-raised md-accent">حذف</md-button>
+        </div>
+        <img :src="value.webp_path">
+      </div>
 
     </md-card>
 
-
+    <div>
+    </div>
     <md-card style="margin: 20px 0;padding: 10px">
       <div class="row">
 
         <div class="col-4" title="لوگو">
-          <DropZone setting-file-type="log" message="لوگو" image-type="cart" :driver="driver"/>
+          <DropZone setting-file-type="logo" message="لوگو" image-type="cart" :driver="driver"/>
         </div>
         <div title="عکس صفحه خانه" class="col-4">
           <DropZone setting-file-type="first_page_banner" message="عکس صفحه خانه" image-type="cover" :driver="driver"/>
@@ -102,7 +124,6 @@
 </template>
 
 <script>
-import ArticleTagService from "../../services/Article/ArticleTagService";
 import HelperClass from "../../services/HelperClass";
 import HttpVerbs from "../../services/HttpVerbs";
 
@@ -123,44 +144,99 @@ export default {
       twitter_link: "",
       linkin_link: "",
       cell: '',
+      imageId: null,
+      show_dialog: false,
       phone: '',
       address: '',
-      Longitude: '',
       email: '',
       latitude: '',
+      longitude: '',
       about_us: '',
+      short_description: '',
+      images: [],
 
       driver: 'setting',
     }
   },
+
   methods: {
+    removeImage() {
+      this.show_dialog = false;
+      HttpVerbs.postRequest(`setting/image/remove/${this.imageId}`)
+          .then(() => {
+            HelperClass.showSuccess(this.$noty, false)
+            this.getInfo();
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
+    showDialog(id) {
+      this.imageId = id;
+      this.show_dialog = true
+    },
+    setImageTitle(value) {
+      let title;
+      switch (value) {
+        case 'logo':
+          title = 'لوگو';
+          break;
+        case 'first_page_banner':
+          title = 'بنر صفحه اول';
+          break;
+        case 'top_banner':
+          title = 'بنر بالای سایت';
+          break;
+        case 'contact_us_banner':
+          title = 'کاور ارتباط با ما';
+          break;
+        case 'about_us_banner':
+          title = 'کاور درباره ما';
+          break;
+      }
+      return title;
+    },
     getInfo() {
       HttpVerbs.getRequest('get/setting')
           .then(res => {
-            console.log(res.data.data)
+
+            let result = res.data.data;
+            this.images = result.images;
+            let setting = result.setting;
+            this.about_us = setting.about_us;
+            this.telegram_link = setting.telegram_link
+            this.whatsapp_link = setting.whatsapp_link
+            this.address = setting.address
+            this.email = setting.email
+            this.phone = setting.phone
+            this.latitude = setting.latitude
+            this.longitude = setting.longitude
+            this.instagram_link = setting.instagram_link
+            this.twitter_link = setting.twitter_link
+            this.linkin_link = setting.linkin_link
+            this.cell = setting.cell
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })
     },
     getData() {
       let formData = new FormData();
-      formData.append('fa_name', this.fa_name);
-      formData.append('status', this.status ? 1 : 0);
-      formData.append('slug', this.slug);
-      formData.append('meta', this.meta);
-
-      this.short_description.trim().length ?
-          formData.append('short_description', this.short_description) : '';
-      this.en_name.trim().length ?
-          formData.append('en_name', this.en_name) :
-          '';
+      formData.append('about_us', this.about_us);
+      formData.append('telegram_link', this.telegram_link);
+      formData.append('whatsapp_link', this.whatsapp_link);
+      formData.append('address', this.address);
+      formData.append('email', this.email);
+      formData.append('phone', this.phone);
+      formData.append('latitude', this.latitude);
+      formData.append('longitude', this.longitude);
+      formData.append('instagram_link', this.instagram_link);
+      formData.append('twitter_link', this.twitter_link);
+      formData.append('linkin_link', this.linkin_link);
+      formData.append('cell', this.cell);
       return formData;
     },
     submit() {
-      this.$store.state.loader = true;
       let data = this.getData();
-
-      ArticleTagService.store(data)
+      HttpVerbs.postRequest('setting', data)
           .then(() => {
             HelperClass.showSuccess(this.$noty)
           }).catch(error => {
@@ -176,8 +252,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .row > div {
   margin-bottom: 10px;
 }
+
+.image_title {
+  margin: {
+    top: 20px;
+    bottom: 20px;
+  };
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.image {
+  padding: 20px;
+}
+
 </style>

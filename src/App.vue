@@ -24,6 +24,9 @@ export default {
 
 <style lang="scss">
 
+html{
+  scroll-behavior: smooth;
+}
 .loader-box {
   position: fixed;
   width: 100vw;
