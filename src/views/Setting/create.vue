@@ -239,6 +239,7 @@ export default {
       HttpVerbs.postRequest('setting', data)
           .then(() => {
             HelperClass.showSuccess(this.$noty)
+            this.getInfo();
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })

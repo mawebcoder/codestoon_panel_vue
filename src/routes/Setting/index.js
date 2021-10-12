@@ -1,3 +1,5 @@
+import Auth from "../../services/Auth/Auth";
+
 export default [
     {
         path:'setting',
@@ -6,7 +8,10 @@ export default [
             {
                 path:'update',
                 component:()=>import('../../views/Setting/create'),
-                name:'setting'
+                name:'setting',
+                beforeEnter: (to, from, next) => {
+                    Auth.checkCanAccessThisRoute(next, 'setting.index', 'تنطیمات')
+                }
             }
         ]
     }

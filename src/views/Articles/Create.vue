@@ -56,12 +56,6 @@
                  }"
     />
 
-
-
-
-
-
-
     <div class="form-group">
       <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="category"
                    :options="categoryArray" :close-on-select="true"
@@ -97,14 +91,14 @@
 </template>
 
 <script>
-import Editor from '@tinymce/tinymce-vue'
 import HelperClass from "../../services/HelperClass";
-import Multiselect from 'vue-multiselect'
-import UploadImage from "../../components/UploadImage";
 import ArticleTagService from "../../services/Article/ArticleTagService";
 import ArticleCategoryService from "../../services/Article/ArticleCategoryService";
 import ArticleService from "../../services/Article/ArticleService";
 
+const Editor = () => import('@tinymce/tinymce-vue')
+const Multiselect = () => import('vue-multiselect')
+const UploadImage = () => import("../../components/UploadImage");
 export default {
   name: "Create",
   created() {
@@ -123,7 +117,7 @@ export default {
       slug: '',
       short_description: '',
       meta: '',
-      title:'',
+      title: '',
       category: '',
       categoryArray: [
         {name: 'فاقد دسته ', value: 0},
@@ -235,7 +229,7 @@ export default {
       return false;
     },
     submit() {
-      this.$store.state.loader=true;
+      this.$store.state.loader = true;
       let data = this.getData();
 
       ArticleService.store(data)
@@ -245,7 +239,7 @@ export default {
 
             delete this.$store.state.image_file.file
 
-            this.$router.push({name:'article-list'})
+            this.$router.push({name: 'article-list'})
 
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
