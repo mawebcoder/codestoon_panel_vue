@@ -12,7 +12,13 @@ export default [
                 path:'list',
                 component:()=>import('../../views/Faq/list'),
                 name:'faq-list'
+            },
+            {
+                path:'edit/:id',
+                component:()=>import('../../views/Faq/Edit'),
+                name:'faq-edit'
             }
+
         ]
     }
 ]

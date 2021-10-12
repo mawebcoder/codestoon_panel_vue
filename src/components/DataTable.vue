@@ -69,7 +69,7 @@ export default {
       selectedIds: [],
       search: '',
       rows: [],
-      FinalColumns:[],
+      FinalColumns: [],
       fixed_columns: [
         {
           label: 'حذف',
@@ -79,7 +79,8 @@ export default {
         {
           label: 'ویرایش',
           field: 'edit',
-          html: true
+          html: true,
+          hidden: !this.showEdit
         },
         {
           label: 'انتخاب',
@@ -95,7 +96,10 @@ export default {
     deleteUrl: String,
     editUrlName: String,
     items: Array,
-    uri: String
+    uri: String,
+    showEdit: {
+      default: true
+    },
   },
   watch: {
     search(to) {
@@ -177,7 +181,8 @@ export default {
           this,
           this.items,
           this.uri,
-          search
+          search,
+          this.showEdit
       )
     }
 

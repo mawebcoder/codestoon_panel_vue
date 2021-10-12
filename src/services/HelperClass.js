@@ -40,12 +40,12 @@ class HelperClass {
 
     }
 
-    showSuccess(noty,scropToTop=true) {
+    showSuccess(noty, scropToTop = true) {
         store.state.loader = false;
         store.state.uuid = null;
         store.state.show_confirmation_dialog = false;
         noty.success('عملیات با موفقیت انجام شد')
-        if (scropToTop){
+        if (scropToTop) {
             this.scrollTop();
         }
     }
@@ -103,7 +103,7 @@ class HelperClass {
         }
     }
 
-    renderTable(object, itemsArray, uri, search = null) {
+    renderTable(object, itemsArray, uri, search = null, showEdit = true) {
 
 
         if (!itemsArray || !Array.isArray(itemsArray)) {
@@ -139,7 +139,9 @@ class HelperClass {
                     itemsArray.forEach((value2) => {
                         finalArray[index][value2] = value[value2]
                         finalArray[index]['delete'] = `<span class="delete-table-button">حذف</span>`
-                        finalArray[index]['edit'] = '<span class="edit-table-button">ویرایش</span>'
+                        if (showEdit) {
+                            finalArray[index]['edit'] = '<span class="edit-table-button">ویرایش</span>'
+                        }
                         finalArray[index]['select'] = '<input class="checkbox-table" type="checkbox" value="' + value.id + '">'
                     })
                 })
