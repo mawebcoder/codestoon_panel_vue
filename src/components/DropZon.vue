@@ -33,7 +33,9 @@ export default {
   data() {
     return {
       dropzoneOptions: {
-        url: `${this.$store.state.uploadBaseUrl}?driver=${this.driver}&type=${this.imageType}&setting_file_type=${this.settingFileType}`,
+        url: this.settingFileType ?
+            `${this.$store.state.uploadBaseUrl}?driver=${this.driver}&type=${this.imageType}&setting_file_type=${this.settingFileType}` :
+            `${this.$store.state.uploadBaseUrl}?driver=${this.driver}&type=${this.imageType}`,
         thumbnailWidth: 300,
         thumbnailHeight: 300,
         maxFilesize: 307200,

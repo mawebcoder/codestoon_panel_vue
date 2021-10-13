@@ -42,11 +42,11 @@
                 'forecolor backcolor emoticons | help | rtl ltr',
                  }"
     />
-    <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور پلن"
-                 file_name="file"/>
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
     </div>
+
+    <DropZone :message="message" :image-type="imageType" :driver="driver"/>
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
 
@@ -56,18 +56,21 @@
 <script>
 import HelperClass from "../../services/HelperClass";
 import Editor from '@tinymce/tinymce-vue'
-import UploadImage from "../../components/UploadImage";
 import VipService from "../../services/Vip/VipService";
 
+const DropZone = () => import('../../components/DropZon')
 export default {
   name: "Create",
   data() {
     return {
+      message: 'عکس کاور را انتخاب کنید',
       status: false,
       title: '',
       price: '',
       text: '',
-      length: ''
+      length: '',
+      imageType: 'cart',
+      driver: 'vip_cart_image'
     }
   },
   methods: {
@@ -81,12 +84,9 @@ export default {
       data.append('title', this.title);
       data.append('price', this.price);
       data.append('text', this.text);
-
-      typeof (this.$store.state.image_file.file)!=="undefined"?
-
-          data.append('file', this.$store.state.image_file.file) :
-          '';
-
+      if (this.$store.state.uuid) {
+        data.append('uuid', this.$store.state.uuid)
+      }
       return data;
 
     },
@@ -94,7 +94,6 @@ export default {
       this.$store.state.loader = true;
 
       let data = this.getData();
-
       VipService.store(data)
           .then(() => {
             HelperClass.showSuccess(this.$noty);
@@ -104,17 +103,14 @@ export default {
         HelperClass.showErrors(error, this.$noty)
       })
 
-
     },
     validateNumber(e) {
       HelperClass.numericInputValidation(e)
     },
   },
-  mounted() {
-  },
   components: {
     Editor,
-    UploadImage
+    DropZone
   }
 }
 </script>

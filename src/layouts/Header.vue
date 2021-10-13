@@ -2,7 +2,7 @@
   <header class="row">
     <!--    logo name -->
     <div class="col-2  logo-name">
-      کدستوون
+      کدستون
     </div>
 
 
