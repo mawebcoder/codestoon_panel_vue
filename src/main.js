@@ -7,6 +7,8 @@ require('./Plugins/VueNoty')
 
 require('./Plugins/dropzone')
 
+require('persian-rex')
+
 // vue cookies
 require('./Plugins/VueCookies')
 

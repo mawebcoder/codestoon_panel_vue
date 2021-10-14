@@ -162,6 +162,8 @@ class HelperClass {
         return result.join('');
     }
 
+
+
 }
 
 export default new HelperClass();
