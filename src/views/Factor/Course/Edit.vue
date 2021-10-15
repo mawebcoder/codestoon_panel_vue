@@ -251,10 +251,20 @@ export default {
       }
     },
     getData() {
-
+      let data = new FormData();
+      data.append('is_checked', this.isChecked.value === 1 ? 1 : 0);
+      data.append('payment_status', this.orderCondition.value)
+      return data;
     },
     submit() {
-
+      let data = this.getData();
+      HttpVerbs.putRequest(`factors/${this.$route.params.id}`, data)
+          .then(() => {
+            HelperClass.showSuccess(this.$noty);
+            close();
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
     }
   },
   components: {
