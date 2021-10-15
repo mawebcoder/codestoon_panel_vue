@@ -47,7 +47,8 @@ class Auth {
         let data = response.data.data;
         store.state.permissions = data.user_permissions;
         store.state.user_info = data.user;
-        store.state.user_role = data.user_role
+        store.state.user_role = data.user_role;
+        store.state.profileImage = data.profileImage;
     }
 
     permissionVerification(user_permissions, requiredPermission = null) {

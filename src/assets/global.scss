@@ -203,6 +203,13 @@ table.mceLayout, textarea.tinyMCE {
     transform: scale(1.06);
   }
 }
+.md-dialog-container.md-theme-default {
+  padding: 30px;
+}
+.md-dialog-actions{
+  display: flex !important;
+  justify-content: start !important;
+}
 .dz-error-message{
   display: none !important;
 }

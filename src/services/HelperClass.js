@@ -22,19 +22,7 @@ class HelperClass {
                 })
             }
         } else {
-            let errors = {
-                '401': 'شما احراز هویت نشدید',
-                '500': 'خطای سمت سرور',
-                '403': 'شما مجوز مورد نظر را ندارید',
-                '503': 'سرور در حال به روز رسانی است',
-                '404': 'مسیر درخواست مورد نظر یافت نشد',
-                '405': 'نوع درخواست نامعتبر است',
-            }
-            noty.error(errors['' + statusCode], {
-                killer: true,
-                timeout: 3000,
-                layout: 'topRight'
-            })
+            noty.error(error.response.data.message)
         }
 
 

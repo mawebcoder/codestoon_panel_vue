@@ -10,6 +10,7 @@ export default {
     show_confirmation_dialog: false,
     user_role: [],
     image_file: {},
+    profileImage: null,
     pages: [
 
         {persian: 'چارت ها', english: 'charts'},
