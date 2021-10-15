@@ -1,142 +1,86 @@
 <template>
   <div>
 
-    <div class="filter-section row">
+    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+    </DataTable>
 
-      <!--      item-->
-      <div class="col-1 filter-name">
-        مرتب سازی :
-      </div>
-      <div class="col-5 filter-item">
-        <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="sort" :options="sortOptions"
-                     :close-on-select="true" :clear-on-select="false"
-                     :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                     track-by="name">
-        </multiselect>
-      </div>
-
-      <!--      item-->
-      <div class="col-1 filter-name">
-        وضعیت رسیدگی :
-      </div>
-      <div class="col-5 filter-item">
-        <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                     :options="statusOptions" :close-on-select="true"
-                     :clear-on-select="false"
-                     :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                     track-by="name">
-        </multiselect>
-      </div>
-
-
-      <!--      item-->
-      <div class="col-1 filter-name">
-        وضعیت پرداخت :
-      </div>
-      <div class="col-5 filter-item">
-        <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                     :options="statusOptions" :close-on-select="true"
-                     :clear-on-select="false"
-                     :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                     track-by="name">
-        </multiselect>
-      </div>
-
-
-    </div>
-
-    <!--    dialog-->
-    <md-dialog :md-active.sync="showDialog">
-      <md-dialog-title>حذف آیتم ها</md-dialog-title>
-
-      <div style="padding: 10px">
-        آیا اطمینان دارید؟
-      </div>
-      <md-dialog-actions>
-        <md-button style="margin: 0 10px" @click="showDialog = false" class="md-raised md-accent">بله</md-button>
-        <md-button @click="showDialog = false" class="md-raised md-primary">خیر</md-button>
-      </md-dialog-actions>
-
-    </md-dialog>
-
-    <!--    table-->
-    <vue-good-table
-        :fixed-header="true"
-        max-height="400px"
-        :columns="columns"
-        :rtl="true"
-        @on-cell-click="onCellClick"
-        :rows="rows">
-      <div slot="table-actions" style="width: 100%;display: flex;justify-content: center;align-content: center"
-           dir="rtl">
-        <md-field style="width: 80%">
-          <md-input style="padding: 0 10px" placeholder="جستجو در جدول..." v-model="type"></md-input>
-        </md-field>
-        <div class="icons">
-          <md-button @click="showDialog=true" class="md-icon-button md-accent">
-            <md-icon>delete</md-icon>
-          </md-button>
-          <md-button class="md-icon-button md-accent">
-            <md-icon>task_alt</md-icon>
-          </md-button>
-        </div>
-      </div>
-    </vue-good-table>
   </div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
+const DataTable = () => import('../../../components/DataTable')
 
 export default {
   name: "list",
   data() {
     return {
-      showDialog: false,
+      rows: ['ref_id',
+        'id',
+        'user',
+        'paid_price',
+        'is_checked',
+        'discount_code',
+        'transaction_id',
+        'discount_percent',
+        'price',
+        'discount',
+        'payment_status',
+        'bank_status_code',
+        'created_at'
+      ],
+      edit_url_name: 'factor-course-edit',
+      delete_uri: 'factors',
+      uri: 'factors/vips',
 
-      type: '',
       columns: [
         {
-          label: 'Name',
-          field: 'name',
+          field: 'id',
+          label: 'شناسه',
         },
         {
-          label: 'Age',
-          field: 'age',
-          type: 'number',
+          field: 'user',
+          label: 'نام و نام خانوادگی کاربر '
         },
-      ],
-      rows: [
-        {id: 1, name: "John", age: 20},
-        {id: 2, name: "Jane", age: 24},
-        {id: 3, name: "Susan", age: 16},
-        {id: 4, name: "Chris", age: 55},
-        {id: 5, name: "Dan", age: 40},
-        {id: 6, name: "John", age: 20},
-      ],
-
-      sort: 0,
-      status: 0,
-
-      sortOptions: [
-        {name: 'جدیدترین', value: 1},
-        {name: 'قدیمی ترین', value: 0},
-      ],
-      statusOptions: [
-        {name: 'فعال', value: 1},
-        {name: 'غیر فعال', value: 0},
-      ],
+        {
+          field: 'paid_price',
+          label: 'مبلغ پرداخت شده '
+        },
+        {
+          field: 'is_checked',
+          label: 'وضعیت بررسی'
+        }, {
+          field: 'discount_code',
+          label: 'کد تخفیف'
+        }, {
+          field: 'transaction_id',
+          label: 'شماره سفارش'
+        }, {
+          field: 'discount_percent',
+          label: 'درصد تخفیف'
+        }, {
+          field: 'price',
+          label: 'قیمت بدون تخفیف(تومان)'
+        }, {
+          field: 'discount',
+          label: 'مقدار تخفیف(تومان)'
+        }, {
+          field: 'payment_status',
+          label: 'وضعیت سفارش'
+        }, {
+          field: 'bank_status_code',
+          label: 'کد بانک'
+        }, {
+          field: 'created_at',
+          label: 'تاریخ ایجاد سفارش'
+        },
+      ]
     }
   },
-
-  methods: {
-    onCellClick(params) {
-      console.log(params)
-    },
-  },
   components: {
-    Multiselect
+    DataTable
   },
+  mounted() {
+  }
 
 }
 </script>

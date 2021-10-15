@@ -9,35 +9,46 @@
         @on-cell-click="onCellClick"
         :rows="rows">
 
-      <div slot="table-actions" style="width: 100%;display: flex;justify-content: center;align-content: center"
-           dir="rtl">
-        <div class="col-12">
-          <md-card>
+
+      <template v-if="showDelete || showSearch">
+        <div slot="table-actions" style="width: 100%;display: flex;justify-content: center;align-content: center"
+             dir="rtl">
+          <div class="col-12">
+            <md-card>
 
 
-            <md-card-content>
+              <md-card-content>
 
-              <!--              search-->
-              <md-field style="width: 100%;direction: ltr">
-                <md-icon style="position: relative;bottom: 2px">search</md-icon>
-                <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="search"></md-input>
-              </md-field>
+                <template v-if="showSearch">
 
-              <!--              delete -->
-              <div class="icons">
-                <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
-                  <md-icon>delete</md-icon>
-                </md-button>
-              </div>
+                  <!--              search-->
+                  <md-field style="width: 100%;direction: ltr">
+                    <md-icon style="position: relative;bottom: 2px">search</md-icon>
+                    <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="search"></md-input>
+                  </md-field>
 
-            </md-card-content>
+                </template>
+
+                <template v-if="showDelete">
+                  <div class="icons">
+                    <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
+                      <md-icon>delete</md-icon>
+                    </md-button>
+                  </div>
+                </template>
+                <!--              delete -->
 
 
-          </md-card>
+              </md-card-content>
+
+
+            </md-card>
+          </div>
+
+
         </div>
 
-
-      </div>
+      </template>
     </vue-good-table>
 
     <md-dialog :md-active.sync="$store.state.show_confirmation_dialog">
@@ -74,7 +85,8 @@ export default {
         {
           label: 'حذف',
           field: 'delete',
-          html: true
+          html: true,
+          hidden: !this.showDelete
         },
         {
           label: 'ویرایش',
@@ -85,7 +97,8 @@ export default {
         {
           label: 'انتخاب',
           field: 'select',
-          html: true
+          html: true,
+          hidden:!this.showSelect
         }
       ],
       is_single_delete: true,
@@ -97,9 +110,22 @@ export default {
     editUrlName: String,
     items: Array,
     uri: String,
-    showEdit: {
-      default: true
+    showSearch: {
+      default: true,
+      type: Boolean
     },
+    showEdit: {
+      default: true,
+      type: Boolean
+    },
+    showDelete: {
+      default: true,
+      type: Boolean
+    },
+    showSelect: {
+      default: true,
+      type: Boolean
+    }
   },
   watch: {
     search(to) {
@@ -182,7 +208,9 @@ export default {
           this.items,
           this.uri,
           search,
-          this.showEdit
+          this.showEdit,
+          this.showDelete,
+          this.showSelect
       )
     }
 

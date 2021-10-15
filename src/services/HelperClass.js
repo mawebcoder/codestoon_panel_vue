@@ -103,7 +103,7 @@ class HelperClass {
         }
     }
 
-    renderTable(object, itemsArray, uri, search = null, showEdit = true) {
+    renderTable(object, itemsArray, uri, search = null, showEdit = true, showDelete = true, showSelect = true) {
 
 
         if (!itemsArray || !Array.isArray(itemsArray)) {
@@ -138,11 +138,15 @@ class HelperClass {
 
                     itemsArray.forEach((value2) => {
                         finalArray[index][value2] = value[value2]
-                        finalArray[index]['delete'] = `<span class="delete-table-button">حذف</span>`
+                        if (showDelete) {
+                            finalArray[index]['delete'] = `<span class="delete-table-button">حذف</span>`
+                        }
                         if (showEdit) {
                             finalArray[index]['edit'] = '<span class="edit-table-button">ویرایش</span>'
                         }
-                        finalArray[index]['select'] = '<input class="checkbox-table" type="checkbox" value="' + value.id + '">'
+                        if (showSelect) {
+                            finalArray[index]['select'] = '<input class="checkbox-table" type="checkbox" value="' + value.id + '">'
+                        }
                     })
                 })
                 object.rows = finalArray;
@@ -161,7 +165,6 @@ class HelperClass {
         }
         return result.join('');
     }
-
 
 
 }

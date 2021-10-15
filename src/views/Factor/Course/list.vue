@@ -28,8 +28,8 @@ export default {
         'bank_status_code',
         'created_at'
       ],
-      edit_url_name: 'edit-managers',
-      delete_uri: 'users/admins',
+      edit_url_name: 'factor-course-edit',
+      delete_uri: 'factors',
       uri: 'factors/courses',
 
       columns: [
@@ -73,20 +73,7 @@ export default {
           field: 'created_at',
           label: 'تاریخ ایجاد سفارش'
         },
-      ],
-
-      // 'id',
-      // 'user',
-      // 'paid_price',
-      // 'is_checked',
-      // 'discount_code',
-      // 'transaction_id',
-      // 'discount_percent',
-      // 'price',
-      // 'discount',
-      // 'payment_status',
-      // 'bank_status_code',
-      // 'created_at'
+      ]
     }
   },
   components: {
