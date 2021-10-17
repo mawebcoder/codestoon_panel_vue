@@ -26,6 +26,16 @@
       <md-textarea placeholder="توضیحات کوتاه..." v-model="short_description"></md-textarea>
     </md-field>
 
+    <label>
+      نمایش در فیلتر :
+    </label>
+    <div dir="ltr">
+      <md-switch v-model="show_in_filter"></md-switch>
+    </div>
+
+    <label>
+      وضعیت :
+    </label>
 
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
@@ -50,6 +60,7 @@ export default {
       slug: "",
       meta: "",
       short_description: '',
+      show_in_filter: false,
     }
   },
   methods: {
@@ -57,23 +68,25 @@ export default {
       let formData = new FormData();
       formData.append('fa_name', this.fa_name);
       formData.append('status', this.status ? 1 : 0);
-      formData.append('slug', this.slug );
+      formData.append('slug', this.slug);
       formData.append('meta', this.meta);
 
-      this.short_description.trim().length?
-          formData.append('short_description',this.short_description):'';
+      this.short_description.trim().length ?
+          formData.append('short_description', this.short_description) : '';
       this.en_name.trim().length ?
           formData.append('en_name', this.en_name) :
           '';
+      formData.append('show_in_filter', this.show_in_filter ? 1 : 0);
       return formData;
     },
     makeEmptyValues() {
       this.fa_name = '';
       this.en_name = '';
       this.status = false;
-      this.meta='';
-      this.short_description='';
-      this.slug='';
+      this.meta = '';
+      this.short_description = '';
+      this.show_in_filter = false;
+      this.slug = '';
     },
     submit() {
       this.$store.state.loader = true;
