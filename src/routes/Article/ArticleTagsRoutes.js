@@ -24,6 +24,16 @@ export default [
                     Auth.checkCanAccessThisRoute(next,'article.tags.index','لیست تگ مقالات')
 
                 }
+            },
+            {
+                path: 'edit/:id',
+                component: () => import('../../views/Articles/tags/Edit'),
+                name: 'edit-article-tag',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'article.tags.update','به روز رسانی تگ مقاله')
+
+                }
             }
         ]
     }

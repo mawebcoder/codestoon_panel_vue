@@ -98,7 +98,7 @@ export default {
           label: 'انتخاب',
           field: 'select',
           html: true,
-          hidden:!this.showSelect
+          hidden: !this.showSelect
         }
       ],
       is_single_delete: true,
@@ -174,6 +174,7 @@ export default {
       }
       HttpVerbs.deleteRequest(this.deleteUrl, {ids: ids})
           .then(() => {
+
             this.tableRender();
             HelperClass.showSuccess(this.$noty)
           }).catch(error => {
@@ -201,6 +202,7 @@ export default {
     },
     tableRender(search = null) {
 
+      this.selectedIds = [];
       this.resetColumns();
 
       HelperClass.renderTable(
