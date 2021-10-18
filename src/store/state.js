@@ -5,6 +5,7 @@ export default {
     show_resend_code_button: false,
     uploadBaseUrl: 'http://localhost:8000/api/upload/image',
     permissions: [],
+    uploadedImages: {},
     user_info: [],
     uuid: null,
     show_confirmation_dialog: false,

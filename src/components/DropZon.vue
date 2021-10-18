@@ -1,6 +1,7 @@
 <template>
   <div>
-    <drop-zone @vdropzone-error="error" @vdropzone-success="uploaded" ref="myVueDropzone" id="dropzone"
+    <drop-zone @vdropzone-removed-file="removeFile" @vdropzone-error="error" @vdropzone-success="uploaded"
+               ref="myVueDropzone" id="dropzone"
                :options="dropzoneOptions"/>
   </div>
 
@@ -28,6 +29,10 @@ export default {
     settingFileType: {
       type: String,
       default: null
+    },
+    imageName: {
+      type: String,
+      default: null
     }
   },
   data() {
@@ -40,6 +45,8 @@ export default {
         thumbnailHeight: 300,
         maxFilesize: 307200,
         maxFiles: 1,
+        timeout: 50000,
+        uploadMultiple: false,
         duplicateCheck: 'enabled',
         dictUploadCanceled: 'آپلود توسط شما کنسل شد',
         dictCancelUploadConfirmation: 'آیا اطمینان دارید؟',
@@ -68,9 +75,24 @@ export default {
     }
   },
   methods: {
+    removeFile() {
+      if (this.imageName) {
+        if (this.$store.state.uploadedImages[this.imageName]) {
+          delete this.$store.state.uploadedImages[this.imageName]
+        }
+      } else {
+        this.$store.state.image_file = {}
+      }
+
+    },
     uploaded(file) {
       this.$noty.success('آپلود با موفقیت انجام شد')
-      this.$store.state.uuid = file.upload.uuid;
+      if (!this.imageName) {
+        this.$store.state.uuid = file.upload.uuid;
+      } else {
+        this.$store.state.uploadedImages[this.imageName] = file.upload.uuid;
+      }
+
     },
     error(file, response) {
 

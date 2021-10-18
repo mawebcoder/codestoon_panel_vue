@@ -115,7 +115,6 @@ table.mceLayout, textarea.tinyMCE {
 //tiny_mc
 .tox {
   width: 100% !important;
-  height: 300px !important;
 }
 
 /* on large screens, I use a different layout, so 600px are sufficient */
@@ -203,6 +202,7 @@ table.mceLayout, textarea.tinyMCE {
     transform: scale(1.06);
   }
 }
+
 .md-dialog-container.md-theme-default {
   padding: 30px;
 }

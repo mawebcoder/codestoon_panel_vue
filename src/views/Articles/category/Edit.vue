@@ -86,10 +86,10 @@ export default {
       HttpVerbs.getRequest(`articles/categories/edit/${this.$route.params.id}`)
           .then(res => {
             let result = res.data.data;
-            console.log(result)
             this.fa_name = result.category.fa_name;
             this.en_name = result.category.en_name;
-            this.status = result.category.status ? 1 : 0;
+            this.status = result.category.status===1;
+            this.show_in_filter=result.category.show_in_filter===1;
             this.slug = result.category.slug;
             this.parentObject = result.parent ? this.parentObject = {
               name: result.parent.fa_name,
