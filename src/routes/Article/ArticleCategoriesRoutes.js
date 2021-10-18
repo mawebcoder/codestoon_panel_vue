@@ -16,6 +16,16 @@ export default [
                 }
             },
             {
+                path: 'edit/:id',
+                component: () => import('../../views/Articles/category/Edit'),
+                name: 'category-article-edit',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'article.category.update','به روزرسانی دسته بندی مقالات')
+
+                }
+            },
+            {
                 path: 'list',
                 component: () => import('../../views/Articles/category/list'),
                 name: 'category-article-list',

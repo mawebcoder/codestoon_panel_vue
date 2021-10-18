@@ -1,6 +1,8 @@
 <template>
   <div>
 
+
+
     <md-field>
 
       <md-input placeholder="نام دسته بندی به فارسی..." v-model="fa_name"></md-input>
@@ -21,11 +23,14 @@
                  :preserve-search="true" placeholder=" دسته والد مورد نظر را در صورت وجود انتخاب کنید..." label="name"
                  track-by="name">
     </multiselect>
+
+
+  <ImagePreview :call-back="getInfo" not-image-found="فاقد عکس کاور" :image="image" :image-id="imageId"/>
+
     <div style="margin: 20px 0;text-align: center;font-weight: bold;font-size: 1.5em">
-      عکس کاور
+      عکس کاور جدید
     </div>
     <DropZone :image-type="imageType" :driver="driver"/>
-
     <label>
       : وضعیت
     </label>
@@ -47,13 +52,16 @@
 <script>
 import HelperClass from "../../../services/HelperClass";
 import Multiselect from 'vue-multiselect'
-import ArticleCategoryService from "../../../services/Article/ArticleCategoryService";
 import DropZone from "../../../components/DropZon";
+import HttpVerbs from "../../../services/HttpVerbs";
+
+const ImagePreview=()=>import('../../../components/ImagePreview')
 
 export default {
   name: "Create",
   created() {
     this.getSelectBox();
+    this.getInfo();
   },
   data() {
     return {
@@ -62,6 +70,9 @@ export default {
       fa_name: '',
       en_name: '',
       slug: '',
+      image: '',
+      imageId: null,
+      show_dialog: false,
       driver: 'article_category_cart_image',
       imageType: 'cart',
       show_in_filter: false,
@@ -71,8 +82,32 @@ export default {
     }
   },
   methods: {
+    getInfo() {
+      HttpVerbs.getRequest(`articles/categories/edit/${this.$route.params.id}`)
+          .then(res => {
+            let result = res.data.data;
+            console.log(result)
+            this.fa_name = result.category.fa_name;
+            this.en_name = result.category.en_name;
+            this.status = result.category.status ? 1 : 0;
+            this.slug = result.category.slug;
+            this.parentObject = result.parent ? this.parentObject = {
+              name: result.parent.fa_name,
+              value: result.parent.id
+            } : {name: 'بدون دسته والد', value: 0};
+
+            this.image = result.image ?
+                this.image = result.image.webp_path :
+                null;
+            this.imageId = result.image ?
+                this.imageId = result.image.id : null;
+
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
     getSelectBox() {
-      ArticleCategoryService.getParents()
+      HttpVerbs.getRequest(`articles/categories/select-box/${this.$route.params.id}`)
           .then(res => {
             if (res.status === 204) {
               return;
@@ -124,24 +159,22 @@ export default {
     submit() {
 
       this.$store.state.loader = true;
-
       let data = this.getData();
-      ArticleCategoryService.store(data)
+      HttpVerbs.putRequest(`articles/categories/${this.$route.params.id}`, data)
           .then(() => {
             HelperClass.showSuccess(this.$noty);
-            this.$router.push({name: 'category-article-list'})
+            close()
           }).catch(error => {
-        HelperClass.showErrors(error, this.$noty);
+        HelperClass.showErrors(error, this.$noty)
       })
 
     },
   },
   components: {
     Multiselect,
-    DropZone
+    DropZone,
+    ImagePreview
   },
-  mounted() {
-  }
 }
 </script>
 
