@@ -45,11 +45,14 @@
 </template>
 
 <script>
-import CourseTagService from "../../../services/Course/CourseTagService";
 import HelperClass from "../../../services/HelperClass";
+import HttpVerbs from "../../../services/HttpVerbs";
 
 export default {
-  name: "Create",
+  name: "Edit",
+  created() {
+    this.getInfo();
+  },
   data() {
     return {
       status: false,
@@ -62,6 +65,21 @@ export default {
     }
   },
   methods: {
+    getInfo() {
+      HttpVerbs.getRequest(`courses/tags/${this.$route.params.id}/edit`)
+          .then(res => {
+            let result = res.data.data;
+            this.slug = result.slug;
+            this.en_name = result.en_title;
+            this.fa_name = result.fa_title;
+            this.status = result.status === 1;
+            this.meta = result.meta;
+            this.show_in_filter = result.show_in_filter === 1;
+            this.short_description = result.short_description;
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
     getData() {
       let formData = new FormData();
       formData.append('fa_title', this.fa_name);
@@ -75,22 +93,14 @@ export default {
           formData.append('short_description', this.short_description) : '';
       return formData;
     },
-    makeEmptyValues() {
-      this.fa_name = '';
-      this.en_name = '';
-      this.status = false;
-      this.meta = '';
-      this.short_description = '';
-      this.slug = '';
-    },
     submit() {
       this.$store.state.loader = true;
       let data = this.getData();
 
-      CourseTagService.store(data)
+      HttpVerbs.putRequest(`courses/tags/${this.$route.params.id}`, data)
           .then(() => {
-            HelperClass.showSuccess(this.$noty)
-            this.makeEmptyValues();
+            HelperClass.showSuccess(this.$noty);
+            close();
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })

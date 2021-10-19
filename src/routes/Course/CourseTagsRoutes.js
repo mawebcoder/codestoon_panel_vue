@@ -24,6 +24,16 @@ export default [
                     Auth.checkCanAccessThisRoute(next, 'course.tag.index', 'لیست تگ دوره ها')
 
                 }
+            },
+            {
+                path: 'edit/:id',
+                component: () => import('../../views/Course/Tag/Edit'),
+                name: 'course-tag-edit',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next, 'course.tag.update', 'ویرایش تگ دوره ')
+
+                }
             }
         ]
     }

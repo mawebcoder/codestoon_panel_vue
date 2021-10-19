@@ -293,7 +293,6 @@ export default {
       typeof this.$store.state.uploadedImages.cover !== 'undefined' ?
 
           data.append('cover_image', this.$store.state.uploadedImages.cover) :
-
           '';
 
       typeof this.$store.state.uploadedImages.cart !== 'undefined' ?
