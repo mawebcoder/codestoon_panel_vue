@@ -25,7 +25,7 @@
     </multiselect>
 
 
-  <ImagePreview :call-back="getInfo" not-image-found="فاقد عکس کاور" :image="image" :image-id="imageId"/>
+  <ImagePreview  :call-back="getInfo" not-image-found="فاقد عکس کاور" :image="image" :image-id="imageId"/>
 
     <div style="margin: 20px 0;text-align: center;font-weight: bold;font-size: 1.5em">
       عکس کاور جدید

@@ -16,7 +16,7 @@
 
     <div v-if="image">
       <div style="margin: 20px 0;font-weight: bold;text-align: center">
-        عکس کاور
+        {{ title }}
       </div>
       <md-card>
         <div>
@@ -26,7 +26,7 @@
       </md-card>
     </div>
     <div v-else style="margin: 20px 0;font-weight: bold;text-align: right">
-      {{NotImageFound}}
+      {{ NotImageFound }}
     </div>
 
 
@@ -40,6 +40,10 @@ import HelperClass from "../services/HelperClass";
 export default {
   name: "Image",
   props: {
+    title: {
+      default: 'عکس کاور',
+      type: String
+    },
     image: {
       default: null,
       type: String
@@ -47,13 +51,13 @@ export default {
     imageId: {
       default: null
     },
-    NotImageFound:{
-      default:null,
-      type:String
+    NotImageFound: {
+      default: null,
+      type: String
     },
-    callBack:{
-      type:Function,
-      default:null
+    callBack: {
+      type: Function,
+      default: null
     }
   },
   data() {
@@ -71,7 +75,7 @@ export default {
       HttpVerbs.deleteRequest(`upload/delete/${this.imageId}`)
           .then(() => {
             HelperClass.showSuccess(this.$noty, false)
-            // this.callBack();
+            this.callBack();
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })

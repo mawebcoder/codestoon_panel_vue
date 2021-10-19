@@ -20,5 +20,15 @@ export default [
             Auth.checkCanAccessThisRoute(next,'article.index','لیست مقالات')
 
         }
+    },
+    {
+        path: 'edit/:id',
+        component: () => import('../../views/Articles/Edit'),
+        name: 'article-edit',
+        beforeEnter: (to, from, next) => {
+
+            Auth.checkCanAccessThisRoute(next,'article.update','به روز رسانی مقاله')
+
+        }
     }
 ]
