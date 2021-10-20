@@ -31,7 +31,7 @@ export default [
                 name: 'course-category-edit',
                 beforeEnter: (to, from, next) => {
 
-                    Auth.checkCanAccessThisRoute(next, 'course.category.index', 'لیست دسته بندی دوره ها')
+                    Auth.checkCanAccessThisRoute(next, 'course.category.update', 'به روز رسانی دسته بندی دوره')
 
                 }
             }

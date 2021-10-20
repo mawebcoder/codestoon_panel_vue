@@ -138,7 +138,7 @@ export default {
               this.cart = null;
               this.imageId = null;
             }
-            let parent = result.parent;
+            let parent = result.father;
             if (parent) {
               this.parentObject = {name: parent.name, value: parent.id}
             }
