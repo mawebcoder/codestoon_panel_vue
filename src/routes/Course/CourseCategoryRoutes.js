@@ -24,6 +24,16 @@ export default [
                     Auth.checkCanAccessThisRoute(next, 'course.category.index', 'لیست دسته بندی دوره ها')
 
                 }
+            },
+            {
+                path: 'edit/:id',
+                component: () => import('../../views/Course/Category/Edit'),
+                name: 'course-category-edit',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next, 'course.category.index', 'لیست دسته بندی دوره ها')
+
+                }
             }
         ]
     }

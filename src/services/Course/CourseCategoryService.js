@@ -10,9 +10,14 @@ class CourseCategoryService {
 
         return HttpVerbs.postRequest(`${this.courseCategoryBaseUrl}`, data)
     }
-    getSelectBox(){
 
+    getSelectBox(courseCategory = null) {
+
+        if (courseCategory) {
+            return HttpVerbs.getRequest(`${this.courseCategoryBaseUrl}/select/box/${courseCategory}`)
+        }
         return HttpVerbs.getRequest(`${this.courseCategoryBaseUrl}/select/box`)
+
     }
 
 
