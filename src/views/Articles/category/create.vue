@@ -46,10 +46,10 @@
 
 <script>
 import HelperClass from "../../../services/HelperClass";
-import Multiselect from 'vue-multiselect'
 import ArticleCategoryService from "../../../services/Article/ArticleCategoryService";
-import DropZone from "../../../components/DropZon";
 
+const DropZone=()=>import('../../../components/DropZon')
+const Multiselect=()=>import('vue-multiselect')
 export default {
   name: "Create",
   created() {

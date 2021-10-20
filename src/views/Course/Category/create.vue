@@ -51,19 +51,24 @@
                 'forecolor backcolor emoticons | help | rtl ltr',
                  }"
     />
-    <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="parentObject"
-                 :options="parentArray" :close-on-select="true"
-                 :clear-on-select="false"
-                 :preserve-search="true" placeholder=" دسته والد مورد نظر را در صورت وجود انتخاب کنید..." label="name"
-                 track-by="name">
-    </multiselect>
 
 
-    <UploadImage valid_formats_text="صرفا فرمت ها jpg-jpeg-png-gif-svg قابل قبول است" title="آپلود کاور دسته بندی"
-                 file_name="file"/>
+    <div style="margin: 20px 0">
+      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="parentObject"
+                   :options="parentArray" :close-on-select="true"
+                   :clear-on-select="false"
+                   :preserve-search="true" placeholder=" دسته والد مورد نظر را در صورت وجود انتخاب کنید..." label="name"
+                   track-by="name">
+      </multiselect>
+
+    </div>
+    <div style="margin: 20px 0;font-size: 1.5em;font-weight: bold;text-align: center">
+      عکس کاور
+    </div>
+    <DropZone title="عکس کارت" :image-type="imageType" :driver="driver"/>
 
     <label>
-     : وضعیت
+      : وضعیت
     </label>
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>
@@ -71,7 +76,7 @@
     <label>
       نمایش در فیلترها :
     </label>
-   <div dir="ltr">
+    <div dir="ltr">
       <md-switch v-model="show_in_filter"></md-switch>
     </div>
 
@@ -81,12 +86,13 @@
 </template>
 
 <script>
-import Editor from '@tinymce/tinymce-vue'
+
 import HelperClass from "../../../services/HelperClass";
 import CourseCategoryService from "../../../services/Course/CourseCategoryService";
-import Multiselect from 'vue-multiselect'
-import UploadImage from "../../../components/UploadImage";
 
+const Multiselect = () => import('vue-multiselect')
+const Editor = () => import('@tinymce/tinymce-vue')
+const DropZone = () => import('../../../components/DropZon')
 export default {
   name: "Create",
   created() {
@@ -97,11 +103,14 @@ export default {
       parentObject: {name: 'بدون دسته والد', value: 0},
       status: false,
       fa_name: '',
-      meta:"",
-      slug:'',
-      short_description:'',
+      meta: "",
+      slug: '',
+      imageType: 'cart',
+      driver: 'course_category_cart_image',
+      short_description: '',
       en_name: '',
-      show_in_filter:false,
+      description: '',
+      show_in_filter: false,
       parentArray: [
         {name: 'بدون دسته والد', value: 0},
       ],
@@ -138,12 +147,12 @@ export default {
 
       let data = new FormData();
       data.append('name', this.fa_name);
-      data.append('short_description',this.short_description);
-      data.append('description',this.description);
-      data.append('meta',this.meta);
+      data.append('short_description', this.short_description);
+      data.append('description', this.description);
+      data.append('meta', this.meta);
 
-      this.slug.trim().length?
-          data.append('slug',this.slug):'';
+      this.slug.trim().length ?
+          data.append('slug', this.slug) : '';
       this.en_name.trim().length ?
           data.append('en_name', this.en_name) :
           '';
@@ -159,45 +168,46 @@ export default {
       data.append('status', this.status ? 1 : 0);
       data.append('show_in_filter', this.show_in_filter ? 1 : 0);
 
-      typeof (this.$store.state.image_file.file) !== 'undefined' ?
-          data.append('file', this.$store.state.image_file.file) : '';
+      if (this.$store.state.uuid) {
+        data.append('cart', this.$store.state.uuid);
+      }
 
 
       return data;
     },
+    makeEmptyValues() {
+      this.status = false;
+      this.fa_name = '';
+      this.en_name = '';
+      this.short_description = '';
+      this.show_in_filter = false;
+      this.slug = '';
+      this.description = '';
+      this.meta = '';
+      this.parentObject = {name: 'بدون دسته والد', value: 0};
+    },
     submit() {
-      this.$store.state.loader=true;
-      let data=this.getData();
+      this.$store.state.loader = true;
+      let data = this.getData();
 
       CourseCategoryService.storeCourseCategory(data)
-      .then(()=>{
+          .then(() => {
 
-          HelperClass.showSuccess(this.$noty);
+            HelperClass.showSuccess(this.$noty);
 
-          delete this.$store.state.image_file.file;
+            this.makeEmptyValues();
 
-          this.$router.push({name:'course-category-list'})
-
-
-
-
-      }).catch(error=>{
-        HelperClass.showErrors(error,this.$noty);
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty);
       })
 
     },
-
-    showScrollTop() {
-
-    }
   },
   components: {
     Multiselect,
-    UploadImage,
+    DropZone,
     Editor
   },
-  mounted() {
-  }
 }
 </script>
 
