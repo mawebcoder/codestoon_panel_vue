@@ -27,6 +27,13 @@
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
 
+    <div style="margin: 20px 0;text-align: center;font-weight: bold">
+      لیست ویدیوهای این فصل :
+    </div>
+    <DataTable :show-delete="false" :show-select="false" :show-search="false" :items="rows" :uri="uri"
+               :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+    </DataTable>
+
   </div>
 </template>
 
@@ -34,23 +41,85 @@
 import HttpVerbs from "../../../services/HttpVerbs";
 import HelperClass from "../../../services/HelperClass";
 
+const DataTable = () => import('../../../components/DataTable')
 const multiselect = () => import('vue-multiselect');
 export default {
   name: "Create",
   created() {
     this.getInfo();
+    this.getSectionInfo()
   },
   data() {
     return {
-      status: false,
-      fa_name: '',
+
+      rows: ['id', 'title', 'en_title', 'course_title', 'status', 'section_title', 'is_free', 'time_in_minute', 'created_at'],
+      edit_url_name: 'video-edit',
+      delete_uri: 'videos',
+      uri: `courses/sections/${this.$route.params.id}/videos`,
+      columns: [
+        {
+          field: 'id',
+          label: 'شناسه',
+        },
+        {
+          field: 'title',
+          label: 'عنوان فارسی'
+        },
+        {
+          field: 'en_title',
+          label: 'عنوان لاتین'
+        },
+        {
+          field: 'status',
+          label: 'وضعیت'
+        },
+        {
+          field: 'is_free',
+          label: 'آیا رایگان است؟'
+        },
+        {
+          field: 'course_title',
+          label: 'عنوان دوره'
+        },
+        {
+          field: 'section_title',
+          label: 'عنوان فصل'
+        },
+        {
+          field: 'time_in_minute',
+          label: 'زمان ویدیو(دقیقه)',
+        },
+        {
+          field: 'created_at',
+          label: 'تاریخ ایجاد'
+        }
+      ],
       en_name: '',
       courseSelected: null,
       courseArray: [],
+      status: false,
+      fa_name: '',
     }
   },
   methods: {
-
+    getSectionInfo() {
+      HttpVerbs.getRequest(`courses/sections/${this.$route.params.id}/edit`)
+          .then(res => {
+            let result = res.data.data;
+            let courseSection = result.section;
+            this.fa_name = courseSection.title;
+            this.en_name = courseSection.en_title;
+            this.status = courseSection.status === 1;
+            let course = result.course;
+            if (course) {
+              this.courseSelected = {name: course.title, value: course.id}
+            } else {
+              this.courseSelected = null;
+            }
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
     getInfo() {
       HttpVerbs.getRequest('courses/select/box')
           .then(res => {
@@ -94,25 +163,20 @@ export default {
 
       return formData;
     },
-    makeEmptyValues() {
-      this.fa_name = '';
-      this.en_name = '';
-      this.status = false;
-      this.courseSelected = null;
-    },
     submit() {
       let data = this.getData();
-      HttpVerbs.postRequest(`courses/sections`, data)
+      HttpVerbs.putRequest(`courses/sections/${this.$route.params.id}`, data)
           .then(() => {
             HelperClass.showSuccess(this.$noty);
-            this.makeEmptyValues();
+           close()
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })
     },
   },
   components: {
-    multiselect
+    multiselect,
+    DataTable
   }
 }
 </script>

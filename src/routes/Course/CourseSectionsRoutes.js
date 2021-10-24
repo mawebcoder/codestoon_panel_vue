@@ -23,6 +23,16 @@ export default [
                     Auth.checkCanAccessThisRoute(next, 'course.section.index', 'لیست فصل ها')
 
                 }
+            },
+            {
+                path: 'edit/:id',
+                component: () => import('../../views/Course/Section/Edit'),
+                name: 'course-section-edit',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next, 'course.section.update', 'به روزرسانی فصل')
+
+                }
             }
         ]
     }

@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       rows: ['id', 'title', 'en_title', 'status', 'courseTitle'],
-      edit_url_name: 'edit-article-tag',
+      edit_url_name: 'course-section-edit',
       delete_uri: 'courses/sections',
       uri: 'courses/sections',
       columns: [

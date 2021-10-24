@@ -3,9 +3,6 @@
     <drop-zone @vdropzone-canceled="cancelUpload" @vdropzone-upload-progress="uploadProgress" @vdropzone-removed-file="removeFile" @vdropzone-error="error" @vdropzone-success="uploaded"
                ref="myVueDropzone" id="dropzone"
                :options="dropzoneOptions"/>
-    <div style="direction: ltr;margin-top: 10px">
-      <md-progress-bar md-mode="determinate" :md-value="$store.state.videoUploadProgress"></md-progress-bar>
-    </div>
   </div>
 
 
