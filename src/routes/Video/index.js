@@ -20,6 +20,14 @@ export default [
                 beforeEnter: (to, from, next) => {
                     Auth.checkCanAccessThisRoute(next, 'video.index', 'لیست ویدیو های آموزشی ')
                 }
+            },
+            {
+                path: 'edit/:id',
+                component: () => import('../../views/Video/Edit'),
+                name: 'video-edit',
+                beforeEnter: (to, from, next) => {
+                    Auth.checkCanAccessThisRoute(next, 'video.update', 'به روزرسانی ویدیو')
+                }
             }
         ]
     }
