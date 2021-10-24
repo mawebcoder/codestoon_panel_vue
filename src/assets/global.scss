@@ -12,26 +12,31 @@ main {
   min-height: 100px;
   margin: 0 auto;
 }
-.md-progress-bar-fill{
+
+.md-progress-bar-fill {
   background-color: #48A5EF !important;
 }
-.dz-details{
+
+.dz-details {
   border-radius: 10px !important;;
 }
-.dropzone{
+
+.dropzone {
   border-radius: 10px !important;
 }
+
 //.dz-progress{
 //  display: none !important;
 //}
 
-.md-progress-bar{
+.md-progress-bar {
   direction: ltr !important;
   height: 30px !important;
   width: 60% !important;
   margin: auto !important;
   border-radius: 38px !important;
 }
+
 .md-field.md-has-password .md-toggle-password {
 
   left: 0 !important;
@@ -223,24 +228,33 @@ table.mceLayout, textarea.tinyMCE {
   }
 }
 
+.vgt-responsive {
+  max-height: 1000px !important;
+}
+
 .md-dialog-container.md-theme-default {
   padding: 30px;
 }
-.md-dialog-actions{
+
+.md-dialog-actions {
   display: flex !important;
   justify-content: start !important;
 }
-.dz-error-message{
+
+.dz-error-message {
   display: none !important;
 }
-.md-overlay.md-fixed, body>.md-overlay{
+
+.md-overlay.md-fixed, body > .md-overlay {
   z-index: 10 !important;
 }
-.dropzone.dz-clickable{
+
+.dropzone.dz-clickable {
   height: 360px !important;
   width: 300px !important;
   margin: auto !important;
 }
+
 .vue-dropzone > .dz-preview .dz-remove {
   display: block !important;
   width: 100px !important;

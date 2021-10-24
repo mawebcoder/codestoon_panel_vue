@@ -91,7 +91,7 @@ class HelperClass {
         }
     }
 
-    renderTable(object, itemsArray, uri, search = null, showEdit = true, showDelete = true, showSelect = true) {
+    renderTable(object, itemsArray, uri, search = null, showEdit = true, showDelete = true, showSelect = true,showSeeMore=false) {
 
 
         if (!itemsArray || !Array.isArray(itemsArray)) {
@@ -135,6 +135,11 @@ class HelperClass {
                         if (showSelect) {
                             finalArray[index]['select'] = '<input class="checkbox-table" type="checkbox" value="' + value.id + '">'
                         }
+                        if (showSeeMore){
+                            finalArray[index]['see'] = '<span >مشاهده بیشتر</span>'
+
+                        }
+
                     })
                 })
                 object.rows = finalArray;

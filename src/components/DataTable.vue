@@ -1,8 +1,9 @@
 <template>
   <div>
 
+
     <vue-good-table
-        :fixed-header="true"
+        :fixed-header="false"
         max-height="400px"
         :columns="FinalColumns"
         :rtl="true"
@@ -51,6 +52,7 @@
       </template>
     </vue-good-table>
 
+
     <md-dialog :md-active.sync="$store.state.show_confirmation_dialog">
       <md-dialog-title>حذف آیتم ها</md-dialog-title>
 
@@ -95,6 +97,12 @@ export default {
           hidden: !this.showEdit
         },
         {
+          label: 'مشاهده',
+          field: 'see',
+          html: true,
+          hidden: !this.showSeeMore
+        },
+        {
           label: 'انتخاب',
           field: 'select',
           html: true,
@@ -110,6 +118,10 @@ export default {
     editUrlName: String,
     items: Array,
     uri: String,
+    showSeeMore: {
+      default: false,
+      type: Boolean
+    },
     showSearch: {
       default: true,
       type: Boolean
@@ -212,7 +224,8 @@ export default {
           search,
           this.showEdit,
           this.showDelete,
-          this.showSelect
+          this.showSelect,
+          this.showSeeMore
       )
     }
 

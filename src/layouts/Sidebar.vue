@@ -221,6 +221,12 @@
                 لیست نظرات دوره ها
               </router-link>
             </li>
+            <li>
+              <small></small>
+              <router-link :to="{name:'comment-course-list'}">
+                لیست نظرات ویدیوها
+              </router-link>
+            </li>
           </ul>
 
 

@@ -44,7 +44,7 @@
                  ],
                 width: 1000,
                 height: 300,
-                images_upload_url:$store.state.baseUrl+'/api/articles/upload-article-images',
+                images_upload_url:$store.state.baseUrl+'editor/upload',
                 // image_upload_base_path:$store.state.baseUrl,
                 toolbar: 'undo redo | styleselect | codesample | bold italic | alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist outdent indent | link image | print preview media fullpage | ' +

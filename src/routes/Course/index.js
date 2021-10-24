@@ -22,12 +22,22 @@ export default [
             {
                 path: 'list',
                 component: () => import('../../views/Course/list'),
-                name: 'course-list'
+                name: 'course-list',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'course.index','لیست دوره ها')
+
+                },
             },
             {
                 path: 'edit/:id',
                 component: () => import('../../views/Course/Edit'),
-                name: 'course-edit'
+                name: 'course-edit',
+                beforeEnter: (to, from, next) => {
+
+                    Auth.checkCanAccessThisRoute(next,'course.update','ویرایش دوره')
+
+                },
             },
             ...CourseTagsRoutes,
             ...CourseCategoryRoutes,
