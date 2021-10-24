@@ -1,6 +1,32 @@
 <template>
   <div>
 
+    <md-dialog :md-active.sync="showDialog">
+      <md-dialog-title>حذف فایل ویدیو!</md-dialog-title>
+
+      <div style="padding: 10px">
+        آیا اطمینان دارید؟
+      </div>
+      <md-dialog-actions>
+        <md-button style="margin: 0 10px" @click="removeVideo" class="md-raised md-accent">بله</md-button>
+        <md-button @click="showDialog=false" class="md-raised md-primary">خیر</md-button>
+      </md-dialog-actions>
+
+    </md-dialog>
+
+
+    <md-dialog :md-active.sync="showDialogZip">
+      <md-dialog-title>حذف فایل zip !</md-dialog-title>
+
+      <div style="padding: 10px">
+        آیا اطمینان دارید؟
+      </div>
+      <md-dialog-actions>
+        <md-button style="margin: 0 10px" @click="removeZipFile" class="md-raised md-accent">بله</md-button>
+        <md-button @click="showDialogZip=false" class="md-raised md-primary">خیر</md-button>
+      </md-dialog-actions>
+
+    </md-dialog>
     <label>
       عنوان ویدیو به فارسی :
     </label>
@@ -140,10 +166,42 @@
       <md-switch v-model="status"></md-switch>
     </div>
 
-    <video style="width: 50%;margin: 30px auto;display: block;" controls
-           :src="`${$store.state.baseUrl}videos/watch/${mp4_id}`">
+    <!--    video file section-->
+    <template v-if="mp4_id">
+      <div class="d-flex justify-content-center align-items-center">
+        <md-button @click="showDialog=true" class="md-raised md-accent">حذف ویدیو</md-button>
+      </div>
+      <video style="width: 50%;margin: 30px auto;display: block;" controls
+             :src="`${$store.state.baseUrl}videos/watch/${mp4_id}`">
 
-    </video>
+      </video>
+    </template>
+    <template v-else>
+      <div class="d-flex justify-content-center" style="margin: 40px 0;font-size:1.5em;font-weight: bold">
+        ویدیو آپلود نشده است!!!
+      </div>
+    </template>
+
+
+    <!--    zip file section-->
+    <template v-if="zipId">
+      <div class="d-flex justify-content-center align-items-center">
+        <md-button @click="showDialogZip=true" class="md-raised md-accent">حذف فایل zip</md-button>
+      </div>
+      <div style="margin: 30px 0" class="justify-content-center d-flex">
+        <md-button @click="downloadZip" class="md-raised md-primary">
+          دریافت فایل zip
+          <md-icon>folder_zip</md-icon>
+        </md-button>
+      </div>
+    </template>
+    <template v-else>
+      <div class="d-flex justify-content-center" style="margin: 40px 0;font-size:1.5em;font-weight: bold">
+        فایل zip آپلود نشده است!!!
+      </div>
+    </template>
+
+
     <div class="row">
       <div class="col-6">
         <div style="margin: 20px 0;font-weight: bold;text-align: center;font-size: 1.5em">
@@ -183,9 +241,11 @@ export default {
   },
   data() {
     return {
+      showDialogZip: false,
       coursesArray: [],
       courseId: null,
       sectionArray: [],
+      showDialog: false,
       sectionId: null,
       videosArray: [],
       title: '',
@@ -198,6 +258,7 @@ export default {
       time_in_minute: '',
       short_description: '',
       slug: '',
+      zipId: null,
       course_id: '',
       mp4_id: null,
       course_section_id: '',
@@ -208,6 +269,31 @@ export default {
     }
   },
   methods: {
+    downloadZip() {
+      open(this.$store.state.baseUrl + 'videos/download/' + this.zipId)
+    },
+    removeZipFile() {
+      HttpVerbs.deleteRequest(`upload/delete/${this.zipId}`)
+          .then(() => {
+            this.$noty.info('حذف با موفقیت انجام شد')
+            this.getInfo();
+            this.$store.state.loader = false;
+            this.showDialogZip = false;
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
+    removeVideo() {
+      HttpVerbs.deleteRequest(`upload/delete/${this.mp4_id}`)
+          .then(() => {
+            this.$noty.info('حذف ویدیو با موفقیت انجام شد')
+            this.getInfo();
+            this.$store.state.loader = false;
+            this.showDialog = false;
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
     getInfo() {
       HttpVerbs.getRequest(`videos/${this.$route.params.id}/edit`)
           .then(res => {
@@ -215,22 +301,31 @@ export default {
             let course = result.course;
             let section = result.course_section;
             let mp4 = result.mp4;
-            // let zip=result.zipFile;
+            let zip = result.zipFile;
             let video = result.video;
             let nextVideo = result.nextVideo;
             let preVideo = result.prevVideo;
             if (course) {
               this.courseId = {value: course.id, name: course.title}
+            } else {
+              this.courseId = null;
             }
             if (section) {
               this.sectionId = {name: section.title, value: section.id}
+            } else {
+              this.sectionId = null;
             }
             if (nextVideo) {
               this.next_video_id = {name: nextVideo.title, value: nextVideo.id}
+            } else {
+              this.next_video_id = null;
             }
             if (preVideo) {
               this.prev_video_id = {name: preVideo.title, value: preVideo.id}
+            } else {
+              this.prev_video_id = null
             }
+
             this.title = video.title;
             this.en_title = video.en_title;
             this.status = video.status === 1;
@@ -240,9 +335,19 @@ export default {
             this.short_description = video.short_description;
             this.meta = video.meta;
             this.time_in_minute = video.time_in_minute
+
             if (mp4) {
               this.mp4_id = mp4.id
+            } else {
+              this.mp4_id = null
             }
+
+            if (zip) {
+              this.zipId = zip.id;
+            } else {
+              this.zipId = null
+            }
+
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })
