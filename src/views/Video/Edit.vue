@@ -465,14 +465,16 @@ export default {
           formData.append('zipFileUUID', this.$store.state.uploadedZip) : '';
 
       return formData;
+
     },
     submit() {
       let data = this.getData();
-      HttpVerbs.postRequest('videos', data)
+      HttpVerbs.putRequest(`videos/${this.$route.params.id}`, data)
           .then(() => {
             HelperClass.showSuccess(this.$noty);
             setTimeout(() => {
-              location.reload()
+              HelperClass.showSuccess(this.$noty)
+              close();
             }, 1000)
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
