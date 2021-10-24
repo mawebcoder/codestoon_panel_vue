@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="loader-box" v-if="$store.state.loader">
-      <div>
+      <div style="transform: scale(0.3)">
         <md-progress-spinner :md-diameter="100" :md-stroke="10" md-mode="indeterminate"></md-progress-spinner>
       </div>
     </div>

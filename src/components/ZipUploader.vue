@@ -1,13 +1,15 @@
 <template>
   <div>
-    <drop-zone @vdropzone-canceled="cancelUpload" @vdropzone-upload-progress="uploadProgress" @vdropzone-removed-file="removeFile" @vdropzone-error="error" @vdropzone-success="uploaded"
+    <drop-zone @vdropzone-canceled="cancelUpload" @vdropzone-upload-progress="uploadProgress"
+               @vdropzone-removed-file="removeFile" @vdropzone-error="error"
+               @vdropzone-success="uploaded"
                ref="myVueDropzone" id="dropzone"
                :options="dropzoneOptions"/>
+
     <div style="direction: ltr;margin-top: 10px">
-      <md-progress-bar md-mode="determinate" :md-value="$store.state.videoUploadProgress"></md-progress-bar>
+      <md-progress-bar md-mode="determinate" :md-value="$store.state.zipUploadProgress"></md-progress-bar>
     </div>
   </div>
-
 
 </template>
 
@@ -17,52 +19,29 @@ import HelperClass from "../services/HelperClass";
 
 export default {
   name: "DropZon",
-  props: {
-    driver: {
-      type: String,
-      required: true
-    },
-    imageType: {
-      type: String,
-      required: true
-    },
-    message: {
-      type: String,
-      default: 'عکس را بکشید و رها کنید'
-    },
-    settingFileType: {
-      type: String,
-      default: null
-    },
-    imageName: {
-      type: String,
-      default: null
-    }
-  },
   data() {
     return {
       dropzoneOptions: {
-        url: this.settingFileType ?
-            `${this.$store.state.uploadBaseUrl}?driver=${this.driver}&type=${this.imageType}&setting_file_type=${this.settingFileType}` :
-            `${this.$store.state.uploadBaseUrl}?driver=${this.driver}&type=${this.imageType}`,
+        url: `${this.$store.state.videoUploadBaseUrl}?driver=video_zip_file&type=zip&token=${this.$cookies.get('token')}`,
         thumbnailWidth: 300,
         thumbnailHeight: 300,
-        maxFilesize: 307200,
+        maxFilesize: 471859200,
         maxFiles: 1,
         timeout: 50000,
         uploadMultiple: false,
         duplicateCheck: 'enabled',
         dictUploadCanceled: 'آپلود توسط شما کنسل شد',
         dictCancelUploadConfirmation: 'آیا اطمینان دارید؟',
-        acceptedFiles: 'image/*',
+        acceptedFiles: 'application/zip',
         addRemoveLinks: true,
         chunking: true,
         retryChunks: true,
-        retryChunksLimit: 3,
+        retryChunksLimit: 10,
         forceChunking: true,
         chunkSize: 524288,
-        dictDefaultMessage: this.message,
-        dictFileTooBig: 'سایز فایل نمیتواند بیشتر از 300 کیلوبایت باشد',
+        dictRemoveFileConfirmation: 'آیا اطمینان دارید؟',
+        dictDefaultMessage: 'آپلود فایل زیپ',
+        dictFileTooBig: 'سایز فایل نمیتواند بیشتر از ۴۵۰ مگابایت باشد',
         dictFallbackMessage: 'مرورگر شما از این نسخه از dropzone  پشتیبانی نمیکند',
         headers: {"My-Awesome-Header": "header value"},
         dictCancelUpload: 'انصراف',
@@ -79,35 +58,24 @@ export default {
     }
   },
   methods: {
-    cancelUpload(){
-      this.$store.state.videoUploadProgress = 0;
+    cancelUpload() {
+      this.$store.state.zipUploadProgress = 0;
     },
     uploadProgress(file, progress, bytesSent) {
-      this.$store.state.videoUploadProgress = Math.floor((bytesSent / file.size) * 100)
-
+      this.$store.state.zipUploadProgress = Math.floor((bytesSent / file.size) * 100)
     },
     removeFile() {
-      this.$store.state.videoUploadProgress = 0;
-      if (this.imageName) {
-        if (this.$store.state.uploadedImages[this.imageName]) {
-          delete this.$store.state.uploadedImages[this.imageName]
-        }
-      } else {
-        this.$store.state.image_file = {}
-      }
-
+      this.$store.state.zipUploadProgress = 0;
+      this.$store.state.uploadedZip = null
     },
     uploaded(file) {
+
       this.$noty.success('آپلود با موفقیت انجام شد')
-      if (!this.imageName) {
-        this.$store.state.uuid = file.upload.uuid;
-      } else {
-        this.$store.state.uploadedImages[this.imageName] = file.upload.uuid;
-      }
+
+      this.$store.state.uploadedZip = file.upload.uuid;
 
     },
     error(file, response) {
-
       if (typeof response.errors !== "undefined") {
         let messages = response.errors;
 
@@ -120,7 +88,12 @@ export default {
           })
         }
       } else {
-        this.$noty.error(response.message)
+        if (typeof response.message !== 'undefined') {
+          this.$noty.error(response.message)
+
+        } else {
+          this.$noty.info(response)
+        }
       }
 
     }

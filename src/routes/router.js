@@ -20,7 +20,11 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     store.state.loader = true;
     store.state.uuid = null;
-    store.state.uploadedImages = {}
+    store.state.uploadedImages = {};
+    store.state.uploadedVideo = null;
+    store.state.uploadedZip = null;
+    store.state.videoUploadProgress = 0;
+    store.state.zipUploadProgress = 0;
     next();
 })
 

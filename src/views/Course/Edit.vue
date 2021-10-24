@@ -115,8 +115,10 @@
       </multiselect>
     </div>
 
+    <ImagePreview :call-back="getInfo" not-image-found="فاقد عکس کاور" :image="cart" :image-id="imageId"/>
+
     <div style="margin: 20px 0;font-weight: bold;text-align: center;font-size: 1.5em">
-      عکس کارت دوره :
+      آپلود عکس جدید :
     </div>
     <DropZone :image-type="imageType" :driver="driver"/>
 
@@ -140,14 +142,17 @@
 </template>
 
 <script>
-import Editor from '@tinymce/tinymce-vue'
+
 import HelperClass from "../../services/HelperClass";
 import CourseCategoryService from "../../services/Course/CourseCategoryService";
-import Multiselect from 'vue-multiselect'
 import CourseTagService from "../../services/Course/CourseTagService";
 import CourseService from "../../services/Course/CourseService";
 import HttpVerbs from "../../services/HttpVerbs";
 
+const ImagePreview = () => import('../../components/ImagePreview')
+
+const Editor = () => import('@tinymce/tinymce-vue')
+const Multiselect = () => import('vue-multiselect')
 const DropZone = () => import('../../components/DropZon')
 export default {
   name: "Create",
@@ -155,6 +160,7 @@ export default {
     this.getCategorySelectBox();
     this.getTags();
     this.getCoursesSelectBox();
+    this.getInfo();
   },
   data() {
     return {
@@ -171,6 +177,8 @@ export default {
       meta: '',
       title: '',
       en_title: '',
+      cart: null,
+      imageId: null,
       category: null,
       recording_status: null,
       recordingStatusArray: [
@@ -195,6 +203,85 @@ export default {
     }
   },
   methods: {
+    getInfo() {
+      HttpVerbs.getRequest(`courses/${this.$route.params.id}/edit`)
+          .then(res => {
+            let result = res.data.data;
+            console.log(result)
+            let category = result.category;
+            if (category) {
+              this.category = {name: category.name, value: category.id}
+            }
+            let prerequisites = result.prerequisites;
+
+            if (prerequisites) {
+              prerequisites.forEach(item => {
+                this.courseIds.push({
+                  name: item.title,
+                  value: item.id
+                })
+              })
+            }
+            let tags = result.tags;
+
+            if (tags.length) {
+              tags.forEach(item => {
+                this.tags.push({
+                  name: item.fa_title,
+                  value: item.id
+                })
+              })
+            }
+
+            let course = result.course;
+            this.title = course.title;
+            this.en_title = course.en_title
+            this.slug = course.slug
+            this.meta = course.meta
+            this.short_description = course.short_description
+            this.description = course.description
+            this.price = parseInt(course.price);
+            this.percent = course.percent;
+            this.status = course.status === 1;
+            this.is_vip = course.is_vip === 1;
+
+            this.getLevel(course.level);
+            this.getRecordStatus(course.record_status)
+
+            let image = result.cartImage;
+            this.cart = image.webp_path;
+            this.imageId = image.id
+
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
+    getRecordStatus(recordStatus) {
+      switch (recordStatus) {
+        case  "soon":
+          this.recording_status = {name: 'به زودی', value: 'soon'}
+          break;
+        case 'recording':
+          this.recording_status = {name: 'در حال ضبط', value: 'recording'}
+          break
+        case 'finished':
+          this.recording_status = {name: 'تکمیل ضبط', value: 'finished'}
+          break
+      }
+    },
+    getLevel(level) {
+      switch (level) {
+        case  "beginner":
+          this.level = {name: 'مبتدی', value: 'beginner'}
+          break;
+        case 'advanced':
+          this.level = {name: 'پیشرفته', value: 'advanced'}
+          break
+        case 'medium':
+          this.level = {name: 'متوسط', value: 'medium'}
+          break
+      }
+    },
     getCoursesSelectBox() {
       HttpVerbs.getRequest('courses/select/box')
           .then(res => {
@@ -330,7 +417,8 @@ export default {
   components: {
     Multiselect,
     Editor,
-    DropZone
+    DropZone,
+    ImagePreview
   }
 }
 </script>

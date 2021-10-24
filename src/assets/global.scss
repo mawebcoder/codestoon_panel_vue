@@ -12,7 +12,26 @@ main {
   min-height: 100px;
   margin: 0 auto;
 }
+.md-progress-bar-fill{
+  background-color: #48A5EF !important;
+}
+.dz-details{
+  border-radius: 10px !important;;
+}
+.dropzone{
+  border-radius: 10px !important;
+}
+.dz-progress{
+  display: none !important;
+}
 
+.md-progress-bar{
+  direction: ltr !important;
+  height: 30px !important;
+  width: 60% !important;
+  margin: auto !important;
+  border-radius: 38px !important;
+}
 .md-field.md-has-password .md-toggle-password {
 
   left: 0 !important;
@@ -86,7 +105,7 @@ aside .md-badge-content {
 
 label {
   display: block;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .notifs {
@@ -116,6 +135,7 @@ table.mceLayout, textarea.tinyMCE {
 .tox {
   width: 100% !important;
 }
+
 
 /* on large screens, I use a different layout, so 600px are sufficient */
 @media only screen and (min-width: 600px) {

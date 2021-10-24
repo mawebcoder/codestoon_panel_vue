@@ -24,6 +24,11 @@ export default [
                 component: () => import('../../views/Course/list'),
                 name: 'course-list'
             },
+            {
+                path: 'edit/:id',
+                component: () => import('../../views/Course/Edit'),
+                name: 'course-edit'
+            },
             ...CourseTagsRoutes,
             ...CourseCategoryRoutes,
             ...CourseSectionsRoutes
