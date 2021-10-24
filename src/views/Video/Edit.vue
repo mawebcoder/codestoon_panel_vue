@@ -109,7 +109,6 @@
     <label>
       انتخاب ویدیو بعدی :
     </label>
-
     <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="next_video_id"
                  :options="videosArray" :close-on-select="true"
                  :clear-on-select="false"
@@ -141,7 +140,10 @@
       <md-switch v-model="status"></md-switch>
     </div>
 
+    <video style="width: 50%;margin: 30px auto;display: block;" controls
+           :src="`${$store.state.baseUrl}videos/watch/${mp4_id}`">
 
+    </video>
     <div class="row">
       <div class="col-6">
         <div style="margin: 20px 0;font-weight: bold;text-align: center;font-size: 1.5em">
@@ -177,6 +179,7 @@ export default {
   name: "create",
   created() {
     this.getCourses();
+    this.getInfo()
   },
   data() {
     return {
@@ -196,6 +199,7 @@ export default {
       short_description: '',
       slug: '',
       course_id: '',
+      mp4_id: null,
       course_section_id: '',
       is_free: false,
       next_video_link: '',
@@ -204,6 +208,45 @@ export default {
     }
   },
   methods: {
+    getInfo() {
+      HttpVerbs.getRequest(`videos/${this.$route.params.id}/edit`)
+          .then(res => {
+            let result = res.data.data;
+            let course = result.course;
+            let section = result.course_section;
+            let mp4 = result.mp4;
+            // let zip=result.zipFile;
+            let video = result.video;
+            let nextVideo = result.nextVideo;
+            let preVideo = result.prevVideo;
+            if (course) {
+              this.courseId = {value: course.id, name: course.title}
+            }
+            if (section) {
+              this.sectionId = {name: section.title, value: section.id}
+            }
+            if (nextVideo) {
+              this.next_video_id = {name: nextVideo.title, value: nextVideo.id}
+            }
+            if (preVideo) {
+              this.prev_video_id = {name: preVideo.title, value: preVideo.id}
+            }
+            this.title = video.title;
+            this.en_title = video.en_title;
+            this.status = video.status === 1;
+            this.is_free = video.is_free === 1;
+            this.slug = video.slug;
+            this.description = video.description;
+            this.short_description = video.short_description;
+            this.meta = video.meta;
+            this.time_in_minute = video.time_in_minute
+            if (mp4) {
+              this.mp4_id = mp4.id
+            }
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
     validateNumber(e) {
       HelperClass.numericInputValidation(e);
     },
@@ -323,9 +366,9 @@ export default {
       HttpVerbs.postRequest('videos', data)
           .then(() => {
             HelperClass.showSuccess(this.$noty);
-            setTimeout(()=>{
+            setTimeout(() => {
               location.reload()
-            },1000)
+            }, 1000)
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })
