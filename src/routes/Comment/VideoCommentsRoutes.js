@@ -1,30 +1,21 @@
 import Auth from "../../services/Auth/Auth";
 
+
 export default [
     {
-        path: 'courses',
+        path: 'videos',
         component: () => import('../../views/Comment/Course/index'),
         children: [
             {
                 path: 'list',
                 component: () => import('../../views/Comment/Course/list'),
-                name: 'comment-course-list',
+                name: 'comment-video-list',
                 beforeEnter: (to, from, next) => {
 
                     Auth.checkCanAccessThisRoute(next,'comment.index','لیست نظرات دوره ها')
 
                 }
             },
-            {
-                path: 'edit/:id',
-                component: () => import('../../views/Comment/Course/Edit'),
-                name: 'comment-course-edit',
-                beforeEnter: (to, from, next) => {
-
-                    Auth.checkCanAccessThisRoute(next,'comment.update','به روز رسانی کامنت')
-
-                }
-            }
         ]
     }
 ]

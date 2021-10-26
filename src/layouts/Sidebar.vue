@@ -58,14 +58,14 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'role-create'}">
+              <router-link @click.native="closeAside" :to="{name:'role-create'}">
                 ایجاد نقش جدید
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'role-list'}">
+              <router-link @click.native="closeAside" :to="{name:'role-list'}">
                 لیست نقش ها
               </router-link>
             </li>
@@ -91,7 +91,7 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'manager'}">
+              <router-link  @click.native="closeAside"  :to="{name:'manager'}">
                 لیست مدیران
               </router-link>
             </li>
@@ -114,14 +114,14 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'user-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'user-create'}">
                 ایجاد کاربر جدید
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'user-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'user-list'}">
                 لیست کاربران
               </router-link>
             </li>
@@ -147,14 +147,14 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'factor-course-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'factor-course-list'}">
                 فاکتورهای دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'factor-vip-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'factor-vip-list'}">
                 فاکتورهای پلن ها
               </router-link>
             </li>
@@ -180,14 +180,14 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'discount-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'discount-create'}">
                 ایجاد کد تخفیف
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'discount-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'discount-list'}">
                 لیست کدهای تخفیف
               </router-link>
             </li>
@@ -211,19 +211,19 @@
           <ul class="links-ul hidden">
             <li>
               <small></small>
-              <router-link :to="{name:'comment-article-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'comment-article-list'}">
                 لیست نظرات مقالات
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link :to="{name:'comment-course-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'comment-course-list'}">
                 لیست نظرات دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link :to="{name:'comment-course-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'comment-course-list'}">
                 لیست نظرات ویدیوها
               </router-link>
             </li>
@@ -248,7 +248,7 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'offer-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'offer-list'}">
                 لیست انتقادات و پیشنهادات
               </router-link>
             </li>
@@ -273,7 +273,7 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'setting'}">
+              <router-link  @click.native="closeAside"  :to="{name:'setting'}">
                 تنظیمات سایت
               </router-link>
             </li>
@@ -298,7 +298,7 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'email'}">
+              <router-link  @click.native="closeAside"  :to="{name:'email'}">
                 ارسال ایمیل
               </router-link>
             </li>
@@ -306,7 +306,7 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'sms'}">
+              <router-link  @click.native="closeAside"  :to="{name:'sms'}">
                 ارسال sms
               </router-link>
             </li>
@@ -332,14 +332,14 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'vip-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'vip-create'}">
                 ایجاد پلن
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'vip-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'vip-list'}">
                 لیست پلن ها
               </router-link>
             </li>
@@ -364,48 +364,48 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-tag-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-tag-create'}">
                 ایجاد تگ دوره
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link :to="{name:'course-tag-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-tag-list'}">
                 لیست تگ دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-category-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-category-create'}">
                 ایجاد دسته بندی دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-category-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-category-list'}">
                 لیست دسته بندی دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-section-create'}">
+              <router-link   @click.native="closeAside" :to="{name:'course-section-create'}">
                 ایجاد فصل
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-section-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-section-list'}">
                 لیست فصل ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-create'}">
                 ایجاد دوره جدید
               </router-link>
             </li>
@@ -413,7 +413,7 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-list'}">
+              <router-link   @click.native="closeAside" :to="{name:'course-list'}">
                 لیست دوره ها
               </router-link>
             </li>
@@ -438,13 +438,13 @@
           <ul class="links-ul hidden">
             <li>
               <small></small>
-              <router-link :to="{name:'video-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'video-create'}">
                 آپلود ویدیو جدید
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link :to="{name:'video-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'video-list'}">
                 لیست ویدیو ها
               </router-link>
             </li>
@@ -474,34 +474,34 @@
             </li>
             <li>
               <small></small>
-              <router-link :to="{name:'list-article-tag'}">
+              <router-link  @click.native="closeAside"  :to="{name:'list-article-tag'}">
                 لیست تگ مقالات
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'category-article-create'}">
+              <router-link   @click.native="closeAside" :to="{name:'category-article-create'}">
                 ایجاد دسته بندی مقاله
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'category-article-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'category-article-list'}">
                 لیست دسته بندی مقالات
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'article-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'article-create'}">
                 ایجاد مقاله
               </router-link>
             </li>
             <li>
               <small></small>
-              <router-link :to="{name:'article-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'article-list'}">
                 لیست مقالات
               </router-link>
             </li>
@@ -525,7 +525,7 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'personal-info'}">
+              <router-link  @click.native="closeAside"  :to="{name:'personal-info'}">
                 ویرایش اطلاعات فردی
               </router-link>
             </li>
@@ -551,14 +551,14 @@
 
               <small></small>
 
-              <router-link :to="{name:'faq-create'}">
+              <router-link  @click.native="closeAside"  :to="{name:'faq-create'}">
                 ایجاد سوال جدید
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'faq-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'faq-list'}">
                 لیست سوالات
               </router-link>
             </li>
@@ -583,56 +583,56 @@
             <li>
               <small></small>
 
-              <router-link :to="{name:'users-garbage'}">
+              <router-link  @click.native="closeAside"  :to="{name:'users-garbage'}">
                 کاربران
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'factors-garbage'}">
+              <router-link  @click.native="closeAside"  :to="{name:'factors-garbage'}">
                 فاکتورها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-garbage'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-garbage'}">
                 دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-category-garbage'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-category-garbage'}">
                 دسته بندی دوره ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-section-garbage'}">
+              <router-link   @click.native="closeAside" :to="{name:'course-section-garbage'}">
                 فصل ها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'course-videos-garbage'}">
+              <router-link  @click.native="closeAside"  :to="{name:'course-videos-garbage'}">
                 ویدیوها
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'article-garbage'}">
+              <router-link  @click.native="closeAside"  :to="{name:'article-garbage'}">
                 مقالات
               </router-link>
             </li>
             <li>
               <small></small>
 
-              <router-link :to="{name:'article-category-garbage'}">
+              <router-link  @click.native="closeAside"  :to="{name:'article-category-garbage'}">
                 دسته بندی مقالات
               </router-link>
             </li>
@@ -660,11 +660,16 @@ export default {
   name: "Sidebar",
   methods: {
     closeAside() {
-
-      let aside = document.querySelector('aside');
-      let asideCloser = document.querySelector('.aside-closer');
-      aside.style.transform = 'translateX(100%)';
-      asideCloser.classList.add('d-none')
+      let windowWidth=window.innerWidth;
+      
+      if(windowWidth<=768)
+      {
+          let aside = document.querySelector('aside');
+          let asideCloser = document.querySelector('.aside-closer');
+          aside.style.transform = 'translateX(100%)';
+          asideCloser.classList.add('d-none')
+      }
+    
 
     },
     toggle(event) {
