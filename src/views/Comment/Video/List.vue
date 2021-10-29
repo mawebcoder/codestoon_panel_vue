@@ -1,8 +1,7 @@
 <template>
   <div>
 
-    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
-    </DataTable>
+    <DataTable :items = "rows" :uri = "uri" :editUrlName = "edit_url_name" :delete-url = "delete_uri" :columns = "columns"></DataTable>
 
   </div>
 </template>
@@ -12,12 +11,13 @@ const DataTable = () => import('../../../components/DataTable')
 
 export default {
   name: "list",
-  data() {
+  data()
+  {
     return {
-      rows: ['id', 'name', 'status', 'is_checked', 'created_at','courseTitle','userEmail'],
+      rows: ['id', 'name', 'status', 'is_checked', 'created_at', 'videoTitle', 'userEmail'],
       edit_url_name: 'comment-course-edit',
       delete_uri: 'comments',
-      uri: 'comments/courses',
+      uri: 'comments/videos',
       columns: [
         {
           field: 'id',
@@ -27,7 +27,7 @@ export default {
           field: 'name',
           label: 'نام کاربر '
         },
-         {
+        {
           field: 'userEmail',
           label: 'ایمیل کاربر '
         },
@@ -43,9 +43,9 @@ export default {
           field: 'created_at',
           label: ' تاریخ ایجاد '
         },
-         {
-          field: 'courseTitle',
-          label: 'عنوان دوره'
+        {
+          field: 'videoTitle',
+          label: 'عنوان ویدیو'
         }
       ],
     }

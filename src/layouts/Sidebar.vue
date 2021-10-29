@@ -223,7 +223,7 @@
             </li>
             <li>
               <small></small>
-              <router-link  @click.native="closeAside"  :to="{name:'comment-course-list'}">
+              <router-link  @click.native="closeAside"  :to="{name:'comment-video-list'}">
                 لیست نظرات ویدیوها
               </router-link>
             </li>

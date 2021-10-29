@@ -55,7 +55,7 @@ main {
   text-align: center !important;
 
   span {
-    text-align: center !important;
+	text-align: center !important;
   }
 }
 
@@ -115,7 +115,7 @@ label {
 
 .notifs {
   > div {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
   }
 }
 
@@ -125,9 +125,9 @@ label {
   top: 8px !important;
 
   button {
-    position: absolute;
-    left: 10px;
-    bottom: 1px;
+	position: absolute;
+	left: 10px;
+	bottom: 1px;
   }
 }
 
@@ -145,7 +145,7 @@ table.mceLayout, textarea.tinyMCE {
 /* on large screens, I use a different layout, so 600px are sufficient */
 @media only screen and (min-width: 600px) {
   table.mceLayout, textarea.richEditor {
-    width: 600px !important;
+	width: 600px !important;
   }
 }
 
@@ -172,40 +172,40 @@ table.mceLayout, textarea.tinyMCE {
 //responsive
 @include mq(2000) {
   .hamburger-icon {
-    display: none;
+	display: none;
   }
 }
 
 @include mq(768) {
   aside {
-    position: fixed;
-    z-index: 900;
-    width: 250px;
-    height: 100vh;
-    top: 0;
-    transition: .2s;
-    transform: translateX(100%);
-    overflow: auto;
+	position: fixed;
+	z-index: 900;
+	width: 250px;
+	height: 100vh;
+	top: 0;
+	transition: .2s;
+	transform: translateX(100%);
+	overflow: auto;
 
   }
   .logo-name {
-    display: none;
+	display: none;
   }
   .hamburger-icon {
-    display: block;
-    border-left: none !important;
-    text-align: center !important;
-    line-height: 77px !important;
-    position: relative;
-    right: 6px;
-    top: 6px;
+	display: block;
+	border-left: none !important;
+	text-align: center !important;
+	line-height: 77px !important;
+	position: relative;
+	right: 6px;
+	top: 6px;
   }
 
 }
 
 @include mq(480) {
   #notifications {
-    display: none !important;
+	display: none !important;
   }
 }
 
@@ -224,12 +224,25 @@ table.mceLayout, textarea.tinyMCE {
   transition: .2s;
 
   &:hover {
-    transform: scale(1.06);
+	transform: scale(1.06);
   }
 }
 
 .vgt-responsive {
   max-height: 1000px !important;
+}
+
+.tox-textarea {
+  text-align: left !important;
+}
+
+pre {
+  display: block !important;
+  color: #FFFFFF !important;
+  background-color: #000000 !important;
+  padding: 10px !important;
+  text-align: left !important;
+  direction: ltr !important;
 }
 
 .md-dialog-container.md-theme-default {
@@ -239,6 +252,14 @@ table.mceLayout, textarea.tinyMCE {
 .md-dialog-actions {
   display: flex !important;
   justify-content: start !important;
+}
+
+a {
+  text-decoration: none !important;
+  display: block !important;
+  width: 145px;
+  height: 45px;
+  line-height: 45px;
 }
 
 .dz-error-message {
