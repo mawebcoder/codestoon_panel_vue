@@ -14,7 +14,7 @@
         <div class = "row" style = "margin:20px 0">
           <div class = "col-6 row ">
 
-            عنوان دوره : {{ parent.courseTitle }}
+            عنوان ویدیو : {{ parent.videoTitle }}
 
           </div>
           <div class = "col-6 row ">
@@ -80,8 +80,7 @@
         </div>
         <div class = "row" style = "margin:20px 0">
           <div class = "col-6">
-
-            عنوان دوره : {{ value.courseTitle }}
+            عنوان ویدیو : {{ value.videoTitle }}
           </div>
         </div>
       </md-card-header>
@@ -176,7 +175,7 @@ export default {
       answerText: '',
       children: [],
       show_dialog: false,
-      course_id: null,
+      video_id: null,
       parent: null,
       type: null,
       commentId: null,
@@ -185,14 +184,14 @@ export default {
   methods: {
     getInfo()
     {
-      HttpVerbs.getRequest(`comments/course/${this.$route.params.id}/edit`)
+      HttpVerbs.getRequest(`comments/video/${this.$route.params.id}/edit`)
                .then(res =>
                      {
                        let result = res.data;
                        this.parent = result.parent;
                        this.children = result.children;
                        this.type = result.type;
-                       this.course_id = result.course_id;
+                       this.video_id = result.video_id;
                      }).catch(error =>
                               {
                                 HelperClass.showErrors(error, this.$noty)
@@ -201,7 +200,7 @@ export default {
     submit()
     {
 
-      let ApiRoutes = `comments/courses/${this.$route.params.id}/${this.course_id}`;
+      let ApiRoutes = `comments/videos/${this.$route.params.id}/${this.video_id}`;
 
       let data = new FormData();
 
@@ -225,7 +224,7 @@ export default {
 
       data.append('ids', JSON.stringify([commentId]))
 
-      HttpVerbs.putRequest(`comments/course/switch/status`, data)
+      HttpVerbs.putRequest(`comments/video/switch/status`, data)
                .then(() =>
                      {
                        HelperClass.showSuccess(this.$noty, false)
@@ -241,7 +240,7 @@ export default {
 
       data.append('ids', JSON.stringify([commentId]))
 
-      HttpVerbs.putRequest(`comments/course/switch/check`, data)
+      HttpVerbs.putRequest(`comments/video/switch/check`, data)
                .then(() =>
                      {
                        HelperClass.showSuccess(this.$noty, false)

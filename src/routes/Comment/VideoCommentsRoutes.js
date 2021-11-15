@@ -17,6 +17,17 @@ export default [
 
 				}
 			},
+			{
+				path: 'edit/:id',
+				component: () => import('../../views/Comment/Video/Edit'),
+				name: 'comment-video-edit',
+				beforeEnter: (to, from, next) =>
+				{
+
+					Auth.checkCanAccessThisRoute(next, 'comment.update', 'ویرایش نظرات ویدیو ها')
+
+				}
+			}
 		]
 	}
 ]

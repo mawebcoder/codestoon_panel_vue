@@ -3,38 +3,35 @@
 
     <md-field>
 
-      <md-input placeholder="نام دوره به فارسی..." v-model="title"></md-input>
+      <md-input placeholder = "نام دوره به فارسی..." v-model = "title"></md-input>
     </md-field>
 
     <md-field>
-      <md-input placeholder="نام دوره به انگلیسی..." v-model="en_title"></md-input>
+      <md-input placeholder = "نام دوره به انگلیسی..." v-model = "en_title"></md-input>
     </md-field>
 
     <md-field>
-      <md-input placeholder="اسلاگ..." v-model="slug"></md-input>
+      <md-input placeholder = "اسلاگ..." v-model = "slug"></md-input>
     </md-field>
 
-    <div class="form-group">
+    <div class = "form-group">
       <md-field>
         <label>اطلاعات متا...</label>
-        <md-textarea v-model="meta"></md-textarea>
+        <md-textarea v-model = "meta"></md-textarea>
       </md-field>
     </div>
 
-    <div class="form-group">
+    <div class = "form-group">
       <md-field>
         <label>توضیحات کوتاه...</label>
-        <md-textarea v-model="short_description"></md-textarea>
+        <md-textarea v-model = "short_description"></md-textarea>
       </md-field>
     </div>
 
     <label>
       توضیحات کامل :
     </label>
-    <editor
-        v-model="description"
-        api-key="214siyv4hmul2xqvhali31m8ox5kxrskd3g1k5b6an2ft09l"
-        :init="{
+    <editor v-model = "description" api-key = "214siyv4hmul2xqvhali31m8ox5kxrskd3g1k5b6an2ft09l" :init = "{
                 menubar: true,
                 language:'fa',
                 plugins: [
@@ -49,94 +46,115 @@
                 toolbar: 'undo redo | styleselect | codesample | bold italic | alignleft aligncenter alignright alignjustify | ' +
                 'bullist numlist outdent indent | link image | print preview media fullpage | ' +
                 'forecolor backcolor emoticons | help | rtl ltr',
-                 }"
-    />
+                 }" />
 
     <md-field>
 
-      <md-input @keydown="validateNumber($event)" type="number" placeholder="قیمت..." v-model="price"></md-input>
+      <md-input @keydown = "validateNumber($event)" type = "number" placeholder = "قیمت..." v-model = "price"></md-input>
     </md-field>
-
 
     <md-field>
 
-      <md-input @keyup="validateDiscount($event)" @keydown="validateNumber($event)" type="number"
-                placeholder="درصد تخفیف..." v-model="percent"></md-input>
+      <md-input @keyup = "validateDiscount($event)" @keydown = "validateNumber($event)" type = "number" placeholder = "درصد تخفیف..." v-model = "percent"></md-input>
     </md-field>
 
-
-    <div class="form-group">
-      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="level"
-                   :options="levelArray" :close-on-select="true"
-                   :clear-on-select="false"
-                   :preserve-search="true" placeholder="سطح دوره را انتخاب کنید..." label="name"
-                   track-by="name">
-      </multiselect>
+    <div class = "form-group">
+      <multiselect selectedLabel = " "
+                   selectLabel = "انتخاب "
+                   deselectLabel = "حذف"
+                   v-model = "level"
+                   :options = "levelArray"
+                   :close-on-select = "true"
+                   :clear-on-select = "false"
+                   :preserve-search = "true"
+                   placeholder = "سطح دوره را انتخاب کنید..."
+                   label = "name"
+                   track-by = "name"></multiselect>
     </div>
 
-
-    <div class="form-group">
-      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="category"
-                   :options="categoryArray" :close-on-select="true"
-                   :clear-on-select="false"
-                   :preserve-search="true" placeholder="دسته بندی مورد نظر را انتخاب کنید..." label="name"
-                   track-by="name">
-      </multiselect>
+    <div class = "form-group">
+      <multiselect selectedLabel = " "
+                   selectLabel = "انتخاب "
+                   deselectLabel = "حذف"
+                   v-model = "category"
+                   :options = "categoryArray"
+                   :close-on-select = "true"
+                   :clear-on-select = "false"
+                   :preserve-search = "true"
+                   placeholder = "دسته بندی مورد نظر را انتخاب کنید..."
+                   label = "name"
+                   track-by = "name"></multiselect>
     </div>
 
+    <div class = "form-group">
 
-    <div class="form-group">
-
-      <multiselect :multiple="true" selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="tags"
-                   :options="tagsArray" :close-on-select="true"
-                   :clear-on-select="false"
-                   :preserve-search="true" placeholder="تگ های مورد نظر را انتخاب کنید..." label="name"
-                   track-by="name">
-      </multiselect>
+      <multiselect :multiple = "true"
+                   selectedLabel = " "
+                   selectLabel = "انتخاب "
+                   deselectLabel = "حذف"
+                   v-model = "tags"
+                   :options = "tagsArray"
+                   :close-on-select = "true"
+                   :clear-on-select = "false"
+                   :preserve-search = "true"
+                   placeholder = "تگ های مورد نظر را انتخاب کنید..."
+                   label = "name"
+                   track-by = "name"></multiselect>
     </div>
 
-    <div class="form-group">
+    <div class = "form-group">
 
-      <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="recording_status"
-                   :options="recordingStatusArray" :close-on-select="true"
-                   :clear-on-select="false"
-                   :preserve-search="true" placeholder="وضعیت ضبط دوره..." label="name"
-                   track-by="name">
-      </multiselect>
+      <multiselect selectedLabel = " "
+                   selectLabel = "انتخاب "
+                   deselectLabel = "حذف"
+                   v-model = "recording_status"
+                   :options = "recordingStatusArray"
+                   :close-on-select = "true"
+                   :clear-on-select = "false"
+                   :preserve-search = "true"
+                   placeholder = "وضعیت ضبط دوره..."
+                   label = "name"
+                   track-by = "name"></multiselect>
     </div>
 
-    <div class="form-group">
+    <div class = "form-group">
 
-      <multiselect multiple selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="courseIds"
-                   :options="coursesArray" :close-on-select="true"
-                   :clear-on-select="false"
-                   :preserve-search="true" placeholder="پیشنیازهای دوره..." label="name"
-                   track-by="name">
-      </multiselect>
+      <multiselect multiple
+                   selectedLabel = " "
+                   selectLabel = "انتخاب "
+                   deselectLabel = "حذف"
+                   v-model = "courseIds"
+                   :options = "coursesArray"
+                   :close-on-select = "true"
+                   :clear-on-select = "false"
+                   :preserve-search = "true"
+                   placeholder = "پیشنیازهای دوره..."
+                   label = "name"
+                   track-by = "name"></multiselect>
     </div>
 
-    <ImagePreview :call-back="getInfo" not-image-found="فاقد عکس کاور" :image="cart" :image-id="imageId"/>
+    <ImagePreview :call-back = "getInfo" not-image-found = "فاقد عکس کاور" :image = "cart" :image-id = "imageId" />
 
-    <div style="margin: 20px 0;font-weight: bold;text-align: center;font-size: 1.5em">
+    <div style = "margin: 20px 0;font-weight: bold;text-align: center;font-size: 1.5em">
       آپلود عکس جدید :
     </div>
-    <DropZone :image-type="imageType" :driver="driver"/>
+    <DropZone :image-type = "imageType" :driver = "driver" />
 
     <label>
       وضعیت :
     </label>
-    <div dir="ltr">
-      <md-switch v-model="status"></md-switch>
+    <div dir = "ltr">
+      <md-switch v-model = "status"></md-switch>
     </div>
 
     <label>
       آیا vip است؟
     </label>
-    <div dir="ltr">
-      <md-switch v-model="is_vip"></md-switch>
+    <div dir = "ltr">
+      <md-switch v-model = "is_vip"></md-switch>
     </div>
 
-    <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
+    <md-button @click = "submit" class = "md-raised md-primary">ثبت</md-button>
 
   </div>
 </template>
@@ -146,7 +164,6 @@
 import HelperClass from "../../services/HelperClass";
 import CourseCategoryService from "../../services/Course/CourseCategoryService";
 import CourseTagService from "../../services/Course/CourseTagService";
-import CourseService from "../../services/Course/CourseService";
 import HttpVerbs from "../../services/HttpVerbs";
 
 const ImagePreview = () => import('../../components/ImagePreview')
@@ -156,13 +173,15 @@ const Multiselect = () => import('vue-multiselect')
 const DropZone = () => import('../../components/DropZon')
 export default {
   name: "Create",
-  created() {
+  created()
+  {
     this.getCategorySelectBox();
     this.getTags();
     this.getCoursesSelectBox();
     this.getInfo();
   },
-  data() {
+  data()
+  {
     return {
 
       status: false,
@@ -203,61 +222,70 @@ export default {
     }
   },
   methods: {
-    getInfo() {
+    getInfo()
+    {
       HttpVerbs.getRequest(`courses/${this.$route.params.id}/edit`)
-          .then(res => {
-            let result = res.data.data;
-            console.log(result)
-            let category = result.category;
-            if (category) {
-              this.category = {name: category.name, value: category.id}
-            }
-            let prerequisites = result.prerequisites;
+               .then(res =>
+                     {
+                       let result = res.data.data;
+                       let category = result.category;
+                       if(category)
+                       {
+                         this.category = {name: category.name, value: category.id}
+                       }
+                       let prerequisites = result.prerequisites;
 
-            if (prerequisites) {
-              prerequisites.forEach(item => {
-                this.courseIds.push({
-                  name: item.title,
-                  value: item.id
-                })
-              })
-            }
-            let tags = result.tags;
+                       if(prerequisites)
+                       {
+                         prerequisites.forEach(item =>
+                                               {
+                                                 this.courseIds.push({
+                                                                       name: item.title,
+                                                                       value: item.id
+                                                                     })
+                                               })
+                       }
+                       let tags = result.tags;
 
-            if (tags.length) {
-              tags.forEach(item => {
-                this.tags.push({
-                  name: item.fa_title,
-                  value: item.id
-                })
-              })
-            }
+                       if(tags.length)
+                       {
+                         tags.forEach(item =>
+                                      {
+                                        this.tags.push({
+                                                         name: item.fa_title,
+                                                         value: item.id
+                                                       })
+                                      })
+                       }
 
-            let course = result.course;
-            this.title = course.title;
-            this.en_title = course.en_title
-            this.slug = course.slug
-            this.meta = course.meta
-            this.short_description = course.short_description
-            this.description = course.description
-            this.price = parseInt(course.price);
-            this.percent = course.percent;
-            this.status = course.status === 1;
-            this.is_vip = course.is_vip === 1;
+                       let course = result.course;
+                       this.title = course.title;
+                       this.en_title = course.en_title
+                       this.slug = course.slug
+                       this.meta = course.meta
+                       this.short_description = course.short_description
+                       this.description = course.description
+                       this.price = parseInt(course.price);
+                       this.percent = course.percent;
+                       this.status = course.status === 1;
+                       this.is_vip = course.is_vip === 1;
 
-            this.getLevel(course.level);
-            this.getRecordStatus(course.record_status)
+                       this.getLevel(course.level);
+                       this.getRecordStatus(course.record_status)
 
-            let image = result.cartImage;
-            this.cart = image.webp_path;
-            this.imageId = image.id
+                       let image = result.cartImage;
+                       this.cart = image.webp_path;
+                       this.imageId = image.id
 
-          }).catch(error => {
-        HelperClass.showErrors(error, this.$noty)
-      })
+                     }).catch(error =>
+                              {
+                                HelperClass.showErrors(error, this.$noty)
+                              })
     },
-    getRecordStatus(recordStatus) {
-      switch (recordStatus) {
+    getRecordStatus(recordStatus)
+    {
+      switch(recordStatus)
+      {
         case  "soon":
           this.recording_status = {name: 'به زودی', value: 'soon'}
           break;
@@ -269,8 +297,10 @@ export default {
           break
       }
     },
-    getLevel(level) {
-      switch (level) {
+    getLevel(level)
+    {
+      switch(level)
+      {
         case  "beginner":
           this.level = {name: 'مبتدی', value: 'beginner'}
           break;
@@ -282,74 +312,91 @@ export default {
           break
       }
     },
-    getCoursesSelectBox() {
+    getCoursesSelectBox()
+    {
       HttpVerbs.getRequest('courses/select/box')
-          .then(res => {
-            let result = res.data.data;
-            this.coursesArray = [];
-            this.courseIds = [];
-            result.forEach(item => {
-              this.coursesArray.push(
-                  {
-                    name: item.title,
-                    value: item.id
-                  }
-              )
-            })
-          }).catch(error => {
-        HelperClass.showErrors(error, this.$noty)
-      })
+               .then(res =>
+                     {
+                       let result = res.data.data;
+                       this.coursesArray = [];
+                       this.courseIds = [];
+                       result.forEach(item =>
+                                      {
+                                        this.coursesArray.push(
+                                            {
+                                              name: item.title,
+                                              value: item.id
+                                            }
+                                        )
+                                      })
+                     }).catch(error =>
+                              {
+                                HelperClass.showErrors(error, this.$noty)
+                              })
     },
-    getCategorySelectBox() {
+    getCategorySelectBox()
+    {
       CourseCategoryService.getSelectBox()
-          .then(res => {
-            this.categoryArray = [];
-            this.category = null;
-            if (res.status === 204) {
-              return;
-            }
-            let data = res.data.data;
+                           .then(res =>
+                                 {
+                                   this.categoryArray = [];
+                                   this.category = null;
+                                   if(res.status === 204)
+                                   {
+                                     return;
+                                   }
+                                   let data = res.data.data;
 
-            data.forEach(item => {
+                                   data.forEach(item =>
+                                                {
 
-              this.categoryArray.push({
-                name: item.name,
-                value: item.id
-              })
+                                                  this.categoryArray.push({
+                                                                            name: item.name,
+                                                                            value: item.id
+                                                                          })
 
-            })
+                                                })
 
 
-          }).catch(error => {
+                                 }).catch(error =>
+                                          {
 
-        HelperClass.showErrors(error, this.$noty)
+                                            HelperClass.showErrors(error, this.$noty)
 
-      });
+                                          });
     },
 
-    getTags() {
+    getTags()
+    {
       CourseTagService.getTags()
-          .then(res => {
-            let status = res.status;
-            if (status === 204) {
-              return;
-            }
-            res.data.data.forEach(item => {
-              this.tagsArray.push({name: item.fa_title, value: item.id})
-            })
+                      .then(res =>
+                            {
+                              let status = res.status;
+                              if(status === 204)
+                              {
+                                return;
+                              }
+                              res.data.data.forEach(item =>
+                                                    {
+                                                      this.tagsArray.push({name: item.fa_title, value: item.id})
+                                                    })
 
-          }).catch(error => {
-        HelperClass.showErrors(error, this.$noty)
-      })
+                            }).catch(error =>
+                                     {
+                                       HelperClass.showErrors(error, this.$noty)
+                                     })
     },
 
-    validateNumber(e) {
+    validateNumber(e)
+    {
       HelperClass.numericInputValidation(e)
     },
-    validateDiscount(e) {
+    validateDiscount(e)
+    {
       HelperClass.discountValidationValue(e)
     },
-    getData() {
+    getData()
+    {
       let data = new FormData();
       data.append('title', this.title);
       data.append('en_title', this.en_title);
@@ -357,18 +404,21 @@ export default {
       this.slug.trim().length ?
           data.append('slug', this.slug) : '';
 
-      if (this.courseIds.length) {
+      if(this.courseIds && this.courseIds.length)
+      {
         let ids = [];
-        this.courseIds.forEach(item => {
-          ids.push(item.value);
-        })
+        this.courseIds.forEach(item =>
+                               {
+                                 ids.push(item.value);
+                               })
         data.append('prerequisites', JSON.stringify(ids))
       }
       this.recording_status ?
           data.append('record_status', this.recording_status.value)
           : '';
 
-      if (this.$store.state.uuid) {
+      if(this.$store.state.uuid)
+      {
         data.append('uuid', this.$store.state.uuid);
       }
 
@@ -379,11 +429,13 @@ export default {
       this.level ?
           data.append('level', this.level.value) : '';
 
-      if (this.tags.length) {
+      if(this.tags && this.tags.length)
+      {
         let ids = [];
-        this.tags.forEach(item => {
-          ids.push(item.value);
-        })
+        this.tags.forEach(item =>
+                          {
+                            ids.push(item.value);
+                          })
         data.append('tags', JSON.stringify(ids))
       }
 
@@ -394,23 +446,27 @@ export default {
       data.append('description', this.description);
       data.append('price', this.price);
 
-      this.percent.trim().length ?
+      this.percent && this.percent.length ?
           data.append('percent', this.percent) : '';
       return data;
 
     },
 
-    submit() {
+    submit()
+    {
       this.$store.state.loader = true;
       let data = this.getData();
-      CourseService.store(data)
-          .then(() => {
-            HelperClass.showSuccess(this.$noty);
-            delete this.$store.state.image_file.file;
-            this.$router.push({name: 'course-list'})
-          }).catch(error => {
-        HelperClass.showErrors(error, this.$noty)
-      })
+      HttpVerbs.putRequest(`courses/${this.$route.params.id}`, data)
+               .then(() =>
+                     {
+                       HelperClass.showSuccess(this.$noty);
+                       delete this.$store.state.image_file.file;
+                       this.$router.push({name: 'course-list'})
+                     })
+               .catch(error =>
+                      {
+                        HelperClass.showErrors(error, this.$noty)
+                      })
 
     },
   },

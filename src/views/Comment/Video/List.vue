@@ -15,7 +15,7 @@ export default {
   {
     return {
       rows: ['id', 'name', 'status', 'is_checked', 'created_at', 'videoTitle', 'userEmail'],
-      edit_url_name: 'comment-course-edit',
+      edit_url_name: 'comment-video-edit',
       delete_uri: 'comments',
       uri: 'comments/videos',
       columns: [

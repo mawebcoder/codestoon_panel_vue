@@ -15,7 +15,7 @@ export default {
   data() {
     return {
       rows: ['id', 'name', 'status', 'is_checked', 'created_at','articleTitle','userEmail'],
-      edit_url_name: 'comment-course-edit',
+      edit_url_name: 'comment-articles-edit',
       delete_uri: 'comments',
       uri: 'comments/articles',
       columns: [
