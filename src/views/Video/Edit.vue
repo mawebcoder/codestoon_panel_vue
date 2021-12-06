@@ -171,10 +171,10 @@
       <div class="d-flex justify-content-center align-items-center">
         <md-button @click="showDialog=true" class="md-raised md-accent">حذف ویدیو</md-button>
       </div>
-      <video style="width: 50%;margin: 30px auto;display: block;" controls
-             :src="`${$store.state.baseUrl}videos/watch/${mp4_id}`">
 
-      </video>
+      <video-player :options="options"/>
+
+
     </template>
     <template v-else>
       <div class="d-flex justify-content-center" style="margin: 40px 0;font-size:1.5em;font-weight: bold">
@@ -228,6 +228,8 @@
 import HttpVerbs from "../../services/HttpVerbs";
 import HelperClass from "../../services/HelperClass";
 
+import VideoPlayer from "../../components/VideoPlayer";
+
 const VideoUploader = () => import('../../components/VideoUploader')
 const ZipUploader = () => import('../../components/ZipUploader')
 const Editor = () => import('@tinymce/tinymce-vue')
@@ -264,7 +266,18 @@ export default {
       course_section_id: '',
       is_free: false,
       next_video_link: '',
-      previous_video_link: ''
+      previous_video_link: '',
+      player: null,
+      options: {
+        autoplay: true,
+        controls: true,
+        sources: [
+          {
+            src:`${this.$store.state.backendUrl}stream/videos/stream.m3u8/${this.$route.params.id}`,
+            type: "application/x-mpegURL"
+          }
+        ]
+      }
 
     }
   },
@@ -486,11 +499,20 @@ export default {
     VideoUploader,
     ZipUploader,
     Editor,
-    Multiselect
+    Multiselect,
+    VideoPlayer
+  },
+  mounted() {
+
+  },
+  beforeDestroy() {
+    if (this.player) {
+      this.player.dispose()
+    }
   }
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+@import '~video.js/dist/video-js.min.css';
 </style>
