@@ -20,6 +20,7 @@
     "vue-chartjs": "^3.5.1",
     "vue-cookies": "^1.7.4",
     "vue-good-table": "^2.21.10",
+    "vue-json-viewer": "^2.2.20",
     "vue-material": "^1.0.0-beta-15",
     "vue-multiselect": "^2.1.6",
     "vue-pagination-2": "^3.0.91",

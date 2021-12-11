@@ -22,7 +22,11 @@ import Dashboard from '../routes/Dashboard';
 
 const routes = [
     {
-        path: '/name',
+        path: '/',
+        redirect:  {name: 'personal-info'}
+    },
+    {
+        path: '/test',
         component: () => import('../views/test')
     },
     ...AuthenticationRoutes,
