@@ -20,16 +20,95 @@
 
               <md-card-content>
 
+                <h4 style="font-weight: bold;font-size: 1.5em;color: #575757">فیلتر داده ها</h4>
+                <!--                search-->
                 <template v-if="showSearch">
 
-                  <!--              search-->
-                  <md-field style="width: 100%;direction: ltr">
-                    <md-icon style="position: relative;bottom: 2px">search</md-icon>
-                    <md-input style="padding: 0 10px" placeholder="جستجو..." v-model="search"></md-input>
-                  </md-field>
+                  <div v-for="(value,index) in searchInputItems" :key="index" class="form-group">
 
+                    <template v-if="value.input_type==='text'">
+                      <div class="form-group" style="margin-bottom: 10px">
+                        <md-field>
+                          <md-input :placeholder="value.title"
+                                    v-model="vModels[index]"></md-input>
+                        </md-field>
+                      </div>
+                    </template>
+
+                    <template v-else-if="value.input_type==='number'">
+                      <md-field>
+                        <md-input type="number" :placeholder="value.title"
+                                  v-model="vModels[index]"></md-input>
+                      </md-field>
+                    </template>
+                    <template v-else-if="value.input_type==='select'">
+                      <template v-if="typeof(value.multiple)!='undefined' && value.multiple">
+                        <label>
+                          {{ value.title }}:
+                        </label>
+                        <multiselect @search-change="getUpdatedValueFromServer(index)" multiple
+                                     style="margin-bottom: 20px"
+                                     selectedLabel=" "
+                                     selectLabel="انتخاب " deselectLabel="حذف"
+                                     v-model="vModels[index]"
+                                     :options="options[index]" :close-on-select="true"
+                                     :clear-on-select="false"
+                                     :preserve-search="true" :placeholder="value.title" label="name"
+                                     track-by="name">
+                        </multiselect>
+                      </template>
+                      <template v-else>
+                        <label>
+                          {{ value.title }}:
+                        </label>
+                        <multiselect @@search-change="getUpdatedValueFromServer(index)" style="margin-bottom: 20px"
+                                     selectedLabel=" "
+                                     selectLabel="انتخاب " deselectLabel="حذف"
+                                     v-model="vModels[index]"
+                                     :options="options[index]" :close-on-select="true"
+                                     :clear-on-select="false"
+                                     :preserve-search="true" :placeholder="value.title" label="name"
+                                     track-by="name">
+                        </multiselect>
+                      </template>
+
+                    </template>
+                    <template v-else-if="value.input_type==='check'">
+                      <label>
+                        {{ value.title }}:
+                      </label>
+                      <multiselect style="margin-bottom: 20px" selectedLabel=" " selectLabel="انتخاب "
+                                   deselectLabel="حذف"
+                                   v-model="vModels[index]"
+                                   :options="options[index]" :close-on-select="true"
+                                   :clear-on-select="false"
+                                   :preserve-search="true" :placeholder="value.title" label="name"
+                                   track-by="name">
+                      </multiselect>
+                    </template>
+                    <template v-else-if="value.input_type==='sort'">
+                      <label>
+                        {{ value.title }}:
+                      </label>
+                      <multiselect style="margin-bottom: 20px" selectedLabel=" " selectLabel="انتخاب "
+                                   deselectLabel="حذف"
+                                   v-model="vModels[index]"
+                                   :options="options[index]" :close-on-select="true"
+                                   :clear-on-select="false"
+                                   :preserve-search="true" :placeholder="value.title" label="name"
+                                   track-by="name">
+                      </multiselect>
+                    </template>
+
+
+                  </div>
+                  <md-button @click="filterData" class="md-raised md-primary">اعمال فیلتر</md-button>
                 </template>
 
+                <!--                end search-->
+
+
+                <!--                delete box-->
                 <template v-if="showDelete">
                   <div class="icons">
                     <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
@@ -37,7 +116,7 @@
                     </md-button>
                   </div>
                 </template>
-                <!--              delete -->
+                <!--      end        delete -->
 
 
               </md-card-content>
@@ -71,11 +150,13 @@
 <script>
 import HttpVerbs from "../services/HttpVerbs";
 import HelperClass from "../services/HelperClass";
+import Multiselect from "vue-multiselect";
 
 export default {
   name: "DataTable",
   created() {
     this.tableRender();
+    this.getSearchInputItems();
   },
   data() {
     return {
@@ -110,6 +191,9 @@ export default {
         }
       ],
       is_single_delete: true,
+      searchInputItems: [],
+      vModels: [],
+      options: [],
     }
   },
   props: {
@@ -137,18 +221,122 @@ export default {
     showSelect: {
       default: true,
       type: Boolean
+    },
+    serverSearchRoute: {
+      default: null,
+      type: String
     }
   },
-  watch: {
-    search(to) {
-      if (to.length > 3) {
-        this.tableRender(this.search)
-      } else if (to.length < 3) {
-        this.tableRender(this.search)
-      }
-    }
-  },
+  // watch: {
+  //   search(to) {
+  //     if (to.length > 3) {
+  //       this.tableRender(this.search)
+  //     } else if (to.length < 3) {
+  //       this.tableRender(this.search)
+  //     }
+  //   }
+  // },
   methods: {
+    getUpdatedValueFromServer(index) {
+
+      this.options[index] = []
+
+      this.$forceUpdate();
+
+    },
+
+    /*filter data*/
+    filterData() {
+
+      this.$forceUpdate();
+
+      let data = {};
+      let key;
+      let multipleValues;
+      this.searchInputItems.forEach((value, index) => {
+
+        key = this.getSearchKeyName(value)
+
+        switch (value.input_type) {
+          case 'text':
+
+            Object.assign(data, {[key]: this.vModels[index]})
+
+            break;
+          case "select":
+            if (typeof value.multiple == 'undefined') {
+              Object.assign(data, {[key]: this.vModels[index] ? this.vModels.value : null})
+            } else {
+              multipleValues = this.vModels[index] ? this.getMultipleValues(this.vModels[index]) : null;
+              Object.assign(data, {[key]: multipleValues})
+            }
+            break;
+          case 'check':
+            Object.assign(data, {[key]: this.vModels[index] ? this.vModels[index] : null})
+            break;
+          case 'sort':
+            Object.assign(data, {[key]: this.vModels[index] ? this.vModels[index] : null})
+            break;
+          case 'number':
+            Object.assign(data, {[key]: this.vModels[index]})
+            break;
+        }
+      })
+      console.log(data)
+    },
+
+    getMultipleValues(multipleValue) {
+      let result = [];
+
+      multipleValue.forEach(item => {
+        result.push(item.value)
+      })
+      return result;
+    },
+
+    getSearchKeyName(value) {
+
+      let key = value.table_name + "-" + value.COLUMN_NAME + "-" + value.input_type + "-" + value.operation_type;
+
+      if (typeof value.multiple != 'undefined') {
+        key += "-" + 'multiple'
+      }
+
+      return key;
+
+    },
+
+
+    getSearchInputItems() {
+      HttpVerbs.getRequest(this.serverSearchRoute)
+          .then(res => {
+            this.searchInputItems = res.data.data;
+            this.searchInputItems.forEach((value, index) => {
+              switch (value.input_type) {
+                case 'text':
+                  this.vModels[index] = '';
+                  break;
+                case "select":
+                  this.vModels[index] = null;
+                  this.options[index] = []
+                  break;
+                case 'check':
+                  this.vModels[index] = null
+                  this.options[index] = []
+                  break;
+                case 'sort':
+                  this.vModels[index] = null;
+                  this.options[index] = []
+                  break;
+                case 'number':
+                  this.vModels[index] = ''
+                  break;
+              }
+            })
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+    },
     clickToDeleteSelected() {
       this.$store.state.show_confirmation_dialog = true;
       this.is_single_delete = false;
@@ -230,10 +418,13 @@ export default {
     }
 
 
+  },
+  components: {
+    Multiselect
   }
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

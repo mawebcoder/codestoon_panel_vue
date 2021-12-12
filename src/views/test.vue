@@ -9,13 +9,13 @@
     <!--        sort-->
     <!--    ></json-viewer>-->
 
-    <search-component></search-component>
+
   </div>
 </template>
 
 <script>
 // import jsonViewer from 'vue-json-viewer'
-import SearchComponent from "../components/SearchComponent";
+
 
 export default {
   created() {
@@ -34,7 +34,6 @@ export default {
   },
   components: {
     // jsonViewer
-    SearchComponent
   }
 }
 </script>
