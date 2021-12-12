@@ -46,13 +46,14 @@
                         <label>
                           {{ value.title }}:
                         </label>
-                        <multiselect @search-change="getUpdatedValueFromServer(index)" multiple
+                        <multiselect @search-change="getUpdatedValueFromServer($event,index)" multiple
                                      style="margin-bottom: 20px"
                                      selectedLabel=" "
                                      selectLabel="انتخاب " deselectLabel="حذف"
                                      v-model="vModels[index]"
                                      :options="options[index]" :close-on-select="true"
                                      :clear-on-select="false"
+                                     :loading="isLoading"
                                      :preserve-search="true" :placeholder="value.title" label="name"
                                      track-by="name">
                         </multiselect>
@@ -61,8 +62,10 @@
                         <label>
                           {{ value.title }}:
                         </label>
-                        <multiselect @@search-change="getUpdatedValueFromServer(index)" style="margin-bottom: 20px"
+                        <multiselect @@search-change="getUpdatedValueFromServer($event,index)"
+                                     style="margin-bottom: 20px"
                                      selectedLabel=" "
+                                     :loading="isLoading"
                                      selectLabel="انتخاب " deselectLabel="حذف"
                                      v-model="vModels[index]"
                                      :options="options[index]" :close-on-select="true"
@@ -194,6 +197,7 @@ export default {
       searchInputItems: [],
       vModels: [],
       options: [],
+      isLoading:false
     }
   },
   props: {
@@ -237,11 +241,31 @@ export default {
   //   }
   // },
   methods: {
-    getUpdatedValueFromServer(index) {
+    getUpdatedValueFromServer(searchQuery, index) {
 
-      this.$forceUpdate();
-
-      console.log(this.vModels[index])
+      let data = {
+        model: this.searchInputItems[index].modelClass,
+        value: searchQuery,
+        title: this.searchInputItems[index].COLUMN_NAME
+      }
+      this.isLoading=true;
+      HttpVerbs.postRequest('search/select-box', data,false)
+          .then(res => {
+            this.options[index]=[];
+            let result = res.data.data;
+            if (res.status === 204) {
+              this.options[index] = [];
+              this.isLoading=false
+              return;
+            }
+            result.forEach(item => {
+              this.options[index].push({name: item.fa_name, value: item.id})
+            })
+            this.$forceUpdate();
+            this.isLoading=false;
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
     },
     validateNumber(e) {
       HelperClass.numericInputValidation(e)
@@ -284,7 +308,8 @@ export default {
             break;
         }
       })
-      return data;
+      // return data;
+      //TODO axios here to server
     },
 
     getMultipleValues(multipleValue) {

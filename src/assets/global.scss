@@ -2,9 +2,15 @@
   direction: rtl;
   font-family: IRANSans;
 }
-
+.multiselect__tags{
+  border: 1px solid #b7b7b7 !important;
+}
+.multiselect__content{
+  border: 1px solid #b7b7b7 !important;
+}
 .charts-box-section .md-card {
   min-height: 300px !important;
+  box-shadow: 0 0 10px 10px #b7b7b7 !important;
 }
 
 main {

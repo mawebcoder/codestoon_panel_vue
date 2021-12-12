@@ -14,8 +14,12 @@ class HttpVerbs {
 
     }
 
-    postRequest(uri, data = null) {
-        store.state.loader = true;
+    postRequest(uri, data = null,showLoading=true) {
+
+        if (showLoading){
+            store.state.loader = true;
+        }
+
         return data ?
             axios.post(uri, data, {
                 headers: {
