@@ -37,7 +37,7 @@
 
                     <template v-else-if="value.input_type==='number'">
                       <md-field>
-                        <md-input type="number" :placeholder="value.title"
+                        <md-input @keydown="validateNumber($event)" type="number" :placeholder="value.title"
                                   v-model="vModels[index]"></md-input>
                       </md-field>
                     </template>
@@ -239,10 +239,12 @@ export default {
   methods: {
     getUpdatedValueFromServer(index) {
 
-      this.options[index] = []
-
       this.$forceUpdate();
 
+      console.log(this.vModels[index])
+    },
+    validateNumber(e) {
+      HelperClass.numericInputValidation(e)
     },
 
     /*filter data*/
@@ -282,7 +284,7 @@ export default {
             break;
         }
       })
-      console.log(data)
+      return data;
     },
 
     getMultipleValues(multipleValue) {
@@ -321,12 +323,12 @@ export default {
                   this.options[index] = []
                   break;
                 case 'check':
-                  this.vModels[index] = null
-                  this.options[index] = []
+                  this.options[index] = typeof value.values != "undefined" ? this.getSortAndCheckValues(value.values) : [];
+                  this.options[index].length ? this.vModels[index] = this.options[index][0] : this.vModels[index] = null;
                   break;
                 case 'sort':
-                  this.vModels[index] = null;
-                  this.options[index] = []
+                  this.options[index] = typeof value.values != "undefined" ? this.getSortAndCheckValues(value.values) : [];
+                  this.options[index].length ? this.vModels[index] = this.options[index][0] : this.vModels[index] = null;
                   break;
                 case 'number':
                   this.vModels[index] = ''
@@ -336,6 +338,15 @@ export default {
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })
+    },
+
+    getSortAndCheckValues(value) {
+      let result = [];
+      for (let i in value) {
+
+        result.push({name: "" + i, value: value["" + i]})
+      }
+      return result;
     },
     clickToDeleteSelected() {
       this.$store.state.show_confirmation_dialog = true;

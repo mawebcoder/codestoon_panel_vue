@@ -32,6 +32,15 @@ export default {
     //   }
     // }
   },
+  mounted() {
+    let name = {
+      name: 'mohammad',
+      value: 'amiri'
+    }
+    for (let i in name) {
+      console.log(name[i])
+    }
+  },
   components: {
     // jsonViewer
   }
