@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <DataTable  server-search-route="articles/search-items" :items="rows" :uri="uri" :editUrlName="edit_url_name"
+    <DataTable  server-search-route="articles/search-items" :items="rows"  :editUrlName="edit_url_name"
                :delete-url="delete_uri" :columns="columns">
     </DataTable>
 
@@ -18,7 +18,6 @@ export default {
       rows: ['id', 'title', 'article_category', 'status', 'writer'],
       edit_url_name: 'article-edit',
       delete_uri: 'articles/delete',
-      uri: 'articles',
       columns: [
         {
           field: 'id',

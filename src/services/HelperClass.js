@@ -7,6 +7,7 @@ class HelperClass {
     showErrors(error, noty) {
         store.state.loader = false;
         store.state.show_confirmation_dialog = false;
+
         let statusCode = error.response.status;
 
         if (statusCode === 422) {
@@ -21,6 +22,7 @@ class HelperClass {
                 })
             }
         } else {
+            console.log(error)
             noty.error(error.response.data.message)
         }
 

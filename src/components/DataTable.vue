@@ -386,11 +386,11 @@ export default {
                   break;
                 case 'check':
                   this.options[index] = typeof value.values != "undefined" ? this.getSortAndCheckValues(value.values) : [];
-                  this.options[index].length ? this.vModels[index] = this.options[index][0] : this.vModels[index] = null;
+                  this.vModels[index] = null
                   break;
                 case 'sort':
                   this.options[index] = typeof value.values != "undefined" ? this.getSortAndCheckValues(value.values) : [];
-                  this.options[index].length ? this.vModels[index] = this.options[index][0] : this.vModels[index] = null;
+                  this.vModels[index] = null
                   break;
                 case 'number':
                   this.vModels[index] = ''
