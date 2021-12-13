@@ -105,7 +105,15 @@
 
 
                   </div>
-                  <md-button @click="filterData" class="md-raised md-primary">اعمال فیلتر</md-button>
+                  <div class="form-group d-flex">
+                    <div class="col-1">
+                      <md-button @click="filterData" class="md-raised md-primary">اعمال فیلتر</md-button>
+                    </div>
+                    <div class="col-1">
+                      <md-button @click="removeFilters" class="md-raised">حذف فیلتر</md-button>
+                    </div>
+                  </div>
+
                 </template>
 
                 <!--                end search-->
@@ -158,7 +166,6 @@ import Multiselect from "vue-multiselect";
 export default {
   name: "DataTable",
   created() {
-    this.tableRender();
     this.getSearchInputItems();
   },
   data() {
@@ -166,6 +173,8 @@ export default {
       selectedIds: [],
       search: '',
       rows: [],
+      lastPage: '',
+      searchResult: [],
       modelName: '',
       FinalColumns: [],
       filterDataServiceRoute: 'search',
@@ -234,15 +243,6 @@ export default {
       type: String
     }
   },
-  // watch: {
-  //   search(to) {
-  //     if (to.length > 3) {
-  //       this.tableRender(this.search)
-  //     } else if (to.length < 3) {
-  //       this.tableRender(this.search)
-  //     }
-  //   }
-  // },
   methods: {
     getUpdatedValueFromServer(searchQuery, index) {
 
@@ -269,6 +269,19 @@ export default {
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })
+    },
+
+    removeFilters() {
+
+      this.searchInputItems.forEach((value, index) => {
+
+        this.vModels[index] = null
+
+      })
+
+      this.$forceUpdate();
+
+      this.filterData();
     },
     validateNumber(e) {
       HelperClass.numericInputValidation(e)
@@ -312,13 +325,8 @@ export default {
         }
       })
 
-      /**
-       * add model name to detect which model we need to resolve query
-       *
-       * @type {{model: string}}
-       *
-       */
-      data=Object.assign(data,{model:this.modelName})
+
+      data = Object.assign(data, {model: this.modelName})
 
       this.sendSearchRequest(data);
 
@@ -328,11 +336,10 @@ export default {
 
       HttpVerbs.postRequest(this.filterDataServiceRoute, data)
           .then(res => {
-
-            console.log(res.data)
-
             this.$store.state.loader = false;
-
+            this.searchResult=res.data.data.data;
+            this.lastPage=res.data.data.last_page;
+            this.tableRender();
           }).catch(error => {
 
         HelperClass.showErrors(error, this.$noty)
@@ -390,6 +397,7 @@ export default {
                   break;
               }
 
+              this.filterData();
 
             })
           }).catch(error => {
@@ -468,16 +476,15 @@ export default {
     resetColumns() {
       this.FinalColumns = this.columns.concat(this.fixed_columns)
     },
-    tableRender(search = null) {
-
+    tableRender() {
       this.selectedIds = [];
       this.resetColumns();
 
       HelperClass.renderTable(
           this,
           this.items,
-          this.uri,
-          search,
+          this.searchResult,
+          this.lastPage,
           this.showEdit,
           this.showDelete,
           this.showSelect,

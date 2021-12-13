@@ -1,6 +1,5 @@
 import store from "../store/store";
 import Chart from 'chart.js'
-import HttpVerbs from "./HttpVerbs";
 
 class HelperClass {
 
@@ -91,61 +90,43 @@ class HelperClass {
         }
     }
 
-    renderTable(object, itemsArray, uri, search = null, showEdit = true, showDelete = true, showSelect = true,showSeeMore=false) {
-
+    renderTable(object, itemsArray, data, last_page, showEdit = true, showDelete = true, showSelect = true,showSeeMore=false) {
 
         if (!itemsArray || !Array.isArray(itemsArray)) {
             alert('items are not array')
         }
-        let url;
+
         let finalArray = [];
-        if (search && search.length > 3) {
-            url = uri + '?search=' + search
-        } else if (search && search.length < 3) {
-            return;
-        } else {
-            url = uri
-        }
 
+        object.rows = [];
 
-        HttpVerbs.getRequest(url)
-            .then(res => {
-                object.rows = [];
-                if (res.status === 204) {
-                    return;
+        object.last_page = last_page
+
+        data.forEach((value, index) => {
+
+            if (typeof (finalArray[index]) === 'undefined') {
+                finalArray[index] = {};
+            }
+
+            itemsArray.forEach((value2) => {
+                finalArray[index][value2] = value[value2]
+                if (showDelete) {
+                    finalArray[index]['delete'] = `<span class="delete-table-button">حذف</span>`
+                }
+                if (showEdit) {
+                    finalArray[index]['edit'] = '<span class="edit-table-button">ویرایش</span>'
+                }
+                if (showSelect) {
+                    finalArray[index]['select'] = '<input class="checkbox-table" type="checkbox" value="' + value.id + '">'
+                }
+                if (showSeeMore){
+                    finalArray[index]['see'] = '<span >مشاهده بیشتر</span>'
+
                 }
 
-                this.last_page = res.data.data.last_page;
-
-                let data = res.data.data.data;
-                data.forEach((value, index) => {
-
-                    if (typeof (finalArray[index]) === 'undefined') {
-                        finalArray[index] = {};
-                    }
-
-                    itemsArray.forEach((value2) => {
-                        finalArray[index][value2] = value[value2]
-                        if (showDelete) {
-                            finalArray[index]['delete'] = `<span class="delete-table-button">حذف</span>`
-                        }
-                        if (showEdit) {
-                            finalArray[index]['edit'] = '<span class="edit-table-button">ویرایش</span>'
-                        }
-                        if (showSelect) {
-                            finalArray[index]['select'] = '<input class="checkbox-table" type="checkbox" value="' + value.id + '">'
-                        }
-                        if (showSeeMore){
-                            finalArray[index]['see'] = '<span >مشاهده بیشتر</span>'
-
-                        }
-
-                    })
-                })
-                object.rows = finalArray;
-            }).catch(error => {
-            this.showErrors(error, object.$noty)
+            })
         })
+        object.rows = finalArray;
     }
 
     makeRandomString(length) {

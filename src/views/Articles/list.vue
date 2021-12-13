@@ -15,7 +15,7 @@ export default {
   name: "list",
   data() {
     return {
-      rows: ['id', 'title', 'fa_name', 'article_category', 'status', 'writer'],
+      rows: ['id', 'title', 'article_category', 'status', 'writer'],
       edit_url_name: 'article-edit',
       delete_uri: 'articles/delete',
       uri: 'articles',
