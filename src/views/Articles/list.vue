@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <DataTable server-search-route="articles/search-items" :items="rows" :uri="uri" :editUrlName="edit_url_name"
+    <DataTable  server-search-route="articles/search-items" :items="rows" :uri="uri" :editUrlName="edit_url_name"
                :delete-url="delete_uri" :columns="columns">
     </DataTable>
 

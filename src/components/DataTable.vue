@@ -166,7 +166,9 @@ export default {
       selectedIds: [],
       search: '',
       rows: [],
+      modelName: '',
       FinalColumns: [],
+      filterDataServiceRoute: 'search',
       fixed_columns: [
         {
           label: 'حذف',
@@ -197,7 +199,7 @@ export default {
       searchInputItems: [],
       vModels: [],
       options: [],
-      isLoading:false
+      isLoading: false
     }
   },
   props: {
@@ -210,6 +212,7 @@ export default {
       default: false,
       type: Boolean
     },
+
     showSearch: {
       default: true,
       type: Boolean
@@ -248,21 +251,21 @@ export default {
         value: searchQuery,
         title: this.searchInputItems[index].COLUMN_NAME
       }
-      this.isLoading=true;
-      HttpVerbs.postRequest('search/select-box', data,false)
+      this.isLoading = true;
+      HttpVerbs.postRequest('search/select-box', data, false)
           .then(res => {
-            this.options[index]=[];
+            this.options[index] = [];
             let result = res.data.data;
             if (res.status === 204) {
               this.options[index] = [];
-              this.isLoading=false
+              this.isLoading = false
               return;
             }
             result.forEach(item => {
               this.options[index].push({name: item.fa_name, value: item.id})
             })
             this.$forceUpdate();
-            this.isLoading=false;
+            this.isLoading = false;
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
       })
@@ -298,18 +301,43 @@ export default {
             }
             break;
           case 'check':
-            Object.assign(data, {[key]: this.vModels[index] ? this.vModels[index] : null})
+            Object.assign(data, {[key]: this.vModels[index] ? this.vModels[index].value : null})
             break;
           case 'sort':
-            Object.assign(data, {[key]: this.vModels[index] ? this.vModels[index] : null})
+            Object.assign(data, {[key]: this.vModels[index] ? this.vModels[index].value : null})
             break;
           case 'number':
             Object.assign(data, {[key]: this.vModels[index]})
             break;
         }
       })
-      // return data;
-      //TODO axios here to server
+
+      /**
+       * add model name to detect which model we need to resolve query
+       *
+       * @type {{model: string}}
+       *
+       */
+      data=Object.assign(data,{model:this.modelName})
+
+      this.sendSearchRequest(data);
+
+    },
+
+    sendSearchRequest(data) {
+
+      HttpVerbs.postRequest(this.filterDataServiceRoute, data)
+          .then(res => {
+
+            console.log(res.data)
+
+            this.$store.state.loader = false;
+
+          }).catch(error => {
+
+        HelperClass.showErrors(error, this.$noty)
+
+      })
     },
 
     getMultipleValues(multipleValue) {
@@ -337,8 +365,10 @@ export default {
     getSearchInputItems() {
       HttpVerbs.getRequest(this.serverSearchRoute)
           .then(res => {
-            this.searchInputItems = res.data.data;
+            this.searchInputItems = res.data.data.inputs;
+            this.modelName = res.data.data.model;
             this.searchInputItems.forEach((value, index) => {
+
               switch (value.input_type) {
                 case 'text':
                   this.vModels[index] = '';
@@ -359,6 +389,8 @@ export default {
                   this.vModels[index] = ''
                   break;
               }
+
+
             })
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
