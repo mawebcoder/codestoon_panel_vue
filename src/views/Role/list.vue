@@ -3,7 +3,8 @@
     <md-card>
       <md-card-content>
 
-        <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+        <DataTable  server-search-route="roles/search-items" :items="rows"  :editUrlName="edit_url_name"
+                    :delete-url="delete_uri" :columns="columns">
         </DataTable>
 
       </md-card-content>
@@ -22,7 +23,6 @@ export default {
       edit_url_name: 'role-edit',
       delete_uri: 'roles',
       rows: ['id', 'name', 'fa_name'],
-      uri: 'roles',
       columns: [
         {
           label: 'شناسه',
