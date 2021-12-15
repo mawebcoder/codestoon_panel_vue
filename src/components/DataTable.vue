@@ -249,8 +249,9 @@ export default {
       let data = {
         model: this.searchInputItems[index].modelClass,
         value: searchQuery,
-        title: this.searchInputItems[index].COLUMN_NAME
+        title: this.searchInputItems[index].selectBoxSearchTitle
       }
+      let column_name = data.title;
       this.isLoading = true;
       HttpVerbs.postRequest('search/select-box', data, false)
           .then(res => {
@@ -262,7 +263,7 @@ export default {
               return;
             }
             result.forEach(item => {
-              this.options[index].push({name: item.fa_name, value: item.id})
+              this.options[index].push({name: item["" + column_name], value: item['id']})
             })
             this.$forceUpdate();
             this.isLoading = false;
@@ -302,7 +303,7 @@ export default {
         switch (value.input_type) {
           case 'text':
 
-            Object.assign(data, {[key]: this.vModels[index]})
+            Object.assign(data, {[key]: this.vModels[index] ? this.vModels[index] : null})
 
             break;
           case "select":
@@ -337,8 +338,8 @@ export default {
       HttpVerbs.postRequest(this.filterDataServiceRoute, data)
           .then(res => {
             this.$store.state.loader = false;
-            this.searchResult=res.data.data.data;
-            this.lastPage=res.data.data.last_page;
+            this.searchResult = res.data.data.data;
+            this.lastPage = res.data.data.last_page;
             this.tableRender();
           }).catch(error => {
 
@@ -373,6 +374,7 @@ export default {
       HttpVerbs.getRequest(this.serverSearchRoute)
           .then(res => {
             this.searchInputItems = res.data.data.inputs;
+
             this.modelName = res.data.data.model;
             this.searchInputItems.forEach((value, index) => {
 
