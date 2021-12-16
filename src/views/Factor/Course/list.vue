@@ -1,7 +1,9 @@
 <template>
   <div>
 
-    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+
+    <DataTable server-search-route="articles/search-items" :items="rows" :editUrlName="edit_url_name"
+               :delete-url="delete_uri" :columns="columns">
     </DataTable>
 
   </div>
@@ -26,12 +28,14 @@ export default {
         'discount',
         'payment_status',
         'bank_status_code',
-        'created_at'
+        'created_at',
+        'factor_type',
+        'vip_length',
+        'vip_start',
+        'vip_expire_date',
       ],
       edit_url_name: 'factor-course-edit',
       delete_uri: 'factors',
-      uri: 'factors/courses',
-
       columns: [
         {
           field: 'id',
@@ -73,6 +77,22 @@ export default {
           field: 'created_at',
           label: 'تاریخ ایجاد سفارش'
         },
+        {
+          field: 'factor_type',
+          label: 'نوع فاکتور'
+        },
+        {
+          field: 'vip_length',
+          label: 'مدت زمان پلن'
+        },
+        {
+          field: 'vip_start',
+          label: 'زمان شروع پلن'
+        },
+        {
+          field: 'vip_expire_date',
+          label: 'تاریخ انقضا mgk',
+        }
       ]
     }
   },

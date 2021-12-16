@@ -4,7 +4,6 @@
     <DataTable  server-search-route="managers/search-items" :items="rows"  :editUrlName="edit_url_name"
                 :delete-url="delete_uri" :columns="columns">
     </DataTable>
-    >
 
   </div>
 </template>
@@ -16,7 +15,7 @@ export default {
   name: "list",
   data() {
     return {
-      rows: ['id', 'name', 'cell', 'email'],
+      rows: ['id', 'name', 'cell', 'email','role'],
       edit_url_name: 'edit-managers',
       delete_uri: 'users/admins',
       columns: [
@@ -27,6 +26,10 @@ export default {
         {
           field: 'name',
           label: 'نام و نام خانوادگی '
+        },
+        {
+          field: 'role',
+          label: 'نقش'
         },
         {
           field: 'cell',

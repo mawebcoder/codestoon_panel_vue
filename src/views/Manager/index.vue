@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <DataTable  server-search-route="roles/search-items?managers=1" :items="rows"  :editUrlName="edit_url_name"
+    <DataTable  server-search-route="managers/search-items?managers=1" :items="rows"  :editUrlName="edit_url_name"
                 :delete-url="delete_uri" :columns="columns">
     </DataTable>
 
@@ -31,6 +31,10 @@ export default {
         {
           field: 'cell',
           label: 'شماره تماس'
+        },
+        {
+          field: 'role',
+          label: 'نقش'
         },
         {
           field: 'email',

@@ -113,28 +113,6 @@
         </li>
 
 
-        <!--  managers-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              manage_accounts
-            </md-icon>
-         مدیران
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link @click.native="closeAside" :to="{name:'manager'}">
-                لیست مدیران
-              </router-link>
-            </li>
-          </ul>
-        </li>
 
         <!--      users-->
         <li>

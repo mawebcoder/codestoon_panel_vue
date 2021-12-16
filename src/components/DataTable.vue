@@ -453,7 +453,7 @@ export default {
       HttpVerbs.deleteRequest(this.deleteUrl, {ids: ids})
           .then(() => {
 
-            this.tableRender();
+          this.getSearchInputItems();
             HelperClass.showSuccess(this.$noty)
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)
