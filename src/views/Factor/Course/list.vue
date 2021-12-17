@@ -2,7 +2,7 @@
   <div>
 
 
-    <DataTable server-search-route="articles/search-items" :items="rows" :editUrlName="edit_url_name"
+    <DataTable server-search-route="factors/search-items" :items="rows" :editUrlName="edit_url_name"
                :delete-url="delete_uri" :columns="columns">
     </DataTable>
 
@@ -18,7 +18,8 @@ export default {
     return {
       rows: ['ref_id',
         'id',
-        'user',
+        'user_name',
+        'user_email',
         'paid_price',
         'is_checked',
         'discount_code',
@@ -26,13 +27,9 @@ export default {
         'discount_percent',
         'price',
         'discount',
-        'payment_status',
         'bank_status_code',
         'created_at',
-        'factor_type',
-        'vip_length',
-        'vip_start',
-        'vip_expire_date',
+        'payment_status',
       ],
       edit_url_name: 'factor-course-edit',
       delete_uri: 'factors',
@@ -42,8 +39,12 @@ export default {
           label: 'شناسه',
         },
         {
-          field: 'user',
+          field: 'user_name',
           label: 'نام و نام خانوادگی کاربر '
+        },
+        {
+          field: 'user_email',
+          label: 'ایمیل کاربر',
         },
         {
           field: 'paid_price',
@@ -58,7 +59,8 @@ export default {
         }, {
           field: 'transaction_id',
           label: 'شماره سفارش'
-        }, {
+        },
+        {
           field: 'discount_percent',
           label: 'درصد تخفیف'
         }, {
@@ -77,22 +79,6 @@ export default {
           field: 'created_at',
           label: 'تاریخ ایجاد سفارش'
         },
-        {
-          field: 'factor_type',
-          label: 'نوع فاکتور'
-        },
-        {
-          field: 'vip_length',
-          label: 'مدت زمان پلن'
-        },
-        {
-          field: 'vip_start',
-          label: 'زمان شروع پلن'
-        },
-        {
-          field: 'vip_expire_date',
-          label: 'تاریخ انقضا mgk',
-        }
       ]
     }
   },

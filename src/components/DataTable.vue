@@ -265,6 +265,7 @@ export default {
             result.forEach(item => {
               this.options[index].push({name: item["" + column_name], value: item['id']})
             })
+
             this.$forceUpdate();
             this.isLoading = false;
           }).catch(error => {
@@ -291,7 +292,9 @@ export default {
     /*filter data*/
     filterData() {
 
+
       this.$forceUpdate();
+
 
       let data = {};
       let key;
@@ -326,9 +329,7 @@ export default {
         }
       })
 
-
       data = Object.assign(data, {model: this.modelName})
-
       this.sendSearchRequest(data);
 
     },
@@ -453,7 +454,7 @@ export default {
       HttpVerbs.deleteRequest(this.deleteUrl, {ids: ids})
           .then(() => {
 
-          this.getSearchInputItems();
+            this.getSearchInputItems();
             HelperClass.showSuccess(this.$noty)
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)

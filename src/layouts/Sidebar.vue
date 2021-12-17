@@ -113,7 +113,6 @@
         </li>
 
 
-
         <!--      users-->
         <li>
         <span @click="toggle($event)" class="drop-down-button">
@@ -151,9 +150,9 @@
         <li>
         <span @click="toggle($event)" class="drop-down-button">
             <md-icon>
-              shop_2
+              shopping_cart
             </md-icon>
-         فاکتورها
+         سفارشات
           <md-icon>
             expand_more
           </md-icon>
@@ -164,21 +163,13 @@
               <small></small>
 
               <router-link @click.native="closeAside" :to="{name:'factor-course-list'}">
-                فاکتورهای دوره ها
-              </router-link>
-            </li>
-            <li>
-              <small></small>
-
-              <router-link @click.native="closeAside" :to="{name:'factor-vip-list'}">
-                فاکتورهای پلن ها
+                لیست سفارشات
               </router-link>
             </li>
           </ul>
 
 
         </li>
-
 
         <!--    discount code-->
         <li>
@@ -853,7 +844,9 @@ aside {
 }
 
 .links-ul {
-  background-color: rgba(191, 190, 180, 0.2);
+  //background-color: rgba(191, 190, 180, 0.2);
+  background: #d8e3e3;
+  box-shadow: 0 0 15px 6px #d8e3e3;
 
   li {
     padding-right: 47px;
@@ -861,6 +854,10 @@ aside {
     position: relative;
     line-height: 34px;
     height: 35px;
+
+    a {
+      line-height: 34px;
+    }
 
     small {
       display: block;
