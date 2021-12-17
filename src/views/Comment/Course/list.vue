@@ -1,7 +1,8 @@
 <template>
   <div>
 
-    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+    <DataTable  server-search-route="comments/search-items?type=course" :items="rows"  :editUrlName="edit_url_name"
+                :delete-url="delete_uri" :columns="columns">
     </DataTable>
 
   </div>
@@ -17,7 +18,6 @@ export default {
       rows: ['id', 'name', 'status', 'is_checked', 'created_at','courseTitle','userEmail'],
       edit_url_name: 'comment-course-edit',
       delete_uri: 'comments',
-      uri: 'comments/courses',
       columns: [
         {
           field: 'id',

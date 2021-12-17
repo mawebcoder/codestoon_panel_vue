@@ -1,7 +1,9 @@
 <template>
   <div>
 
-    <DataTable :items = "rows" :uri = "uri" :editUrlName = "edit_url_name" :delete-url = "delete_uri" :columns = "columns"></DataTable>
+    <DataTable  server-search-route="comments/search-items?type=video" :items="rows"  :editUrlName="edit_url_name"
+                :delete-url="delete_uri" :columns="columns">
+    </DataTable>
 
   </div>
 </template>
@@ -17,7 +19,6 @@ export default {
       rows: ['id', 'name', 'status', 'is_checked', 'created_at', 'videoTitle', 'userEmail'],
       edit_url_name: 'comment-video-edit',
       delete_uri: 'comments',
-      uri: 'comments/videos',
       columns: [
         {
           field: 'id',
