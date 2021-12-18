@@ -1,14 +1,9 @@
 <template>
   <div>
-    <md-card>
-      <md-card-content>
 
-        <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri"
-                   :columns="columns">
-        </DataTable>
-
-      </md-card-content>
-    </md-card>
+    <DataTable  server-search-route="faqs/search-items" :items="rows"  :editUrlName="edit_url_name"
+                :delete-url="delete_uri" :columns="columns">
+    </DataTable>
 
   </div>
 </template>
@@ -22,8 +17,7 @@ export default {
     return {
       edit_url_name: 'faq-edit',
       delete_uri: 'faqs',
-      rows: ['id', 'title', 'content', 'status', 'course_id'],
-      uri: 'faqs',
+      rows: ['id', 'title', 'content', 'status', 'course_title'],
       columns: [
         {
           label: 'شناسه',
@@ -43,7 +37,7 @@ export default {
         },
         {
           label: 'دوره مورد نظر',
-          field: 'course_id',
+          field: 'course_title',
         }
       ],
     }
