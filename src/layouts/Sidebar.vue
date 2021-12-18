@@ -12,7 +12,7 @@
             <md-icon>
            bar_chart
             </md-icon>
-    گزارشگیری
+    نمودار
 
           <md-icon>
             expand_more
@@ -29,14 +29,6 @@
 
               </router-link>
             </li>
-            <li>
-              <small></small>
-
-              <router-link :to="{name:'statistic'}">
-                آمار وبسایت
-              </router-link>
-            </li>
-
           </ul>
 
 
@@ -58,19 +50,10 @@
 
           <ul class="links-ul hidden">
             <li>
-
-              <small></small>
-
-              <router-link :to="{name:'chart'}">
-                چارت ها
-
-              </router-link>
-            </li>
-            <li>
               <small></small>
 
               <router-link :to="{name:'statistic'}">
-                آمار وبسایت
+               اعلانات 
               </router-link>
             </li>
 

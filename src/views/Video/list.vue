@@ -1,7 +1,8 @@
 <template>
   <div>
 
-    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+    <DataTable  server-search-route="videos/search-items" :items="rows"  :editUrlName="edit_url_name"
+                :delete-url="delete_uri" :columns="columns">
     </DataTable>
 
   </div>
@@ -14,10 +15,9 @@ export default {
   name: "list",
   data() {
     return {
-      rows: ['id', 'title', 'en_title', 'course_title', 'status', 'section_title', 'is_free', 'time_in_minute', 'created_at'],
+      rows: ['id', 'title', 'course_title', 'status', 'section_title', 'is_free', 'time_in_minute', 'created_at'],
       edit_url_name: 'video-edit',
       delete_uri: 'videos',
-      uri: 'videos',
       columns: [
         {
           field: 'id',
@@ -26,10 +26,6 @@ export default {
         {
           field: 'title',
           label: 'عنوان فارسی'
-        },
-        {
-          field: 'en_title',
-          label: 'عنوان لاتین'
         },
         {
           field: 'status',
