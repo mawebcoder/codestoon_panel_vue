@@ -1,7 +1,8 @@
 <template>
   <div>
 
-    <DataTable :items="rows" :uri="uri" :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
+    <DataTable server-search-route="courses/tags/search-items" :items="rows" :editUrlName="edit_url_name"
+               :delete-url="delete_uri" :columns="columns">
     </DataTable>
 
   </div>
@@ -14,10 +15,9 @@ export default {
   name: "list",
   data() {
     return {
-      rows: ['id','fa_title', 'en_title', 'status','show_in_filter'],
+      rows: ['id', 'fa_title', 'en_title', 'status', 'show_in_filter'],
       edit_url_name: 'course-tag-edit',
       delete_uri: 'courses/tags',
-      uri: 'courses/tags',
       columns: [
         {
           field: 'id',
