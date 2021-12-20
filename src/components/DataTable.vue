@@ -119,16 +119,28 @@
                 <!--                end search-->
 
 
-                <!--                delete box-->
-                <template v-if="showDelete">
-                  <div class="icons">
-                    <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
-                      <md-icon>delete</md-icon>
-                    </md-button>
-                  </div>
-                </template>
-                <!--      end        delete -->
+                <div class="row" style="justify-content: space-between">
+                  <!--                delete box-->
+                  <template v-if="showDelete">
+                    <div title="حذف" class="icons">
+                      <md-button @click="clickToDeleteSelected" class="md-raised md-accent">
+                        <md-icon>delete</md-icon>
+                      </md-button>
+                    </div>
+                  </template>
+                  <!--      end        delete -->
 
+                  <!--          search items-->
+                  <template v-if="showRestore">
+                    <div class="icons" title="بازگردانی">
+                      <md-button @click="clickToRestoreSelected" class="md-raised md-primary">
+                        <md-icon>restore</md-icon>
+                      </md-button>
+                    </div>
+                  </template>
+                </div>
+
+                <!--                end search items-->
 
               </md-card-content>
 
@@ -152,6 +164,20 @@
       <md-dialog-actions>
         <md-button style="margin: 0 10px" @click="deleteItems" class="md-raised md-accent">بله</md-button>
         <md-button @click="$store.state.show_confirmation_dialog = false" class="md-raised md-primary">خیر</md-button>
+      </md-dialog-actions>
+
+    </md-dialog>
+
+    <md-dialog :md-active.sync="$store.state.show_restore_confirmation_dialog">
+      <md-dialog-title>باز گردانی اطلاعات</md-dialog-title>
+
+      <div style="padding: 10px">
+        آیا اطمینان دارید؟
+      </div>
+      <md-dialog-actions>
+        <md-button style="margin: 0 10px" @click="restoreItems" class="md-raised md-accent">بله</md-button>
+        <md-button @click="$store.state.show_restore_confirmation_dialog = false" class="md-raised md-primary">خیر
+        </md-button>
       </md-dialog-actions>
 
     </md-dialog>
@@ -217,11 +243,24 @@ export default {
     editUrlName: String,
     items: Array,
     uri: String,
+    isTrash: {
+      default: false,
+      type: Boolean
+    },
     showSeeMore: {
       default: false,
       type: Boolean
     },
-
+    forceDelete: {
+      default: false,
+      type: Boolean
+    },
+    restoreUrl: {
+      default: null
+    },
+    forceDeleteUrl: {
+      default: false,
+    },
     showSearch: {
       default: true,
       type: Boolean
@@ -232,6 +271,10 @@ export default {
     },
     showDelete: {
       default: true,
+      type: Boolean
+    },
+    showRestore: {
+      default: false,
       type: Boolean
     },
     showSelect: {
@@ -246,6 +289,7 @@ export default {
   methods: {
     getUpdatedValueFromServer(searchQuery, index) {
 
+      let route;
       let data = {
         model: this.searchInputItems[index].modelClass,
         value: searchQuery,
@@ -253,7 +297,8 @@ export default {
       }
       let column_name = data.title;
       this.isLoading = true;
-      HttpVerbs.postRequest('search/select-box', data, false)
+      route = this.isTrash ? '/search/select-box?trash=true' : '/search/select-box';
+      HttpVerbs.postRequest(route, data, false)
           .then(res => {
             this.options[index] = [];
             let result = res.data.data;
@@ -336,7 +381,11 @@ export default {
 
     sendSearchRequest(data) {
 
-      HttpVerbs.postRequest(this.filterDataServiceRoute, data)
+      let route;
+
+      route = this.isTrash ? this.filterDataServiceRoute + '?trash=true' : this.filterDataServiceRoute;
+
+      HttpVerbs.postRequest(route, data)
           .then(res => {
             this.$store.state.loader = false;
             this.searchResult = res.data.data.data;
@@ -416,6 +465,9 @@ export default {
       }
       return result;
     },
+    clickToRestoreSelected() {
+      this.$store.state.show_restore_confirmation_dialog = true;
+    },
     clickToDeleteSelected() {
       this.$store.state.show_confirmation_dialog = true;
       this.is_single_delete = false;
@@ -443,6 +495,29 @@ export default {
           break;
       }
     },
+    restoreItems() {
+      this.$store.state.loader = true;
+      let ids = [];
+      if (this.is_single_delete) {
+        ids = [this.params.row.id];
+      } else {
+        ids = this.selectedIds;
+      }
+      let route;
+
+      route = this.restoreUrl;
+
+      HttpVerbs.postRequest(route, {ids: ids})
+          .then(() => {
+
+            this.getSearchInputItems();
+            this.selectedIds = [];
+            HelperClass.showSuccess(this.$noty)
+          }).catch(error => {
+        HelperClass.showErrors(error, this.$noty)
+      })
+
+    },
     deleteItems() {
       this.$store.state.loader = true;
       let ids = [];
@@ -451,10 +526,15 @@ export default {
       } else {
         ids = this.selectedIds;
       }
-      HttpVerbs.deleteRequest(this.deleteUrl, {ids: ids})
+      let route;
+
+      route = this.forceDeleteUrl ? this.forceDeleteUrl : this.deleteUrl;
+
+      HttpVerbs.deleteRequest(route, {ids: ids})
           .then(() => {
 
             this.getSearchInputItems();
+            this.selectedIds = [];
             HelperClass.showSuccess(this.$noty)
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)

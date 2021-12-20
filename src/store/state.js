@@ -14,6 +14,7 @@ export default {
     uploadedImages: {},
     user_info: [],
     uuid: null,
+    show_restore_confirmation_dialog:false,
     show_confirmation_dialog: false,
     user_role: [],
     image_file: {},

@@ -33,6 +33,7 @@ class HelperClass {
         store.state.loader = false;
         store.state.uuid = null;
         store.state.show_confirmation_dialog = false;
+        store.state.show_restore_confirmation_dialog = false;
         noty.success('عملیات با موفقیت انجام شد')
         if (scropToTop) {
             this.scrollTop();

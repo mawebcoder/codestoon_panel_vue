@@ -1,0 +1,15 @@
+<template>
+<div>
+  user trash
+</div>
+</template>
+
+<script>
+export default {
+name: "Trash"
+}
+</script>
+
+<style scoped>
+
+</style>
