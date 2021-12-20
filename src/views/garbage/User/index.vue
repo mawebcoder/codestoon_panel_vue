@@ -5,7 +5,7 @@
                :showRestore="true" :isTrash="true"
                server-search-route="managers/search-items?trash=true" :items="rows"
                :editUrlName="edit_url_name"
-               :delete-url="delete_uri" :columns="columns">
+               :delete-url="delete_uri" :show-edit="false" :columns="columns">
     </DataTable>
 
   </div>
