@@ -31,7 +31,7 @@ export default {
         },
         {
           field: 'name',
-          label: 'عنوان دوره'
+          label: 'عنوان دسته بندی'
         },
       ]
     }
