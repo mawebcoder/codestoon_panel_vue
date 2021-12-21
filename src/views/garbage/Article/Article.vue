@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <DataTable :force-delete="true" restore-url="articles/restore" force-delete-url="articles/force/delete"
+    <DataTable :force-delete="true" restore-url="articles/restore/items" force-delete-url="articles/force/delete"
                :showRestore="true" :isTrash="true"
                server-search-route="articles/search-items?trash=true" :items="rows"
                :show-edit="false" :columns="columns">
