@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DataTable :show-edit="false" server-search-route="sms/search-items" :items="rows" :editUrlName="edit_url_name"
+    <DataTable :show-edit="false" server-search-route="sms/search-items" :items="rows"
                :delete-url="delete_uri" :columns="columns">
     </DataTable>
   </div>
@@ -14,7 +14,6 @@ export default {
 
   data() {
     return {
-      edit_url_name: 'factor-course-edit',
       delete_uri: 'sms',
       rows: ['ref_id',
         'id',
