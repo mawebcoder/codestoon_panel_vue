@@ -17,6 +17,8 @@ import 'vue-material/dist/theme/default.css'
 Vue.use(MdIcon)
 
 Vue.use(MdField)
+
+
 Vue.use(MdSwitch)
 Vue.use(MdDivider)
 Vue.use(MdBadge)
