@@ -123,6 +123,12 @@
       class="md-raised md-primary"
       >ثبت</md-button
     >
+   <hr style="margin: 100px 0">
+    <DataTable :show-edit="false" server-search-route="emails/search-items" :items="rows"
+               :delete-url="delete_uri" :columns="columns">
+    </DataTable>
+
+
   </div>
 </template>
 
@@ -132,7 +138,7 @@ import HelperClass from "../../../services/HelperClass";
 
 const Editor = () => import("@tinymce/tinymce-vue");
 const Multiselect = () => import("vue-multiselect");
-
+const DataTable = () => import('../../../components/DataTable')
 export default {
   data() {
     return {
@@ -143,6 +149,45 @@ export default {
       target: "",
       users: [],
       selectedUsers: [],
+      delete_uri:"emails",
+      rows:[
+          'id',
+          'mail_reason',
+          'message_type',
+          'sending_status',
+          'user_name',
+          'email',
+          "created_at"
+      ],
+       columns: [
+        {
+          field: 'id',
+          label: 'شناسه',
+        },
+        {
+          field: 'user_name',
+          label: 'نام کاربری'
+        },
+        {
+          field: 'email',
+          label: 'ایمیل کاربر'
+        },
+        {
+          field: 'message_type',
+          label: 'نوع پیام'
+        }, {
+          field: 'message_reason',
+          label: 'علت ارسال'
+        },
+        {
+          label: 'وضعیت ارسال',
+          field: 'sending_status'
+        },
+        {
+          label: 'تاریخ ارسال',
+          field: 'created_at'
+        }
+      ],
     };
   },
   methods: {
@@ -255,6 +300,7 @@ export default {
   components: {
     Editor,
     Multiselect,
+    DataTable
   },
 };
 </script>
