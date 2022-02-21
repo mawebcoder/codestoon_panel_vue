@@ -76,6 +76,8 @@ export default {
     }
   },
   methods: {
+
+  
     cancelUpload(){
       this.$store.state.videoUploadProgress = 0;
     },
