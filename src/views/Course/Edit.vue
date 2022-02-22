@@ -212,6 +212,13 @@
     </div>
 
     <label>
+      قرار گرفتن در لیست به زودی ها :
+    </label>
+    <div dir="ltr">
+      <md-switch v-model="is_coming_soon"></md-switch>
+    </div>
+
+    <label>
       آیا vip است؟
     </label>
     <div dir="ltr">
@@ -261,6 +268,7 @@ export default {
       color: null,
       show_in_home_page: false,
       short_description: "",
+      is_coming_soon: false,
       meta: "",
       title: "",
       en_title: "",
@@ -317,13 +325,16 @@ export default {
             });
           }
 
+
           let course = result.course;
+console.log(course);
           this.title = course.title;
           this.en_title = course.en_title;
           this.slug = course.slug;
           this.meta = course.meta;
           this.show_in_home_page = course.show_in_home_page ? true : false;
           this.color = course.color;
+          this.is_coming_soon = course.is_coming_soon ? true : false;
           this.short_description = course.short_description;
           this.description = course.description;
           this.price = parseInt(course.price);
@@ -444,12 +455,12 @@ export default {
         data.append("prerequisites", JSON.stringify(ids));
       }
 
-
       if (this.color) {
         data.append("color", this.color);
       }
       data.append("show_in_home_page", this.show_in_home_page ? 1 : 0);
-      
+
+      data.append("is_coming_soon", this.is_coming_soon ? 1 : 0);
       this.recording_status
         ? data.append("record_status", this.recording_status.value)
         : "";

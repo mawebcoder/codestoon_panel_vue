@@ -26,7 +26,7 @@
     </label>
     <div class="form-group">
       <md-field>
-        <label>اطلاعات متا...</label>
+   
         <md-textarea v-model="meta"></md-textarea>
       </md-field>
     </div>
@@ -36,7 +36,7 @@
     </label>
     <div class="form-group">
       <md-field>
-        <label>توضیحات کوتاه...</label>
+        
         <md-textarea v-model="short_description"></md-textarea>
       </md-field>
     </div>
@@ -209,6 +209,13 @@
     </div>
 
     <label>
+      قرار گرفتن در لیست به زودی ها :
+    </label>
+    <div dir="ltr">
+      <md-switch v-model="is_coming_soon"></md-switch>
+    </div>
+
+    <label>
       آیا vip است؟
     </label>
     <div dir="ltr">
@@ -255,6 +262,7 @@ export default {
       slug: "",
       short_description: "",
       meta: "",
+      is_coming_soon: false,
       title: "",
       en_title: "",
       color: null,
@@ -362,10 +370,12 @@ export default {
       }
       data.append("show_in_home_page", this.show_in_home_page ? 1 : 0);
 
+      data.append("is_coming_soon", this.is_coming_soon ? 1 : 0);
+      
       this.recording_status
         ? data.append("record_status", this.recording_status.value)
         : "";
-
+   
       if (this.$store.state.uuid) {
         data.append("uuid", this.$store.state.uuid);
       }
