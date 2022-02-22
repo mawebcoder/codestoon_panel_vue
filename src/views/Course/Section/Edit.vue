@@ -27,12 +27,7 @@
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
 
-    <div style="margin: 20px 0;text-align: center;font-weight: bold">
-      لیست ویدیوهای این فصل :
-    </div>
-    <DataTable :show-delete="false" :show-select="false" :show-search="false" :items="rows" :uri="uri"
-               :editUrlName="edit_url_name" :delete-url="delete_uri" :columns="columns">
-    </DataTable>
+   
 
   </div>
 </template>
@@ -41,7 +36,7 @@
 import HttpVerbs from "../../../services/HttpVerbs";
 import HelperClass from "../../../services/HelperClass";
 
-const DataTable = () => import('../../../components/DataTable')
+
 const multiselect = () => import('vue-multiselect');
 export default {
   name: "Create",
@@ -176,7 +171,7 @@ export default {
   },
   components: {
     multiselect,
-    DataTable
+
   }
 }
 </script>
