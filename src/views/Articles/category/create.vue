@@ -1,30 +1,43 @@
 <template>
   <div>
-
+    <label>
+      نام دسته بندی به فارسی :
+    </label>
     <md-field>
-
-      <md-input placeholder="نام دسته بندی به فارسی..." v-model="fa_name"></md-input>
+      <md-input v-model="fa_name"></md-input>
     </md-field>
 
+    <label>
+      نام دسته بندی به انگلیسی :
+    </label>
     <md-field>
-
-      <md-input placeholder="نام دسته بندی به انگلیسی..." v-model="en_name"></md-input>
+      <md-input v-model="en_name"></md-input>
     </md-field>
 
-    <md-field>
 
+    <md-field>
       <md-input placeholder="نامک..." v-model="slug"></md-input>
     </md-field>
-    <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="parentObject"
-                 :options="parentArray" :close-on-select="true"
-                 :clear-on-select="false"
-                 :preserve-search="true" placeholder=" دسته والد مورد نظر را در صورت وجود انتخاب کنید..." label="name"
-                 track-by="name">
+    <multiselect
+      selectedLabel=" "
+      selectLabel="انتخاب "
+      deselectLabel="حذف"
+      v-model="parentObject"
+      :options="parentArray"
+      :close-on-select="true"
+      :clear-on-select="false"
+      :preserve-search="true"
+      placeholder=" دسته والد مورد نظر را در صورت وجود انتخاب کنید..."
+      label="name"
+      track-by="name"
+    >
     </multiselect>
-    <div style="margin: 20px 0;text-align: center;font-weight: bold;font-size: 1.5em">
+    <div
+      style="margin: 20px 0;text-align: center;font-weight: bold;font-size: 1.5em"
+    >
       عکس کاور
     </div>
-    <DropZone :image-type="imageType" :driver="driver"/>
+    <DropZone :image-type="imageType" :driver="driver" />
 
     <label>
       : وضعیت
@@ -40,7 +53,6 @@
     </div>
 
     <md-button @click="submit" class="md-raised md-primary">ثبت</md-button>
-
   </div>
 </template>
 
@@ -48,8 +60,8 @@
 import HelperClass from "../../../services/HelperClass";
 import ArticleCategoryService from "../../../services/Article/ArticleCategoryService";
 
-const DropZone=()=>import('../../../components/DropZon')
-const Multiselect=()=>import('vue-multiselect')
+const DropZone = () => import("../../../components/DropZon");
+const Multiselect = () => import("vue-multiselect");
 export default {
   name: "Create",
   created() {
@@ -57,94 +69,83 @@ export default {
   },
   data() {
     return {
-      parentObject: {name: 'بدون دسته والد', value: 0},
+      parentObject: { name: "بدون دسته والد", value: 0 },
       status: false,
-      fa_name: '',
-      en_name: '',
-      slug: '',
-      driver: 'article_category_cart_image',
-      imageType: 'cart',
+      fa_name: "",
+      en_name: "",
+      slug: "",
+      driver: "article_category_cart_image",
+      imageType: "cart",
       show_in_filter: false,
-      parentArray: [
-        {name: 'بدون دسته والد', value: 0},
-      ],
-    }
+      parentArray: [{ name: "بدون دسته والد", value: 0 }],
+    };
   },
   methods: {
     getSelectBox() {
       ArticleCategoryService.getParents()
-          .then(res => {
-            if (res.status === 204) {
-              return;
-            }
-            let data = res.data.data;
+        .then((res) => {
+          if (res.status === 204) {
+            return;
+          }
+          let data = res.data.data;
 
-            data.forEach(item => {
-
-              this.parentArray.push({
-                name: item.fa_name,
-                value: item.id
-              })
-
-            })
-
-
-          }).catch(error => {
-
-        HelperClass.showErrors(error, this.$noty)
-
-      });
+          data.forEach((item) => {
+            this.parentArray.push({
+              name: item.fa_name,
+              value: item.id,
+            });
+          });
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$noty);
+        });
     },
 
     getData() {
       let formData = new FormData();
-      formData.append('fa_name', this.fa_name);
-      this.en_name.trim().length ?
-          formData.append('en_name', this.en_name) : '';
-      formData.append('status', this.status ? 1 : 0);
-      formData.append('show_in_filter', this.show_in_filter ? 1 : 0);
+      formData.append("fa_name", this.fa_name);
+      this.en_name.trim().length
+        ? formData.append("en_name", this.en_name)
+        : "";
+      formData.append("status", this.status ? 1 : 0);
+      formData.append("show_in_filter", this.show_in_filter ? 1 : 0);
       if (this.slug.trim().length) {
-        formData.append('slug', this.slug)
+        formData.append("slug", this.slug);
       }
 
       if (this.$store.state.uuid) {
-        formData.append('uuid', this.$store.state.uuid);
+        formData.append("uuid", this.$store.state.uuid);
       }
       if (this.parentObject) {
-
         if (parseInt(this.parentObject.value) !== 0) {
-          formData.append('parent', this.parentObject.value)
+          formData.append("parent", this.parentObject.value);
         }
       }
-      typeof (this.$store.state.image_file.file) !== 'undefined' ?
-          formData.append('file', this.$store.state.image_file.file) : '';
+      typeof this.$store.state.image_file.file !== "undefined"
+        ? formData.append("file", this.$store.state.image_file.file)
+        : "";
       return formData;
-
     },
     submit() {
-
       this.$store.state.loader = true;
 
       let data = this.getData();
       ArticleCategoryService.store(data)
-          .then(() => {
-            HelperClass.showSuccess(this.$noty);
-            this.$router.push({name: 'category-article-list'})
-          }).catch(error => {
-        HelperClass.showErrors(error, this.$noty);
-      })
-
+        .then(() => {
+          HelperClass.showSuccess(this.$noty);
+          this.$router.push({ name: "category-article-list" });
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$noty);
+        });
     },
   },
   components: {
     Multiselect,
-    DropZone
+    DropZone,
   },
-  mounted() {
-  }
-}
+  mounted() {},
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
