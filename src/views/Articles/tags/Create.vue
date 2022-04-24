@@ -10,9 +10,11 @@
     <label>
       نام تگ به انگلیسی :
     </label>
-    <md-field>
-      <md-input v-model="en_name"></md-input>
+    
+      <md-field>
+      <md-input style="direction:ltr;padding:0 10px" v-model="en_name"></md-input>
     </md-field>
+   
 
     <label>
       اسلاگ :

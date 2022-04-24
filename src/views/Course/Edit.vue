@@ -40,6 +40,37 @@
     </div>
 
     <label>
+      مدرس دوره :
+    </label>
+    <div class="form-group">
+      <multiselect
+        selectedLabel=" "
+        selectLabel="انتخاب "
+        deselectLabel="حذف"
+        v-model="teacher"
+        :options="teacherList"
+        :close-on-select="true"
+        :clear-on-select="false"
+        :preserve-search="true"
+        label="name"
+        :internal-search="false"
+        :loading="isLoading"
+        track-by="name"
+        @search-change="getTeacherList"
+      >
+      </multiselect>
+    </div>
+
+    <label>
+      درباره مدرس :
+    </label>
+    <div class="form-group">
+      <md-field>
+        <md-textarea v-model="teacher_description"></md-textarea>
+      </md-field>
+    </div>
+
+    <label>
       توضیحات کامل :
     </label>
     <editor
@@ -285,6 +316,10 @@ export default {
       coursesArray: [],
       courseIds: [],
       level: null,
+      teacherList: [],
+      isLoading:false,
+      teacher: null,
+      teacher_description: "",
       levelArray: [
         { name: "مبتدی", value: "beginner" },
         { name: "متوسط", value: "medium" },
@@ -296,6 +331,33 @@ export default {
     };
   },
   methods: {
+    getTeacherList(searchQuery) {
+      this.isLoading = true;
+      if (searchQuery.length < 3) {
+        return;
+      }
+      HttpVerbs.getRequest("/users/search?search=" + searchQuery)
+        .then((res) => {
+          this.teacherList = [];
+
+          if (res.status === 204) {
+            this.teacherList = [];
+            this.isLoading = false;
+            return;
+          }
+
+          let result = res.data.data;
+
+          result.forEach((item) => {
+            this.teacherList.push({ name: item.email, value: item.id });
+          });
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$noty);
+          this.isLoading = false;
+        });
+    },
     getInfo() {
       HttpVerbs.getRequest(`courses/${this.$route.params.id}/edit`)
         .then((res) => {
@@ -304,6 +366,7 @@ export default {
           if (category) {
             this.category = { name: category.name, value: category.id };
           }
+
           let prerequisites = result.prerequisites;
 
           if (prerequisites) {
@@ -325,11 +388,17 @@ export default {
             });
           }
 
+          let teacher = result.teacherInfo;
+          this.teacher = { name: teacher.email, value: teacher.id };
+          
+          
 
           let course = result.course;
-console.log(course);
+          this.teacher_description = course.teacher_description;
+
           this.title = course.title;
           this.en_title = course.en_title;
+
           this.slug = course.slug;
           this.meta = course.meta;
           this.show_in_home_page = course.show_in_home_page ? true : false;
@@ -453,6 +522,14 @@ console.log(course);
           ids.push(item.value);
         });
         data.append("prerequisites", JSON.stringify(ids));
+      }
+
+      if (this.teacher) {
+        data.append("teacher_id", this.teacher.value);
+      }
+
+      if (this.teacher_description.trim().length) {
+        data.append("teacher_description", this.teacher_description);
       }
 
       if (this.color) {

@@ -26,17 +26,49 @@
     </label>
     <div class="form-group">
       <md-field>
-   
         <md-textarea v-model="meta"></md-textarea>
       </md-field>
     </div>
+
+    <label>
+      مدرس دوره :
+    </label>
+    <div class="form-group">
+       <multiselect
+        selectedLabel=" "
+        selectLabel="انتخاب "
+        deselectLabel="حذف"
+        v-model="teacher"
+        :options="teacherList"
+        :close-on-select="true"
+        :clear-on-select="false"
+        :preserve-search="true"
+        label="name"
+        :internal-search="false"
+        :loading="isLoading"
+        track-by="name"
+         @search-change="getTeacherList"
+      >
+      </multiselect>
+
+    </div>
+
+     <label>
+      درباره مدرس :
+    </label>
+    <div class="form-group">
+      <md-field>
+        <md-textarea v-model="teacher_description"></md-textarea>
+      </md-field>
+    </div>
+
+ 
 
     <label>
       توضیحات کوتاه :
     </label>
     <div class="form-group">
       <md-field>
-        
         <md-textarea v-model="short_description"></md-textarea>
       </md-field>
     </div>
@@ -262,6 +294,10 @@ export default {
       slug: "",
       short_description: "",
       meta: "",
+      teacherList: [],
+      teacher: null,
+      teacher_description:"",
+      isLoading: false,
       is_coming_soon: false,
       title: "",
       en_title: "",
@@ -289,6 +325,35 @@ export default {
     };
   },
   methods: {
+    getTeacherList(searchQuery) {
+
+    
+      this.isLoading=true;
+      if(searchQuery.length<3){
+        return;
+      }
+      HttpVerbs.getRequest("/users/search?search=" + searchQuery)
+        .then((res) => {
+          this.teacherList = [];
+
+          if (res.status === 204) {
+            this.teacherList = [];
+            this.isLoading = false;
+            return;
+          }
+
+          let result = res.data.data;
+ 
+          result.forEach((item) => {
+            this.teacherList.push({ name: item.email, value: item.id });
+          });
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$noty);
+          this.isLoading=false;
+        });
+    },
     getCoursesSelectBox() {
       HttpVerbs.getRequest("courses/select/box")
         .then((res) => {
@@ -365,17 +430,26 @@ export default {
         data.append("prerequisites", JSON.stringify(ids));
       }
 
+      if(this.teacher){
+        data.append('teacher_id',this.teacher.value)
+      }
+
+      if(this.teacher_description.trim().length){
+        data.append('teacher_description',this.teacher_description)
+      }
+
+
       if (this.color) {
         data.append("color", this.color);
       }
       data.append("show_in_home_page", this.show_in_home_page ? 1 : 0);
 
       data.append("is_coming_soon", this.is_coming_soon ? 1 : 0);
-      
+
       this.recording_status
         ? data.append("record_status", this.recording_status.value)
         : "";
-   
+
       if (this.$store.state.uuid) {
         data.append("uuid", this.$store.state.uuid);
       }

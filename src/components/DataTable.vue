@@ -49,12 +49,14 @@
                         <multiselect @search-change="getUpdatedValueFromServer($event,index)" multiple
                                      style="margin-bottom: 20px"
                                      selectedLabel=" "
+                                    :internal-search="false"
                                      selectLabel="انتخاب " deselectLabel="حذف"
                                      v-model="vModels[index]"
                                      :options="options[index]" :close-on-select="true"
                                      :clear-on-select="false"
                                      :loading="isLoading"
-                                     :preserve-search="true" :placeholder="value.title" label="name"
+                                     :preserve-search="true"
+                                      :placeholder="value.title" label="name"
                                      track-by="name">
                         </multiselect>
                       </template>
@@ -62,15 +64,18 @@
                         <label>
                           {{ value.title }}:
                         </label>
-                        <multiselect @@search-change="getUpdatedValueFromServer($event,index)"
+                        <multiselect @search-change="getUpdatedValueFromServer($event,index)"
                                      style="margin-bottom: 20px"
                                      selectedLabel=" "
                                      :loading="isLoading"
-                                     selectLabel="انتخاب " deselectLabel="حذف"
+                                     selectLabel="انتخاب "
+                                      deselectLabel="حذف"
                                      v-model="vModels[index]"
-                                     :options="options[index]" :close-on-select="true"
+                                     :options="options[index]" 
+                                     :close-on-select="true"
                                      :clear-on-select="false"
-                                     :preserve-search="true" :placeholder="value.title" label="name"
+                                     :preserve-search="true"
+                                      :placeholder="value.title" label="name"
                                      track-by="name">
                         </multiselect>
                       </template>
@@ -309,9 +314,7 @@ export default {
             }
             result.forEach(item => {
               this.options[index].push({name: item["" + column_name], value: item['id']})
-            })
-
-            this.$forceUpdate();
+            })    
             this.isLoading = false;
           }).catch(error => {
         HelperClass.showErrors(error, this.$noty)

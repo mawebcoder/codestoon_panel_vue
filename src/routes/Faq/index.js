@@ -25,7 +25,7 @@ export default [
                 component:()=>import('../../views/Faq/Edit'),
                 name:'faq-edit',
                   beforeEnter:(to,from,next)=>{
-                    Auth.checkCanAccessThisRoute(next,'faq.edit','ویرایش سوال متداول')
+                    Auth.checkCanAccessThisRoute(next,'faq.update','ویرایش سوال متداول')
                 }
             }
 

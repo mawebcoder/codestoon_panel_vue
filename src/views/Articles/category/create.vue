@@ -11,9 +11,11 @@
       نام دسته بندی به انگلیسی :
     </label>
     <md-field>
-      <md-input v-model="en_name"></md-input>
+      <md-input
+        style="direction:ltr;padding:0 10px"
+        v-model="en_name"
+      ></md-input>
     </md-field>
-
 
     <md-field>
       <md-input placeholder="نامک..." v-model="slug"></md-input>
@@ -40,7 +42,7 @@
     <DropZone :image-type="imageType" :driver="driver" />
 
     <label>
-      : وضعیت
+      وضعیت :
     </label>
     <div dir="ltr">
       <md-switch v-model="status"></md-switch>

@@ -86,15 +86,15 @@ export default {
 
     },
     removeFile() {
+     
       this.$store.state.videoUploadProgress = 0;
       if (this.imageName) {
         if (this.$store.state.uploadedImages[this.imageName]) {
           delete this.$store.state.uploadedImages[this.imageName]
         }
       } else {
-        this.$store.state.image_file = {}
+        this.$store.state.uuid = {}
       }
-
     },
     uploaded(file) {
       this.$noty.success('آپلود با موفقیت انجام شد')
@@ -103,6 +103,8 @@ export default {
       } else {
         this.$store.state.uploadedImages[this.imageName] = file.upload.uuid;
       }
+
+    
 
     },
     error(file, response) {

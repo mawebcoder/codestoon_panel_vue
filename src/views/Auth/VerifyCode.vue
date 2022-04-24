@@ -9,29 +9,31 @@
 
           <md-card-content>
             <md-field>
-              <md-input placeholder="کد ارسالی را وارد کنید..." v-model="code"></md-input>
+              <md-input
+                placeholder="کد ارسالی را وارد کنید..."
+                v-model="code"
+              ></md-input>
               <md-icon>phone_locked</md-icon>
             </md-field>
-            <CountDown/>
-            <div v-if="$store.state.show_resend_code_button" @click="resendCode" class="resend-code-button">
+            <CountDown />
+            <div
+              v-if="$store.state.show_resend_code_button"
+              @click="resendCode"
+              class="resend-code-button"
+            >
               ارسال مجدد کد تایید
             </div>
           </md-card-content>
           <md-card-actions>
             <md-button @click="verify" class="md-raised md-primary">
-
               تایید
 
               <md-icon style="margin-right: 10px">thumb_up</md-icon>
             </md-button>
           </md-card-actions>
-
         </md-card>
       </div>
-
-
     </main>
-
   </div>
 </template>
 
@@ -44,8 +46,8 @@ export default {
   name: "AuthenticationPage",
   data() {
     return {
-      code: '',
-    }
+      code: "",
+    };
   },
   components: {
     CountDown,
@@ -54,47 +56,43 @@ export default {
     getData() {
       let data = new FormData();
 
-      data.append('code', this.code)
+      data.append("code", this.code);
       return data;
     },
     verify() {
       this.$store.state.loader = true;
       Auth.verifyCode(this.getData())
-          .then(res => {
+        .then((res) => {
+        
+          this.$cookies.set('token', res.data.data.token, '30d');
 
-            this.$cookies.set('token', res.data.data.token, '30d')
+          localStorage.removeItem("code_expire_date");
+          localStorage.removeItem("temp_password");
 
-            localStorage.removeItem('code_expire_date');
-            localStorage.removeItem('temp_password');
-
-            this.$router.push({name: "personal-info"})
-
-
-          }).catch(error => {
-
-        HelperClass.showErrors(error, this.$noty)
-
-      })
+          this.$router.push({ name: "personal-info" });
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$noty);
+        });
     },
     resendCode() {
       Auth.resendCode()
-          .then((res) => {
-            if (res.status === 204) {
-              this.$noty.warning('کد قبلا برای شما ارسال شده است')
-            } else {
-              this.$noty.success('کد مجددا برای شما ارسال شد')
-              setTimeout(function () {
-                location.reload();
-              }, 2000)
-
-            }
-
-          }).catch(error => {
-        HelperClass.showErrors(error, this.$noty)
-      })
-    }
-  }
-}
+        .then((res) => {
+          if (res.status === 204) {
+            this.$noty.warning("کد قبلا برای شما ارسال شده است");
+          } else {
+            this.$noty.success("کد مجددا برای شما ارسال شد");
+            setTimeout(function() {
+              location.reload();
+            }, 2000);
+          }
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$noty);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">

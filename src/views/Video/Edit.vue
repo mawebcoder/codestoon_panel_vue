@@ -273,7 +273,7 @@ export default {
         controls: true,
         sources: [
           {
-            src:`${this.$store.state.backendUrl}stream/videos/stream.m3u8/${this.$route.params.id}`,
+            src:`${this.$store.state.backendUrl}stream/videos/stream.m3u8/${this.$route.params.id}?token=${this.$cookies.get('token')}`,
             type: "application/x-mpegURL"
           }
         ]

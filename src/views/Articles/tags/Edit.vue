@@ -8,7 +8,7 @@
 
     <md-field>
 
-      <md-input placeholder="نام تگ به انگلیسی..." v-model="en_name"></md-input>
+      <md-input style="direction:ltr;padding:0 10px" placeholder="نام تگ به انگلیسی..." v-model="en_name"></md-input>
     </md-field>
 
     <md-field>

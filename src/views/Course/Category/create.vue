@@ -11,7 +11,7 @@
       نام دسته بندی به لاتین :
     </label>
     <md-field>
-      <md-input v-model="en_name"></md-input>
+      <md-input style="direction:ltr;padding:0 10px" v-model="en_name"></md-input>
     </md-field>
 
     <label>
