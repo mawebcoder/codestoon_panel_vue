@@ -28,7 +28,7 @@ export default {
         "content",
         "title",
       ],
-      edit_url_name: "course-category-edit",
+      edit_url_name: "offer-edit",
       delete_uri: "contacts",
       columns: [
         {

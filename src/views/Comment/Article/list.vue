@@ -17,7 +17,7 @@ export default {
     return {
       rows: ['id', 'name', 'status', 'is_checked', 'created_at','articleTitle','userEmail'],
       edit_url_name: 'comment-articles-edit',
-      delete_uri: 'comments',
+      delete_uri: 'comments/articles',
       columns: [
         {
           field: 'id',
@@ -45,6 +45,7 @@ export default {
         },
         {
           field: 'articleTitle',
+          html:true,
           label: 'عنوان مقاله'
         }
       ],

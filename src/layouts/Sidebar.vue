@@ -222,30 +222,7 @@
 
         </li>
 
-        <!--      offers-->
-        <li>
-        <span @click="toggle($event)" class="drop-down-button">
-            <md-icon>
-              local_offer
-            </md-icon>
-         انتقادات و پیشنهادات
-          <md-icon>
-            expand_more
-          </md-icon>
-        </span>
-
-          <ul class="links-ul hidden">
-            <li>
-              <small></small>
-
-              <router-link @click.native="closeAside" :to="{name:'offer-list'}">
-                لیست انتقادات و پیشنهادات
-              </router-link>
-            </li>
-          </ul>
-
-
-        </li>
+    
 
 
         <!--      contact us-->

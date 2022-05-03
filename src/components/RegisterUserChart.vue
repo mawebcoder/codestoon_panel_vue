@@ -20,7 +20,7 @@ export default {
           label: 'ثبت نام کاربران',
           data: [0, 32, 11, 101, 43, 21, 40],
           fill: false,
-          borderColor: 'rgb(75, 192, 192)',
+          borderColor: 'red',
           tension: 0.1
         }]
       },

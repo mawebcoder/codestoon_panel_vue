@@ -18,7 +18,7 @@ export default {
     return {
       rows: ['id', 'name', 'status', 'is_checked', 'created_at', 'videoTitle', 'userEmail'],
       edit_url_name: 'comment-video-edit',
-      delete_uri: 'comments',
+      delete_uri: 'comments/videos',
       columns: [
         {
           field: 'id',
@@ -46,6 +46,7 @@ export default {
         },
         {
           field: 'videoTitle',
+          html:true,
           label: 'عنوان ویدیو'
         }
       ],

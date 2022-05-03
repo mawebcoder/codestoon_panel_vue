@@ -7,23 +7,7 @@
     </div>
     <div class="row">
 
-      <div class="col-4 col-768-6 col-480-12">
-        <div style="padding: 10px">
-          <md-card  md-with-hover>
-            <md-card-header>
-              <div class="md-title"> بازدید از سایت</div>
-            </md-card-header>
-            <VisitChart/>
-            <multiselect selectedLabel=" " selectLabel="انتخاب " deselectLabel="حذف" v-model="status"
-                         :options="statusOptions" :close-on-select="true"
-                         :clear-on-select="false"
-                         :preserve-search="true" placeholder="فیلتر مورد نظر را انتخاب کنید..." label="name"
-                         track-by="name">
-            </multiselect>
-          </md-card>
-        </div>
-      </div>
-
+    
 
       <!--    register user chart-->
       <div class="col-4 col-768-6 col-480-12">
@@ -107,7 +91,7 @@
 <script>
 
 
-const VisitChart=()=>import("../../components/VisitChart");
+
 const RegisterUserChart=()=>import("../../components/RegisterUserChart");
 const OrderChart =()=>import("../../components/OrderChart");
 const SellChart =()=>import( '../../components/SellChart')
@@ -132,7 +116,6 @@ export default {
     }
   },
   components:{
-    VisitChart,
     RegisterUserChart,
     OrderChart,
     SellChart,

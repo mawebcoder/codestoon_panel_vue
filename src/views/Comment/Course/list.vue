@@ -45,7 +45,8 @@ export default {
         },
          {
           field: 'courseTitle',
-          label: 'عنوان دوره'
+          label: 'عنوان دوره',
+          html:true
         }
       ],
     }

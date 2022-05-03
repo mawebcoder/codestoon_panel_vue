@@ -2,46 +2,14 @@
   <header class="row">
     <!--    logo name -->
     <div class="col-2  logo-name">
-      کدستون
+    <img style="width:50%" src="@/assets/images/logo.png" alt="">
     </div>
-
-
-    <div @click="openAside" class="col-1 hamburger-icon">
-      <md-icon>
-        menu
-      </md-icon>
-    </div>
-
-
     <!--    search box-->
     <div class="col-9 col-768-9 col-480-11 search-box" dir="rtl">
 
-      <md-field>
-        <md-input @blur="BlurSearchBox()" placeholder="جستجو در صفحات..." @keyup="searchInPanel()"
-                  v-model="search"></md-input>
-        <md-icon>search</md-icon>
-      </md-field>
-
-      <div :class="['search-result',is_searching?'d-block':'d-none']">
-
-      </div>
-
-
+  
     </div>
 
-
-    <!--    profile icon-->
-    <div id="notifications" class="col-1 col-768-2  position-relative d-flex justify-content-center align-items-center">
-
-        <md-button class="md-icon-button">
-          <md-icon>
-            account_circle
-          </md-icon>
-        </md-button>
-
-
-
-    </div>
 
 
   </header>

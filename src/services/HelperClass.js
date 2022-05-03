@@ -112,7 +112,7 @@ class HelperClass {
             }
 
             itemsArray.forEach((value2) => {
-                finalArray[index][value2] = value[value2]
+                finalArray[index][value2] = value[value2]!=null?value[value2]:`<span style="padding:10px;background:green;color:white;margin-top:8px;display:block;text-align:center;border-radius:5px">حذف شده یا وجود ندارد</span>`
                 if (showDelete) {
                     finalArray[index]['delete'] = `<span class="delete-table-button">حذف</span>`
                 }
