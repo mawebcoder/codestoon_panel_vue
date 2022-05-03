@@ -12,7 +12,7 @@
           <md-card md-with-hover>
             <md-card-header>
               <div class="md-title">
-                کامنت های تایید نشده دوره ها
+                کامنت های بررسی نشده دوره ها
               </div>
             </md-card-header>
 
@@ -29,12 +29,13 @@
         </div>
 
       </div>
-      <div class="col-4">
+
+       <div class="col-4">
         <div class="statistic-box">
           <md-card md-with-hover>
             <md-card-header>
               <div class="md-title">
-                کاربران آنلاین
+                کامنت های بررسی نشده ویدیو ها
               </div>
             </md-card-header>
 
@@ -49,7 +50,35 @@
             </md-card-actions>
           </md-card>
         </div>
+
       </div>
+
+       <div class="col-4">
+        <div class="statistic-box">
+          <md-card md-with-hover>
+            <md-card-header>
+              <div class="md-title">
+                کامنت های بررسی نشده مقالات
+              </div>
+            </md-card-header>
+
+            <md-card-content>
+              <div class="number">
+                56
+              </div>
+            </md-card-content>
+
+            <md-card-actions>
+              <md-button class="md-raised md-accent">مشاهده</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+
+      </div>
+
+
+
+
 
       <div class="col-4">
         <div class="statistic-box">
@@ -73,71 +102,6 @@
         </div>
       </div>
 
-      <div class="col-4">
-        <div class="statistic-box">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">
-                سفارشات بررسی نشده لغو شده vip
-              </div>
-            </md-card-header>
-
-            <md-card-content>
-              <div class="number">
-                56
-              </div>
-            </md-card-content>
-
-            <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="statistic-box">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">
-                کاربران جدید
-              </div>
-            </md-card-header>
-
-            <md-card-content>
-              <div class="number">
-                56
-              </div>
-            </md-card-content>
-
-            <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="statistic-box">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">
-                سفارشات بررسی نشده لغو شده دوره ها
-              </div>
-            </md-card-header>
-
-            <md-card-content>
-              <div class="number">
-                56
-              </div>
-            </md-card-content>
-
-            <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
 
       <div class="col-4">
         <div class="statistic-box">
@@ -145,6 +109,29 @@
             <md-card-header>
               <div class="md-title">
                 سفارشات بررسی نشده موفق دوره ها
+              </div>
+            </md-card-header>
+
+            <md-card-content>
+              <div class="number">
+                56
+              </div>
+            </md-card-content>
+
+            <md-card-actions>
+              <md-button class="md-raised md-accent">مشاهده</md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
+
+
+       <div class="col-4">
+        <div class="statistic-box">
+          <md-card md-with-hover>
+            <md-card-header>
+              <div class="md-title">
+               ارتباط با ما بررسی نشده 
               </div>
             </md-card-header>
 

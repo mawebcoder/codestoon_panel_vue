@@ -41,7 +41,7 @@
             <md-icon>
            notifications
             </md-icon>
-    اعلانات
+    آمار
 
           <md-icon>
             expand_more
@@ -53,7 +53,7 @@
               <small></small>
 
               <router-link :to="{name:'statistic'}">
-               اعلانات 
+               آمار 
               </router-link>
             </li>
 

@@ -15,7 +15,8 @@
     </label>
     <md-field>
       <md-input
-        placeholder="عنوان ویدیو به لاتین..."
+      style="direction:ltr;padding:0 10px"
+    
         v-model="en_title"
       ></md-input>
     </md-field>

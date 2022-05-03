@@ -20,7 +20,7 @@ export default [
                 name: 'statistic',
                 beforeEnter: (to, from, next) => {
 
-                    Auth.checkCanAccessThisRoute(next,'dashboard.index','آمار و اعلانات')
+                    Auth.checkCanAccessThisRoute(next,'dashboard.index','آمار')
 
                 }
             }

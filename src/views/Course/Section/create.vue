@@ -11,7 +11,7 @@
     </label>
     <md-field>
       <md-input
-      
+        style="direction:ltr;padding:0 10px"
         v-model="en_name"
       ></md-input>
     </md-field>

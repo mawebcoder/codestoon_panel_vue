@@ -196,7 +196,7 @@ export default {
       return title;
     },
     getInfo() {
-      HttpVerbs.getRequest('get/setting')
+      HttpVerbs.getRequest('setting')
           .then(res => {
 
             let result = res.data.data;
