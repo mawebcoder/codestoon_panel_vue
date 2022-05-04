@@ -18,7 +18,10 @@ export default [
             {
                 path: 'list',
                 component: () => import('../../views/Vip/list'),
-                name: 'vip-list'
+                name: 'vip-list',
+                beforeEnter: (to, from, next) => {
+                    Auth.checkCanAccessThisRoute(next, 'vip.update', 'لیست پلن های ویژه')
+                }
             },
             {
                 path: 'edit/:id',

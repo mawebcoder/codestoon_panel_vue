@@ -1,7 +1,10 @@
 <template>
   <div>
-    <div style="margin-bottom: 20px" class="row  justify-content-center align-items-center">
-      <md-button class="md-icon-button md-raised">
+    <div
+      style="margin-bottom: 20px"
+      class="row  justify-content-center align-items-center"
+    >
+      <md-button @click="getReports()" class="md-icon-button md-raised">
         <md-icon>refresh</md-icon>
       </md-button>
     </div>
@@ -18,19 +21,26 @@
 
             <md-card-content>
               <div class="number">
-                56
+                {{ un_seen_course_comments }}
               </div>
             </md-card-content>
 
             <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
+              <md-button class="md-raised md-accent">
+                <router-link
+                  style="color:white"
+                  :to="{ name: 'comment-course-list' }"
+                >
+                  مشاهده
+                </router-link>
+              </md-button>
             </md-card-actions>
           </md-card>
         </div>
-
       </div>
 
-       <div class="col-4">
+      <!-- video_un_seen_comments -->
+      <div class="col-4">
         <div class="statistic-box">
           <md-card md-with-hover>
             <md-card-header>
@@ -41,19 +51,26 @@
 
             <md-card-content>
               <div class="number">
-                56
+                {{ un_seen_video_comments }}
               </div>
             </md-card-content>
 
             <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
+              <md-button class="md-raised md-accent">
+                <router-link
+                  style="color:white"
+                  :to="{ name: 'comment-video-list' }"
+                >
+                  مشاهده
+                </router-link>
+              </md-button>
             </md-card-actions>
           </md-card>
         </div>
-
       </div>
 
-       <div class="col-4">
+      <!-- un_checked_article_comments -->
+      <div class="col-4">
         <div class="statistic-box">
           <md-card md-with-hover>
             <md-card-header>
@@ -64,22 +81,25 @@
 
             <md-card-content>
               <div class="number">
-                56
+                {{ un_seen_article_commments }}
               </div>
             </md-card-content>
 
             <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
+              <md-button class="md-raised md-accent">
+                <router-link
+                  style="color:white"
+                  :to="{ name: 'comment-article-list' }"
+                >
+                  مشاهده
+                </router-link>
+              </md-button>
             </md-card-actions>
           </md-card>
         </div>
-
       </div>
 
-
-
-
-
+      <!-- un_seen_paid_vip -->
       <div class="col-4">
         <div class="statistic-box">
           <md-card md-with-hover>
@@ -91,18 +111,25 @@
 
             <md-card-content>
               <div class="number">
-                56
+                {{ un_seen_paid_vip }}
               </div>
             </md-card-content>
 
             <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
+              <md-button class="md-raised md-accent">
+                <router-link
+                  style="color:white"
+                  :to="{ name: 'factor-course-list' }"
+                >
+                  مشاهده
+                </router-link>
+              </md-button>
             </md-card-actions>
           </md-card>
         </div>
       </div>
 
-
+      <!-- un_paid course -->
       <div class="col-4">
         <div class="statistic-box">
           <md-card md-with-hover>
@@ -114,88 +141,51 @@
 
             <md-card-content>
               <div class="number">
-                56
+                {{ un_seen_paid_course }}
               </div>
             </md-card-content>
 
             <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
+              <md-button class="md-raised md-accent">
+                <router-link
+                  style="color:white"
+                  :to="{ name: 'factor-course-list' }"
+                >
+                  مشاهده
+                </router-link>
+              </md-button>
             </md-card-actions>
           </md-card>
         </div>
       </div>
 
-
-       <div class="col-4">
+      <!-- un_seen_contacts -->
+      <div class="col-4">
         <div class="statistic-box">
           <md-card md-with-hover>
             <md-card-header>
               <div class="md-title">
-               ارتباط با ما بررسی نشده 
+                ارتباط با ما بررسی نشده
               </div>
             </md-card-header>
 
             <md-card-content>
               <div class="number">
-                56
+                {{ un_seen_contacts }}
               </div>
             </md-card-content>
 
             <md-card-actions>
-              <md-button class="md-raised md-accent">مشاهده</md-button>
+              <md-button class="md-raised md-accent">
+                <router-link style="color:white" :to="{ name: 'offer-list' }">
+                  مشاهده
+                </router-link>
+              </md-button>
             </md-card-actions>
           </md-card>
         </div>
       </div>
     </div>
-
-
-    <!--    dialog-->
-
-    <md-dialog :md-active.sync="showDialog">
-
-      <div style="background: orange;margin: 5px 0" v-for="(value,index) in seenGuys" :key="index">
-        {{ value }}
-        <br>
-      </div>
-
-      <md-dialog-actions>
-        <md-button @click="showDialog = false" class="md-raised md-primary">باشه</md-button>
-      </md-dialog-actions>
-
-    </md-dialog>
-    <!--    notifications-->
-
-    <md-card-content v-for="(value,index) in alerts" :key="index">
-      <div class="row notifs">
-
-        <!--      course orders success-->
-        <div class="col-12 row">
-          <div class="col-12">
-            <md-card class="md-primary" md-theme="orange-card" md-with-hover>
-
-              <md-card-content>
-
-                {{ value.alert_message }}
-
-                <md-button @click="showSeenGuys(value)" class="md-raised md-primary">چه افرادی این پیام را مشاهده کرده
-                  اند؟
-                </md-button>
-
-              </md-card-content>
-
-              <md-card-actions>
-              </md-card-actions>
-
-            </md-card>
-          </div>
-        </div>
-
-
-      </div>
-    </md-card-content>
-
-
   </div>
 </template>
 
@@ -206,44 +196,90 @@ import HelperClass from "../../services/HelperClass";
 export default {
   name: "statistic",
   created() {
-    this.getAlerts();
+    this.getReports();
   },
   data() {
     return {
-      alerts: [],
-      seenGuys: [],
-      showDialog: false
-    }
+      un_seen_article_commments: 0,
+      un_seen_video_comments: 0,
+      un_seen_course_comments: 0,
+      un_seen_contacts: 0,
+      un_seen_paid_vip: 0,
+      un_seen_paid_course: 0,
+    };
   },
   methods: {
-    getAlerts() {
-      HttpVerbs.getRequest('alerts')
-          .then(res => {
-            this.alerts = res.data.data.data;
-          }).catch(error => {
-        HelperClass.showErrors(error, this.$noty)
-      })
+    getReports() {
+      this.getPaidCourseUnChecked();
+      this.getPaidVipUnChecked();
+      this.getUnseenVideoComments();
+      this.getUnSeenArticleComments();
+      this.getUnSeenCourseComments();
+      this.getUnSeenConatacts();
     },
-    showSeenGuys(value) {
 
-
-      if (!value.seen_users) {
-        this.seenGuys = [];
-      } else {
-        let values = [];
-        value.seen_users.forEach(item => {
-          values.push(item)
+    getPaidCourseUnChecked() {
+      HttpVerbs.getRequest("reports/course")
+        .then((res) => {
+          let response = res.data.data;
+          this.un_seen_paid_course = response;
         })
-        this.seenGuys = values;
-      }
-      this.showDialog = true;
-
-
-    }
-
-
-  }
-}
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$notify);
+        });
+    },
+    getPaidVipUnChecked() {
+      HttpVerbs.getRequest("reports/video_comment")
+        .then((res) => {
+          let response = res.data.data;
+          this.un_seen_video_comments = response;
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$notify);
+        });
+    },
+    getUnSeenArticleComments() {
+      HttpVerbs.getRequest("reports/vip")
+        .then((res) => {
+          let response = res.data.data;
+          this.un_seen_article_commments = response;
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$notify);
+        });
+    },
+    getUnSeenCourseComments() {
+      HttpVerbs.getRequest("reports/course_comment")
+        .then((res) => {
+          let response = res.data.data;
+          this.un_seen_course_comments = response;
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$notify);
+        });
+    },
+    getUnseenVideoComments() {
+      HttpVerbs.getRequest("reports/contact_us")
+        .then((res) => {
+          let response = res.data.data;
+          this.un_seen_contacts = response;
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$notify);
+        });
+    },
+    getUnSeenConatacts() {
+      HttpVerbs.getRequest("reports/article_comment")
+        .then((res) => {
+          let response = res.data.data;
+          this.un_seen_article_commments = response;
+        })
+        .catch((error) => {
+          HelperClass.showErrors(error, this.$notify);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
