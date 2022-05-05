@@ -4,9 +4,6 @@
       style="margin-bottom: 20px"
       class="row  justify-content-center align-items-center"
     >
-      <md-button class="md-icon-button md-raised">
-        <md-icon>refresh</md-icon>
-      </md-button>
     </div>
     <label>
       نوع گزارش خود را انتخاب کنید :
