@@ -1,7 +1,16 @@
 <template>
   <div id="sell-section-chart">
-    <canvas id="vip-sell-chart" width="300" height="300"></canvas>
+    <div style="display:flex">
 
+      <div class="col-6" style="margin-bottom:30px">
+        <canvas id="vip-sell-chart" width="700" height="300"></canvas>
+      </div>
+
+      <div class="col-6">
+        <canvas id="vip-sell-count-chart" width="700" height="300"></canvas>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -10,21 +19,14 @@ import HelperClass from "../services/HelperClass";
 
 export default {
   name: "ChartComponent",
+
+  props: ["chartData"],
   data() {
     return {
       type: "bar",
 
-      data: {
-        labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
-
-        datasets: [{
-          label: 'فروش vip',
-          data: [0, 20, 11, 45, 32, 55, 98],
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        }]
-      },
+      sellData: {},
+      countData: {},
       options: {
         responsive: true,
         lineTension: 1,
@@ -33,54 +35,71 @@ export default {
             {
               ticks: {
                 beginAtZero: true,
-                padding: 25
-              }
-            }
-          ]
-        }
-      }
-    }
+                padding: 25,
+              },
+            },
+          ],
+        },
+      },
+    };
   },
-  created() {
 
-    this.getInitData();
-
-  },
   methods: {
-
-    getInitData(){
-
-    },
-
     loadChart() {
-      let options = {
-        type: 'line',
-        data: this.data,
+      let sellOptions = {
+        type: "line",
+        data: this.sellData,
         options: this.options,
-      }
-      HelperClass.loadChart('vip-sell-chart', options)
+      };
+
+      let sellCountOption = {
+        type: "line",
+        data: this.countData,
+        options: this.options,
+      };
+
+      HelperClass.loadChart("vip-sell-chart", sellOptions);
+
+      HelperClass.loadChart("vip-sell-count-chart", sellCountOption);
     },
+  },
+  watch: {
+    chartData() {
+      let updatedData = this.chartData;
 
-    async updateData() {
-      //serve api here for update this.data and options
-    },
+      this.sellData = {
+        labels: updatedData.labels,
+        datasets: [
+          {
+            label: "فروش vip",
+            data: updatedData.data,
+            fill: false,
+            borderColor: "rgb(75, 192, 192)",
+            tension: 0.1,
+          },
+        ],
+      };
 
-    async updateChart() {
+      this.countData = {
+        labels: updatedData.labels,
+        datasets: [
+          {
+            label: "تعداد فروش",
+            data: updatedData.countData,
+            fill: false,
+            borderColor: "red",
+            tension: 0.1,
+          },
+        ],
+      };
 
-      await this.updateData()
       this.loadChart();
-
-
-    }
+    },
   },
   mounted() {
-
     this.loadChart();
-
-  }
-}
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

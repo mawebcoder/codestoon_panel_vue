@@ -54,9 +54,11 @@
     >
     </multiselect>
 
+    <md-button @click="submit" class="md-raised md-primary">اعمال</md-button>
+
     <div class="row">
       <!--    register user chart-->
-      <div class="col-4 col-768-6 col-480-12" v-if="reportType == 'userChart'">
+      <div class="col-4 col-768-6 col-480-12" v-if="report == 'userChart'">
         <div style="padding: 10px">
           <md-card md-with-hover>
             <md-card-header>
@@ -68,7 +70,7 @@
       </div>
 
       <!--    order-chart-->
-      <div class="col-4 col-768-6 col-480-12" v-if="reportType == 'orderChart'">
+      <div class="col-4 col-768-6 col-480-12" v-if="report == 'orderChart'">
         <div style="padding: 10px">
           <md-card md-with-hover>
             <md-card-header>
@@ -82,9 +84,12 @@
       <!--    order-chart-->
       <div
         class="col-4 col-768-6 col-480-12"
-        v-if="reportType == 'courseOrderChart'"
+        v-if="report == 'courseOrderChart'"
       >
         <div style="padding: 10px">
+          <md-button @click="submit" class="md-raised md-primary"
+            >اعمال</md-button
+          >
           <md-card md-with-hover>
             <md-card-header>
               <div class="md-title">فروش دوره</div>
@@ -96,23 +101,18 @@
       </div>
 
       <!--  vip-sell-chart-->
-      <div
-        class="col-4 col-768-6 col-480-12"
-        v-if="reportType == 'vipOrderChart'"
-      >
+      <div class="col-4 col-768-6 col-480-12" v-if="report == 'vipOrderChart'">
         <div style="padding: 10px">
           <md-card md-with-hover>
             <md-card-header>
               <div class="md-title">فروش vip</div>
             </md-card-header>
 
-            <VipSellChart />
+            <VipSellChart :chart-data="chartData" />
           </md-card>
         </div>
       </div>
     </div>
-
-    <md-button @click="submit" class="md-raised md-primary">اعمال</md-button>
 
     <div style="height: 300px"></div>
   </div>
@@ -124,6 +124,8 @@ const OrderChart = () => import("../../components/OrderChart");
 const SellChart = () => import("../../components/SellChart");
 const VipSellChart = () => import("../../components/VipSellChart");
 import Multiselect from "vue-multiselect";
+import HelperClass from "../../services/HelperClass";
+import HttpVerbs from "../../services/HttpVerbs";
 export default {
   name: "dashboard",
   data() {
@@ -132,6 +134,7 @@ export default {
 
       end_date: "",
 
+      report: null,
       // report types
       reportType: null,
       reportTypes: [
@@ -152,6 +155,8 @@ export default {
           value: "vipOrderChart",
         },
       ],
+
+      chartData: {},
 
       //time units
       timestamp: null,
@@ -174,10 +179,50 @@ export default {
   methods: {
     submit() {
       let data = this.getData();
+      if (data) {
+        HttpVerbs.postRequest("charts", data)
+          .then((res) => {
+            let response = res.data.data;
 
-      console.log(data);
+            this.sanitizeChartDate(response);
+
+            this.$store.state.loader = false;
+          })
+          .catch((error) => {
+            HelperClass.showErrors(error, this.$noty);
+          });
+      }
     },
 
+    sanitizeChartDate(response) {
+
+      let report = response.report;
+
+      let counter=response.count;
+      
+
+      let labels = [];
+
+      let data = [];
+
+      let countData=[];
+
+      for (let i in report) {
+        labels.push(i);
+        data.push(report[i]);
+      }
+
+      for(let i in counter){
+          countData.push(counter[i]);
+      }
+
+      this.chartData = {
+        labels,
+        data,
+        countData
+      };
+    
+    },
     getData() {
       let reportType = this.getReportType();
 
@@ -185,8 +230,6 @@ export default {
         this.$noty.warning("لطفا نوع گزارش را مشخص کنید");
         return;
       }
-
-    
 
       let startDate = this.getStartDate();
 
@@ -202,20 +245,23 @@ export default {
         return;
       }
 
-        let timestamp = this.getUnitTime();
+      let timestamp = this.getUnitTime();
 
       if (!timestamp) {
         this.$noty.warning("لطفا نوع واحد زمانی را مشخص کنید");
         return;
       }
 
+      this.report = reportType;
+
       return {
         reportType,
-        timestamp,
+        timeUnit: timestamp,
         endDate,
         startDate,
       };
     },
+
     getReportType() {
       return this.reportType ? this.reportType.value : null;
     },
@@ -229,7 +275,7 @@ export default {
     },
     getEndDate() {
       return this.end_date && this.end_date.trim().length
-        ? this.start_date
+        ? this.end_date
         : null;
     },
   },
