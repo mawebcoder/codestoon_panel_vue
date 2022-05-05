@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <canvas id="register-user-chart" width="300" height="300"></canvas>
+  <div id="sell-section-chart">
+        <canvas id="vip-sell-count-chart" width="300" height="300"></canvas>
   </div>
 </template>
 
@@ -9,21 +9,11 @@ import HelperClass from "../services/HelperClass";
 
 export default {
   name: "ChartComponent",
+
+  props: ["chartData"],
   data() {
     return {
-      type: "bar",
-
-      data: {
-        labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
-
-        datasets: [{
-          label: 'ثبت نام کاربران',
-          data: [0, 32, 11, 101, 43, 21, 40],
-          fill: false,
-          borderColor: 'red',
-          tension: 0.1
-        }]
-      },
+      countData: {},
       options: {
         responsive: true,
         lineTension: 1,
@@ -32,49 +22,51 @@ export default {
             {
               ticks: {
                 beginAtZero: true,
-                padding: 25
-              }
-            }
-          ]
-        }
-      }
-    }
+                padding: 25,
+              },
+            },
+          ],
+        },
+      },
+    };
   },
-  created() {
-    this.getInitData();
-  },
+
   methods: {
-    getInitData() {
-
-    },
-
     loadChart() {
-      let options = {
-        type: 'line',
-        data: this.data,
+      let sellCountOption = {
+        type: "line",
+        data: this.countData,
         options: this.options,
-      }
-      HelperClass.loadChart('register-user-chart', options)
+      };
+
+      HelperClass.loadChart("vip-sell-count-chart", sellCountOption);
+
     },
+  },
+  watch: {
+    chartData() {
+      let updatedData = this.chartData;
 
-    async updateData() {
-      //serve api here for update this.data and options
-    },
+      this.countData = {
+        labels: updatedData.labels,
+        datasets: [
+          {
+            label: "کاربران ثبت نامی",
+            data: updatedData.countData,
+            fill: false,
+            borderColor: "red",
+            tension: 0.1,
+          },
+        ],
+      };
 
-    async updateChart() {
-
-      await this.updateData()
       this.loadChart();
-
-
-    }
+    },
   },
   mounted() {
     this.loadChart();
-  }
-}
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

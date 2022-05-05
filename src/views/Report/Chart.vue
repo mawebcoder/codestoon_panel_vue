@@ -64,7 +64,7 @@
             <md-card-header>
               <div class="md-title">ثبت نام کاربران</div>
             </md-card-header>
-            <RegisterUserChart />
+            <RegisterUserChart :chart-data="chartData" />
           </md-card>
         </div>
       </div>
@@ -87,7 +87,6 @@
         v-if="report == 'courseOrderChart'"
       >
         <div style="padding: 10px">
-    
           <md-card md-with-hover>
             <md-card-header>
               <div class="md-title">فروش دوره</div>
@@ -193,33 +192,36 @@ export default {
     },
 
     sanitizeChartDate(response) {
-
       let report = response.report;
 
-      let counter=response.count;
-      
+      let counter = response.count;
 
       let labels = [];
 
       let data = [];
 
-      let countData=[];
+      let countData = [];
+
+      let hasReport = false;
 
       for (let i in report) {
+        hasReport = true;
         labels.push(i);
         data.push(report[i]);
       }
 
-      for(let i in counter){
-          countData.push(counter[i]);
+      for (let i in counter) {
+        countData.push(counter[i]);
+        if(!hasReport){
+          labels.push(i)
+        }
       }
 
       this.chartData = {
         labels,
         data,
-        countData
+        countData,
       };
-    
     },
     getData() {
       let reportType = this.getReportType();
