@@ -92,7 +92,7 @@
               <div class="md-title">فروش دوره</div>
             </md-card-header>
 
-            <SellChart :chart-data="chartData" />
+            <CourseSellChart :chart-data="chartData" />
           </md-card>
         </div>
       </div>
@@ -118,7 +118,7 @@
 <script>
 const RegisterUserChart = () => import("../../components/RegisterUserChart");
 const OrderChart = () => import("../../components/OrderChart");
-const SellChart = () => import("../../components/SellChart");
+const CourseSellChart = () => import("../../components/CourseSellChart");
 const VipSellChart = () => import("../../components/VipSellChart");
 import Multiselect from "vue-multiselect";
 import HelperClass from "../../services/HelperClass";
@@ -282,7 +282,7 @@ export default {
   components: {
     RegisterUserChart,
     OrderChart,
-    SellChart,
+    CourseSellChart,
     VipSellChart,
     Multiselect,
   },
