@@ -1,6 +1,7 @@
 <template>
- <div id="sell-section-chart">
+ <div id="sell-section-chart" class="row">
 
+    
         <canvas id="vip-sell-chart" width="300" height="300"></canvas>
 
         <canvas id="vip-sell-count-chart" width="300" height="300"></canvas>
@@ -65,7 +66,7 @@ export default {
         labels: updatedData.labels,
         datasets: [
           {
-            label: "فروش vip",
+            label: "فروش",
             data: updatedData.data,
             fill: false,
             borderColor: "rgb(75, 192, 192)",

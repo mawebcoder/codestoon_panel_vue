@@ -77,7 +77,7 @@
               <div class="md-title">تعداد سفارشات</div>
             </md-card-header>
 
-            <OrderChart />
+            <OrderChart :chart-data="chartData" />
           </md-card>
         </div>
       </div>
