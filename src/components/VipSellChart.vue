@@ -1,16 +1,10 @@
 <template>
-  <div id="sell-section-chart">
-    <div style="display:flex">
+ <div id="sell-section-chart">
 
-      <div class="col-6" style="margin-bottom:30px">
-        <canvas id="vip-sell-chart" width="700" height="300"></canvas>
-      </div>
+        <canvas id="vip-sell-chart" width="300" height="300"></canvas>
 
-      <div class="col-6">
-        <canvas id="vip-sell-count-chart" width="700" height="300"></canvas>
-      </div>
+        <canvas id="vip-sell-count-chart" width="300" height="300"></canvas>
 
-    </div>
   </div>
 </template>
 

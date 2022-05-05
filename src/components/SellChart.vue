@@ -1,16 +1,10 @@
 <template>
   <div id="sell-section-chart">
-    <div style="display:flex">
 
-      <div class="col-6" style="margin-bottom:30px">
-        <canvas id="vip-sell-chart" width="700" height="300"></canvas>
-      </div>
+        <canvas id="vip-sell-chart" width="300" height="300"></canvas>
 
-      <div class="col-6">
-        <canvas id="vip-sell-count-chart" width="700" height="300"></canvas>
-      </div>
+        <canvas id="vip-sell-count-chart" width="300" height="300"></canvas>
 
-    </div>
   </div>
 </template>
 
@@ -23,8 +17,7 @@ export default {
   props: ["chartData"],
   data() {
     return {
-      type: "bar",
-
+  
       sellData: {},
       countData: {},
       options: {
@@ -71,7 +64,7 @@ export default {
         labels: updatedData.labels,
         datasets: [
           {
-            label: "فروش vip",
+            label: "فروش دوره",
             data: updatedData.data,
             fill: false,
             borderColor: "rgb(75, 192, 192)",
@@ -84,7 +77,7 @@ export default {
         labels: updatedData.labels,
         datasets: [
           {
-            label: "تعداد فروش",
+            label: "دوره تعداد فروش",
             data: updatedData.countData,
             fill: false,
             borderColor: "red",

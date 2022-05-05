@@ -87,15 +87,13 @@
         v-if="report == 'courseOrderChart'"
       >
         <div style="padding: 10px">
-          <md-button @click="submit" class="md-raised md-primary"
-            >اعمال</md-button
-          >
+    
           <md-card md-with-hover>
             <md-card-header>
               <div class="md-title">فروش دوره</div>
             </md-card-header>
 
-            <SellChart />
+            <SellChart :chart-data="chartData" />
           </md-card>
         </div>
       </div>
@@ -139,19 +137,19 @@ export default {
       reportType: null,
       reportTypes: [
         {
-          name: "چارت ثبت نام کاربران",
+          name: "چارت تعداد ثبت نام کاربران",
           value: "userChart",
         },
         {
-          name: "چارت تعداد سفارشات",
+          name: "چارت کل سفارشات",
           value: "orderChart",
         },
         {
-          name: "چارت تعداد سفارشات دوره ها",
+          name: "چارت  سفارشات دوره ها",
           value: "courseOrderChart",
         },
         {
-          name: "چارت تعداد سفارشات VIP",
+          name: "چارت سفارشات VIP",
           value: "vipOrderChart",
         },
       ],
