@@ -1,9 +1,9 @@
 <template>
   <div id="sell-section-chart">
 
-        <canvas id="vip-sell-chart" width="300" height="300"></canvas>
+        <canvas id="vip-sell-chart" ></canvas>
 
-        <canvas id="vip-sell-count-chart" width="300" height="300"></canvas>
+        <canvas id="vip-sell-count-chart" ></canvas>
 
   </div>
 </template>

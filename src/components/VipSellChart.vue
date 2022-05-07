@@ -1,11 +1,8 @@
 <template>
- <div id="sell-section-chart" class="row">
+  <div>
+    <canvas  id="vip-sell-chart"></canvas>
 
-    
-        <canvas id="vip-sell-chart" width="300" height="300"></canvas>
-
-        <canvas id="vip-sell-count-chart" width="300" height="300"></canvas>
-
+    <canvas id="vip-sell-count-chart" ></canvas>
   </div>
 </template>
 
@@ -97,4 +94,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style></style>

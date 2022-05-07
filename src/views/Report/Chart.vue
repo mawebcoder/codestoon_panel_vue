@@ -3,8 +3,7 @@
     <div
       style="margin-bottom: 20px"
       class="row  justify-content-center align-items-center"
-    >
-    </div>
+    ></div>
     <label>
       نوع گزارش خود را انتخاب کنید :
     </label>
@@ -55,55 +54,37 @@
 
     <div class="row">
       <!--    register user chart-->
-      <div class="col-4 col-768-6 col-480-12" v-if="report == 'userChart'">
+      <div class="col-12 col-768-12 col-480-12" v-if="report == 'userChart'">
         <div style="padding: 10px">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">ثبت نام کاربران</div>
-            </md-card-header>
-            <RegisterUserChart :chart-data="chartData" />
-          </md-card>
+          <div class="md-title">ثبت نام کاربران</div>
+
+          <RegisterUserChart :chart-data="chartData" />
         </div>
       </div>
 
       <!--    order-chart-->
-      <div class="col-4 col-768-6 col-480-12" v-if="report == 'orderChart'">
+      <div class="col-12 col-768-12 col-480-12" v-if="report == 'orderChart'">
         <div style="padding: 10px">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">تعداد سفارشات</div>
-            </md-card-header>
-
-            <OrderChart :chart-data="chartData" />
-          </md-card>
+          <div class="md-title">تعداد سفارشات</div>
+          <OrderChart :chart-data="chartData" />
         </div>
       </div>
       <!--    order-chart-->
       <div
-        class="col-4 col-768-6 col-480-12"
+        class="col-12 col-768-12 col-480-12"
         v-if="report == 'courseOrderChart'"
       >
-        <div style="padding: 10px">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">فروش دوره</div>
-            </md-card-header>
-
-            <CourseSellChart :chart-data="chartData" />
-          </md-card>
+        <div style="padding: 10px" >
+          <div class="md-title">فروش دوره</div>
+          <CourseSellChart :chart-data="chartData" />
         </div>
       </div>
 
       <!--  vip-sell-chart-->
-      <div class="col-4 col-768-6 col-480-12" v-if="report == 'vipOrderChart'">
+      <div class="col-12 col-768-12 col-480-12" v-if="report == 'vipOrderChart'">
         <div style="padding: 10px">
-          <md-card md-with-hover>
-            <md-card-header>
-              <div class="md-title">فروش vip</div>
-            </md-card-header>
-
-            <VipSellChart :chart-data="chartData" />
-          </md-card>
+          <div class="md-title">فروش vip</div>
+          <VipSellChart :chart-data="chartData" />
         </div>
       </div>
     </div>
@@ -209,8 +190,8 @@ export default {
 
       for (let i in counter) {
         countData.push(counter[i]);
-        if(!hasReport){
-          labels.push(i)
+        if (!hasReport) {
+          labels.push(i);
         }
       }
 
